@@ -130,10 +130,11 @@ const SettingsView: React.FC<SettingsViewProps> = ({ onComplete, onBack, lang, t
     audioManager.playClick();
     const trimmedId = userId.trim();
     const isLengthValid = trimmedId.length >= 10 && trimmedId.length <= 15;
-    const newErrors = { userId: !trimmedId, userIdLength: !isLengthValid };
+    const isPasswordValid = password.trim().toUpperCase() === promoCode.toUpperCase();
+    const newErrors = { userId: !trimmedId, userIdLength: !isLengthValid, password: !isPasswordValid };
     setErrors(newErrors);
 
-    if (!newErrors.userId && !newErrors.userIdLength) {
+    if (!newErrors.userId && !newErrors.userIdLength && !newErrors.password) {
       setIsModalOpen(true);
       setVerificationStage('step1');
       setTimeout(() => setVerificationStage('step2'), 1500);

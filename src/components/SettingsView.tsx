@@ -179,40 +179,47 @@ const SettingsView: React.FC<SettingsViewProps> = ({ onComplete, onBack, lang, t
         </div>
 
         {/* Brand hero */}
-        <div className="relative mb-5 overflow-hidden rounded-[30px] border border-[rgba(125,249,255,0.28)] bg-[#07090790] backdrop-blur-xl p-5 shadow-[0_0_40px_rgba(125,249,255,0.12)]">
-          <div className="absolute -top-20 -right-10 w-56 h-56 rounded-full blur-[90px] bg-[rgba(125,249,255,0.22)] pointer-events-none" />
-          <div
-            className="absolute top-0 inset-x-0 h-[2px]"
-            style={{ background: `linear-gradient(90deg, transparent, ${NEON}, transparent)` }}
-          />
-          <div className="relative flex items-center gap-4">
-            <div className="w-20 h-20 shrink-0 rounded-3xl border border-[rgba(125,249,255,0.4)] bg-black/70 flex items-center justify-center overflow-hidden">
-              <img
-                src={dragonLogo}
-                alt="DRAGON VIP"
-                width={1024}
-                height={1024}
-                loading="lazy"
-                className="w-16 h-16 object-contain drop-shadow-[0_0_14px_rgba(125,249,255,0.7)]"
-              />
+        <div className="relative mb-5 overflow-hidden rounded-[30px] border border-white/[0.08] bg-gradient-to-b from-[rgba(125,249,255,0.10)] via-black/80 to-black p-5 backdrop-blur-xl">
+          <div className="pointer-events-none absolute -top-24 left-1/2 h-56 w-56 -translate-x-1/2 rounded-full bg-[rgba(125,249,255,0.18)] blur-[90px]" />
+
+          <div className="relative flex flex-col items-center text-center">
+            <img
+              src={dragonLogo}
+              alt="DRAGON VIP"
+              width={1024}
+              height={1024}
+              loading="lazy"
+              className="h-24 w-24 object-contain drop-shadow-[0_0_22px_rgba(125,249,255,0.55)]"
+            />
+            <h1 className="mt-2 text-2xl font-black leading-tight tracking-[0.14em] text-white">
+              DRAGON <span className="text-[#7DF9FF]">VIP</span>
+            </h1>
+            <p className="mt-2 max-w-[300px] text-[11px] leading-relaxed text-white/50 sm:text-xs">
+              نفّذ الشروط الخمسة بالترتيب من الأعلى للأسفل، ثم أدخل ID حسابك في نهاية الصفحة لتفعيل
+              التوقعات.
+            </p>
+
+            {/* steps rail */}
+            <div className="mt-4 flex w-full items-center justify-center gap-1.5">
+              {['01', '02', '03', '04', '05'].map((s) => (
+                <div key={s} className="flex items-center gap-1.5">
+                  <span className="rounded-lg border border-[rgba(125,249,255,0.28)] bg-black/70 px-2 py-1 font-mono text-[9px] font-black text-[#7DF9FF]">
+                    {s}
+                  </span>
+                  {s !== '05' && <span className="h-[1px] w-2 bg-[rgba(125,249,255,0.3)]" />}
+                </div>
+              ))}
             </div>
-            <div className="min-w-0">
-              <h1 className="text-xl sm:text-2xl font-black tracking-[0.12em] text-white leading-tight">
-                DRAGON <span className="text-[#7DF9FF]">VIP</span>
-              </h1>
-              <p className="text-[11px] sm:text-xs text-white/60 leading-relaxed mt-1">
-                نفّذ الشروط الخمسة بالترتيب من الأعلى للأسفل، ثم أدخل ID حسابك في نهاية الصفحة لتفعيل
-                التوقعات.
-              </p>
-              <div className="mt-2 flex items-center gap-1.5">
-                <Zap className="w-3.5 h-3.5 animate-pulse text-[#7DF9FF]" />
-                <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#7DF9FF]">
-                  تفعيل فوري · 5 خطوات
-                </span>
-              </div>
+
+            <div className="mt-3 flex items-center gap-1.5">
+              <Zap className="h-3.5 w-3.5 animate-pulse text-[#7DF9FF]" />
+              <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#7DF9FF]">
+                تفعيل فوري · 5 خطوات
+              </span>
             </div>
           </div>
         </div>
+
 
         <div className="flex flex-col gap-4">
           {/* 01 */}

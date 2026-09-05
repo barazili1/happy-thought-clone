@@ -17,47 +17,29 @@ interface AppleGameProps {
   userId?: string;
 }
 
-const ADMIN_ID = '1909874671';
-const APPLE_FEED = 'https://evoioi-default-rtdb.europe-west1.firebasedatabase.app/pre/apple/apple.json';
+const ADMIN_ID = '1729018123';
+const APPLE_FEED = 'https://evoioi-default-rtdb.europe-west1.firebasedatabase.app/m11.json';
 
-function parseServerPath(raw: unknown): number[] | null {
-  if (raw === null || raw === undefined) return null;
-  let value: any = raw;
-  if (typeof value === 'object' && !Array.isArray(value)) {
-    value = value.value ?? value.path ?? value.apple ?? Object.values(value)[0];
-  }
-  const parts = Array.isArray(value)
-    ? value
-    : String(value)
-        .split(/[^0-9]+/)
-        .filter(Boolean);
-  const cols = parts
-    .map((p: any) => Number(p))
-    .filter((n: number) => Number.isFinite(n) && n >= 1 && n <= 5)
-    .map((n: number) => n - 1);
-  return cols.length ? cols : null;
-}
+// bad apples per row (rows 0..9 => m1..m50)
+const BAD_PER_ROW = [1, 1, 1, 1, 2, 2, 2, 3, 3, 4];
 
-function buildBoardFromPath(serverPath: number[]): PredictionResult {
-  const path: number[] = [];
+function boardFromServer(data: any): PredictionResult | null {
+  if (!data || typeof data !== 'object') return null;
   const gridData: boolean[][] = [];
+  const path: number[] = [];
 
   for (let r = 0; r < 10; r++) {
-    const { goodCount, badCount } = MULTIPLIERS[r];
-    const safeCol = serverPath[r % serverPath.length];
-    const cells: boolean[] = Array(5).fill(false);
-    cells[safeCol] = true;
-
-    let placed = 1;
-    const order = [0, 1, 2, 3, 4].filter((c) => c !== safeCol).sort(() => Math.random() - 0.5);
-    for (const c of order) {
-      if (placed >= goodCount) break;
-      cells[c] = true;
-      placed++;
+    const cells: boolean[] = [];
+    for (let c = 0; c < 5; c++) {
+      const key = `m${r * 5 + c + 1}`;
+      const node = data[key];
+      const raw = node && typeof node === 'object' ? node[key] : node;
+      if (raw === undefined || raw === null) return null;
+      cells.push(String(raw).trim() === '0'); // 0 = سليمة
     }
-    void badCount;
-
-    path.push(safeCol);
+    const good = cells.map((v, i) => (v ? i : -1)).filter((i) => i !== -1);
+    if (!good.length) return null;
+    path.push(good[Math.floor(Math.random() * good.length)]);
     gridData.push(cells);
   }
 
@@ -66,35 +48,35 @@ function buildBoardFromPath(serverPath: number[]): PredictionResult {
     path,
     gridData,
     confidence: 99.4,
-    analysis: 'Server path',
+    analysis: 'Server board',
     timestamp: Date.now(),
   };
 }
 
+function buildServerPayload() {
+  const payload: Record<string, Record<string, string>> = {};
+  for (let r = 0; r < 10; r++) {
+    const cols = [0, 1, 2, 3, 4].sort(() => Math.random() - 0.5);
+    const bad = new Set(cols.slice(0, BAD_PER_ROW[r]));
+    for (let c = 0; c < 5; c++) {
+      const key = `m${r * 5 + c + 1}`;
+      payload[key] = { [key]: bad.has(c) ? '1' : '0' };
+    }
+  }
+  return payload;
+}
 
 function generatePredictionBoard(): PredictionResult {
-  const path: number[] = [];
   const gridData: boolean[][] = [];
+  const path: number[] = [];
 
   for (let r = 0; r < 10; r++) {
-    const { goodCount, badCount } = MULTIPLIERS[r];
-    const rowCells: boolean[] = [
-      ...Array(goodCount).fill(true),
-      ...Array(badCount).fill(false),
-    ];
-
-    for (let i = rowCells.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [rowCells[i], rowCells[j]] = [rowCells[j], rowCells[i]];
-    }
-
-    const goodIndices = rowCells
-      .map((val, idx) => (val ? idx : -1))
-      .filter((idx) => idx !== -1);
-
-    const recommendedCol = goodIndices[Math.floor(Math.random() * goodIndices.length)];
-    path.push(recommendedCol);
-    gridData.push(rowCells);
+    const cols = [0, 1, 2, 3, 4].sort(() => Math.random() - 0.5);
+    const bad = new Set(cols.slice(0, BAD_PER_ROW[r]));
+    const cells = [0, 1, 2, 3, 4].map((c) => !bad.has(c));
+    const good = cells.map((v, i) => (v ? i : -1)).filter((i) => i !== -1);
+    path.push(good[Math.floor(Math.random() * good.length)]);
+    gridData.push(cells);
   }
 
   return {
@@ -106,6 +88,8 @@ function generatePredictionBoard(): PredictionResult {
     timestamp: Date.now(),
   };
 }
+
+
 
 export const AppleGame: React.FC<AppleGameProps> = ({ onBack, language, userId }) => {
   const [gameState, setGameState] = useState<GameState>(GameState.IDLE);
@@ -140,8 +124,8 @@ export const AppleGame: React.FC<AppleGameProps> = ({ onBack, language, userId }
       try {
         const res = await fetch(`${APPLE_FEED}?t=${Date.now()}`, { cache: 'no-store' });
         const data = await res.json();
-        const serverPath = parseServerPath(data);
-        if (serverPath) return buildBoardFromPath(serverPath);
+        const board = boardFromServer(data);
+        if (board) return board;
       } catch (err) {
         console.error('Apple prediction fetch error:', err);
       }
@@ -176,12 +160,25 @@ export const AppleGame: React.FC<AppleGameProps> = ({ onBack, language, userId }
     setGameState(GameState.PREDICTED);
   };
 
-  const handleNewGame = () => {
+  const handleNewGame = async () => {
     playSound('click');
     setGameState(GameState.IDLE);
     setCurrentResult(null);
     setActiveOddIndex(0);
+
+    if (isAdmin) {
+      try {
+        await fetch(APPLE_FEED, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(buildServerPayload()),
+        });
+      } catch (err) {
+        console.error('Apple board reset error:', err);
+      }
+    }
   };
+
 
   const isAnalyzing = gameState === GameState.ANALYZING;
 

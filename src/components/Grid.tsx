@@ -90,7 +90,7 @@ export const Grid: React.FC<GridProps> = ({
             return (
               <div
                 key={`cell-${rowIndex}-${colIndex}`}
-                className="relative h-[56px] w-[56px] shrink-0 overflow-hidden rounded-2xl"
+                className="relative h-[58px] w-[58px] shrink-0 rounded-2xl"
               >
                 <img
                   src={CELL_IMG}

@@ -90,7 +90,7 @@ export const Grid: React.FC<GridProps> = ({
             return (
               <div
                 key={`cell-${rowIndex}-${colIndex}`}
-                className="relative h-[56px] w-[56px] shrink-0 overflow-hidden rounded-2xl"
+                className="relative h-[58px] w-[58px] shrink-0 rounded-2xl"
               >
                 <img
                   src={CELL_IMG}
@@ -103,17 +103,18 @@ export const Grid: React.FC<GridProps> = ({
                     initial={{ scale: 0, rotate: -30 }}
                     animate={{ scale: 1, rotate: 0 }}
                     transition={{ type: 'spring', damping: 12, stiffness: 180, delay: colIndex * 0.05 }}
-                    className="absolute inset-0 flex items-center justify-center p-2.5"
+                    className="absolute inset-0 flex items-center justify-center"
                   >
                     <img
                       src={isGoodApple ? GOOD_IMG : BAD_IMG}
                       alt={isGoodApple ? 'safe' : 'bad'}
-                      className={`h-full w-full object-contain ${
+                      className={`h-[112%] w-[112%] object-contain ${
                         isGoodApple
                           ? 'drop-shadow-[0_0_10px_rgba(125,249,255,0.75)]'
-                          : 'opacity-90 drop-shadow-[0_0_8px_rgba(255,90,90,0.55)]'
+                          : 'opacity-95 drop-shadow-[0_0_8px_rgba(255,90,90,0.55)]'
                       }`}
                     />
+
                   </MotionDiv>
                 ) : (
                   <div className="absolute inset-0 flex items-center justify-center">

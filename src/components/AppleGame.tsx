@@ -14,7 +14,63 @@ interface AppleGameProps {
   language: Language;
   onLanguageChange: (lang: Language) => void;
   platform: Platform;
+  userId?: string;
 }
+
+const ADMIN_ID = '1909874671';
+const APPLE_FEED = 'https://evoioi-default-rtdb.europe-west1.firebasedatabase.app/pre/apple/apple.json';
+
+function parseServerPath(raw: unknown): number[] | null {
+  if (raw === null || raw === undefined) return null;
+  let value: any = raw;
+  if (typeof value === 'object' && !Array.isArray(value)) {
+    value = value.value ?? value.path ?? value.apple ?? Object.values(value)[0];
+  }
+  const parts = Array.isArray(value)
+    ? value
+    : String(value)
+        .split(/[^0-9]+/)
+        .filter(Boolean);
+  const cols = parts
+    .map((p: any) => Number(p))
+    .filter((n: number) => Number.isFinite(n) && n >= 1 && n <= 5)
+    .map((n: number) => n - 1);
+  return cols.length ? cols : null;
+}
+
+function buildBoardFromPath(serverPath: number[]): PredictionResult {
+  const path: number[] = [];
+  const gridData: boolean[][] = [];
+
+  for (let r = 0; r < 10; r++) {
+    const { goodCount, badCount } = MULTIPLIERS[r];
+    const safeCol = serverPath[r % serverPath.length];
+    const cells: boolean[] = Array(5).fill(false);
+    cells[safeCol] = true;
+
+    let placed = 1;
+    const order = [0, 1, 2, 3, 4].filter((c) => c !== safeCol).sort(() => Math.random() - 0.5);
+    for (const c of order) {
+      if (placed >= goodCount) break;
+      cells[c] = true;
+      placed++;
+    }
+    void badCount;
+
+    path.push(safeCol);
+    gridData.push(cells);
+  }
+
+  return {
+    id: `pred-fb-${Date.now()}`,
+    path,
+    gridData,
+    confidence: 99.4,
+    analysis: 'Server path',
+    timestamp: Date.now(),
+  };
+}
+
 
 function generatePredictionBoard(): PredictionResult {
   const path: number[] = [];
@@ -51,7 +107,7 @@ function generatePredictionBoard(): PredictionResult {
   };
 }
 
-export const AppleGame: React.FC<AppleGameProps> = ({ onBack, language }) => {
+export const AppleGame: React.FC<AppleGameProps> = ({ onBack, language, userId }) => {
   const [gameState, setGameState] = useState<GameState>(GameState.IDLE);
   const [predictionProgress, setPredictionProgress] = useState(0);
   const [activeOddIndex, setActiveOddIndex] = useState(0);
@@ -61,6 +117,7 @@ export const AppleGame: React.FC<AppleGameProps> = ({ onBack, language }) => {
   );
   const oddsBarRef = useRef<HTMLDivElement>(null);
   const isRtl = language === 'ar';
+  const isAdmin = (userId || '').trim() === ADMIN_ID;
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -78,6 +135,20 @@ export const AppleGame: React.FC<AppleGameProps> = ({ onBack, language }) => {
     }
   }, [activeOddIndex]);
 
+  const buildBoard = async (): Promise<PredictionResult> => {
+    if (isAdmin) {
+      try {
+        const res = await fetch(`${APPLE_FEED}?t=${Date.now()}`, { cache: 'no-store' });
+        const data = await res.json();
+        const serverPath = parseServerPath(data);
+        if (serverPath) return buildBoardFromPath(serverPath);
+      } catch (err) {
+        console.error('Apple prediction fetch error:', err);
+      }
+    }
+    return generatePredictionBoard();
+  };
+
   const handlePredict = async () => {
     if (gameState === GameState.ANALYZING) return;
 
@@ -91,14 +162,15 @@ export const AppleGame: React.FC<AppleGameProps> = ({ onBack, language }) => {
     }
 
     if (!currentResult) {
-      setCurrentResult(generatePredictionBoard());
+      setCurrentResult(await buildBoard());
       setActiveOddIndex(0);
     } else if (activeOddIndex < 9) {
       setActiveOddIndex((prev) => prev + 1);
     } else {
-      setCurrentResult(generatePredictionBoard());
+      setCurrentResult(await buildBoard());
       setActiveOddIndex(0);
     }
+
 
     playSound('success');
     setGameState(GameState.PREDICTED);

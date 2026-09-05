@@ -40,15 +40,9 @@ const App: React.FC = () => {
 
   useEffect(() => {
     const root = document.documentElement;
-    if (selectedPlatform === 'linebet_v2') {
-      root.style.setProperty('--primary-color', '#0d9488');
-      root.style.setProperty('--primary-color-rgb', '13, 148, 136');
-      root.style.setProperty('--primary-glow', 'rgba(13, 148, 136, 0.45)');
-    } else {
-      root.style.setProperty('--primary-color', '#0d9488');
-      root.style.setProperty('--primary-color-rgb', '13, 148, 136');
-      root.style.setProperty('--primary-glow', 'rgba(13, 148, 136, 0.45)');
-    }
+    root.style.setProperty('--primary-color', '#39ff14');
+    root.style.setProperty('--primary-color-rgb', '57, 255, 20');
+    root.style.setProperty('--primary-glow', 'rgba(57, 255, 20, 0.55)');
   }, [selectedPlatform]);
 
   useEffect(() => {

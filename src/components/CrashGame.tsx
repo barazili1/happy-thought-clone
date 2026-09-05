@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, Users, RotateCcw, Play, History, Snowflake } from 'lucide-react';
 import { Platform } from '../types';
+import { getPlatform } from '../utils/platforms';
 import crashLogo from '../assets/logo-crash.png';
 
 const MotionDiv = motion.div as any;

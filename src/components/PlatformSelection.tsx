@@ -4,6 +4,7 @@ import { Platform } from '../types';
 import { Check, ChevronLeft, Snowflake, Users, Lock, Signal } from 'lucide-react';
 import { audioManager } from '../utils/audioManager';
 import dragonLogo from '../assets/dragon-logo.png';
+import { PLATFORMS } from '../utils/platforms';
 
 const MotionDiv = motion.div as any;
 
@@ -17,26 +18,7 @@ const PlatformSelection: React.FC<PlatformSelectionProps> = ({ onSelect }) => {
   const [isConnecting, setIsConnecting] = useState(false);
   const [onlineUsers, setOnlineUsers] = useState(Math.floor(Math.random() * (2500 - 1800) + 1800));
 
-  const platforms = [
-    {
-      id: 'linebet_v2' as Platform,
-      name: 'Winwin',
-      mono: 'W',
-      img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDBd0TpCQWUvWfxuU9DfJRgEs604mfmOEr0EHZOY0b9w&s=10',
-      tagline: 'استقرار ممتاز · تغطية إقليمية',
-      accuracy: '٩٦٪',
-      latency: '18ms',
-    },
-    {
-      id: 'linebet_v1' as Platform,
-      name: 'Greenbet',
-      mono: 'G',
-      img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoEj5eP5tNE8iMZoLHE9i4q-JYLMiLmHaIMKatrmBePA&s=10',
-      tagline: 'دقة عالية · تغطية عالمية',
-      accuracy: '٩٨٪',
-      latency: '14ms',
-    },
-  ];
+  const platforms = [PLATFORMS.linebet_v2, PLATFORMS.onexbet, PLATFORMS.linebet_v1];
 
   const selectedNode = platforms.find((p) => p.id === selected) || platforms[0]!;
 
@@ -128,7 +110,11 @@ const PlatformSelection: React.FC<PlatformSelectionProps> = ({ onSelect }) => {
                       active ? 'border-[rgba(125,249,255,0.5)]' : 'border-white/10'
                     }`}
                   >
-                    <img src={p.img} alt={p.name} className="h-full w-full object-cover" />
+                    {p.img ? (
+                      <img src={p.img} alt={p.name} className="h-full w-full object-cover" />
+                    ) : (
+                      <span className="text-[20px] font-black text-[#7DF9FF]">{p.mono}</span>
+                    )}
                   </div>
 
                   <div className="min-w-0 flex-1">

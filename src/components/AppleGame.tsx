@@ -174,7 +174,7 @@ export const AppleGame: React.FC<AppleGameProps> = ({ onBack, accessKeyData, lan
                         className="flex items-center gap-2 px-3.5 py-1 bg-[rgba(125,249,255,0.10)] border border-[rgba(125,249,255,0.35)] rounded-full" 
                         style={{ backgroundColor: 'rgba(var(--primary-color-rgb), 0.1)', borderColor: 'rgba(var(--primary-color-rgb), 0.3)' } as any}
                     >
-                        <div className="w-2 h-2 rounded-full bg-[rgba(125,249,255,0.10)]0 animate-pulse shadow-[0_0_10px_var(--primary-color)]" style={{ backgroundColor: 'var(--primary-color)' } as any} />
+                        <div className="w-2 h-2 rounded-full bg-[rgba(125,249,255,0.10)] animate-pulse shadow-[0_0_10px_var(--primary-color)]" style={{ backgroundColor: 'var(--primary-color)' } as any} />
                         <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#7DF9FF]" style={{ color: 'var(--primary-color)' } as any}>
                             {language === 'ar' ? 'النظام نشط' : 'System Active'}
                         </span>
@@ -283,7 +283,7 @@ export const AppleGame: React.FC<AppleGameProps> = ({ onBack, accessKeyData, lan
                                             </span>
                                             <div className="h-1 w-full bg-white/10 rounded-full overflow-hidden">
                                                 <motion.div 
-                                                    className="h-full bg-[rgba(125,249,255,0.10)]0 shadow-[0_0_15px_var(--primary-color)]"
+                                                    className="h-full bg-[rgba(125,249,255,0.10)] shadow-[0_0_15px_var(--primary-color)]"
                                                     style={{ backgroundColor: 'var(--primary-color)' } as any}
                                                     initial={{ width: 0 }}
                                                     animate={{ width: `${predictionProgress}%` }}
@@ -383,7 +383,7 @@ export const AppleGame: React.FC<AppleGameProps> = ({ onBack, accessKeyData, lan
                         </button>
 
                         <div className="flex items-center gap-1.5 px-3 py-1 bg-[rgba(125,249,255,0.10)] border border-[rgba(125,249,255,0.35)] rounded-full mb-4 mt-1" style={{ backgroundColor: 'rgba(var(--primary-color-rgb), 0.1)', borderColor: 'rgba(var(--primary-color-rgb), 0.25)' } as any}>
-                            <div className="w-1.5 h-1.5 rounded-full bg-[rgba(125,249,255,0.10)]0 animate-pulse shadow-[0_0_8px_var(--primary-color)]" style={{ backgroundColor: 'var(--primary-color)' } as any} />
+                            <div className="w-1.5 h-1.5 rounded-full bg-[rgba(125,249,255,0.10)] animate-pulse shadow-[0_0_8px_var(--primary-color)]" style={{ backgroundColor: 'var(--primary-color)' } as any} />
                             <span className="text-[10px] font-black uppercase tracking-widest text-[#7DF9FF]" style={{ color: 'var(--primary-color)' } as any}>
                                 {language === 'ar' ? 'تنبيه الأرباح الحصري' : 'Exclusive Profit Alert'}
                             </span>
@@ -433,7 +433,7 @@ export const AppleGame: React.FC<AppleGameProps> = ({ onBack, accessKeyData, lan
                                 </span>
                             </div>
                             <div className={`px-2.5 py-1 rounded-lg text-[10px] font-bold flex items-center gap-1 transition-all ${
-                                promoCopied ? 'bg-[rgba(125,249,255,0.10)]0 text-white shadow-[0_0_10px_rgba(34,197,94,0.4)]' : 'bg-white/10 text-white group-hover/code:bg-zinc-200'
+                                promoCopied ? 'bg-[rgba(125,249,255,0.10)] text-white shadow-[0_0_10px_rgba(34,197,94,0.4)]' : 'bg-white/10 text-white group-hover/code:bg-zinc-200'
                             }`}>
                                 {promoCopied ? (
                                     <>
@@ -457,7 +457,7 @@ export const AppleGame: React.FC<AppleGameProps> = ({ onBack, accessKeyData, lan
                                     playSound('click');
                                     window.open(platform === 'linebet_v1' ? 'https://refpa79184.com/L?tag=d_5848868m_188307c_&site=5848868&ad=188307' : 'https://refpa49781.com/L?tag=d_5953406m_68383c_&site=5953406&ad=68383', '_blank');
                                 }}
-                                className="w-full h-11 bg-[rgba(125,249,255,0.10)]0 text-white font-black text-xs uppercase tracking-wider rounded-xl transition-all shadow-[0_0_20px_rgba(34,197,94,0.3)] flex items-center justify-center gap-2 group/btn"
+                                className="w-full h-11 bg-[rgba(125,249,255,0.10)] text-white font-black text-xs uppercase tracking-wider rounded-xl transition-all shadow-[0_0_20px_rgba(34,197,94,0.3)] flex items-center justify-center gap-2 group/btn"
                                 style={{ backgroundColor: 'var(--primary-color)' } as any}
                             >
                                 <span>{language === 'ar' ? 'التسجيل وتفعيل البروموكود' : 'Register With Promo Code'}</span>

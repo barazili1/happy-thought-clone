@@ -26,7 +26,7 @@ export const GameSelection: React.FC<GameSelectionProps> = ({
   const platformName = platform === 'linebet_v1' ? 'Greenbet' : 'Winwin';
 
   return (
-    <div className="flex flex-col min-h-full bg-transparent font-sans text-white selection:bg-[rgba(125,249,255,0.10)]0/30" dir="rtl">
+    <div className="flex flex-col min-h-full bg-transparent font-sans text-white selection:bg-[rgba(125,249,255,0.10)]/30" dir="rtl">
       <div className="relative z-10 flex flex-col px-4 pt-4 pb-12 max-w-md mx-auto w-full">
         {/* Top Header Bar */}
         <div className="flex items-center justify-between mb-6">
@@ -39,7 +39,7 @@ export const GameSelection: React.FC<GameSelectionProps> = ({
           </button>
           
           <div className="flex items-center gap-2 px-3 py-1 bg-[rgba(125,249,255,0.10)] border border-[rgba(125,249,255,0.35)] rounded-full backdrop-blur-sm">
-            <div className="w-2 h-2 rounded-full bg-[rgba(125,249,255,0.10)]0 animate-pulse shadow-[0_0_8px_var(--primary-color)]" />
+            <div className="w-2 h-2 rounded-full bg-[rgba(125,249,255,0.10)] animate-pulse shadow-[0_0_8px_var(--primary-color)]" />
             <span className="text-[10px] font-black tracking-widest uppercase text-[#7DF9FF]">
               {platformName} Server VIP
             </span>

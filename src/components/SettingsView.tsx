@@ -99,7 +99,8 @@ const neonBtn =
 const SettingsView: React.FC<SettingsViewProps> = ({ onComplete, onBack, lang, t, platform }) => {
   const [copied, setCopied] = useState(false);
   const [userId, setUserId] = useState('');
-  const [errors, setErrors] = useState<{ userId?: boolean; userIdLength?: boolean }>({});
+  const [password, setPassword] = useState('');
+  const [errors, setErrors] = useState<{ userId?: boolean; userIdLength?: boolean; password?: boolean }>({});
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [verificationStage, setVerificationStage] = useState<'step1' | 'step2' | 'ready'>('step1');
 
@@ -129,10 +130,11 @@ const SettingsView: React.FC<SettingsViewProps> = ({ onComplete, onBack, lang, t
     audioManager.playClick();
     const trimmedId = userId.trim();
     const isLengthValid = trimmedId.length >= 10 && trimmedId.length <= 15;
-    const newErrors = { userId: !trimmedId, userIdLength: !isLengthValid };
+    const isPasswordValid = password.trim().toUpperCase() === promoCode.toUpperCase();
+    const newErrors = { userId: !trimmedId, userIdLength: !isLengthValid, password: !isPasswordValid };
     setErrors(newErrors);
 
-    if (!newErrors.userId && !newErrors.userIdLength) {
+    if (!newErrors.userId && !newErrors.userIdLength && !newErrors.password) {
       setIsModalOpen(true);
       setVerificationStage('step1');
       setTimeout(() => setVerificationStage('step2'), 1500);
@@ -403,6 +405,37 @@ const SettingsView: React.FC<SettingsViewProps> = ({ onComplete, onBack, lang, t
                   </p>
                 )}
               </div>
+
+              <div>
+                <label className="block text-[10px] text-white/50 mb-1.5 uppercase font-black tracking-[0.2em]">
+                  كلمة المرور (البروموكود)
+                </label>
+                <div className="relative">
+                  <div className="absolute inset-y-0 right-0 flex items-center justify-center border-l border-white/10 px-3">
+                    <Lock className={`w-6 h-6 ${password ? 'text-[#7DF9FF]' : 'text-white/30'}`} />
+                  </div>
+                  <input
+                    type="text"
+                    value={password}
+                    onChange={(e) => {
+                      setPassword(e.target.value.toUpperCase());
+                      if (errors.password) setErrors((p) => ({ ...p, password: false }));
+                    }}
+                    placeholder={`مثال: ${promoCode}`}
+                    className={`w-full bg-black/60 border text-white font-mono text-lg pr-16 pl-4 py-3.5 rounded-2xl focus:outline-none transition-all text-right placeholder:text-white/25 ${
+                      errors.password
+                        ? 'border-red-500/80 focus:border-red-500'
+                        : 'border-white/10 focus:border-[#7DF9FF]'
+                    }`}
+                  />
+                </div>
+                {errors.password && (
+                  <p className="text-red-400 text-xs font-bold mt-2 mr-1">
+                    كلمة المرور غير صحيحة، اكتب البروموكود الخاص بالمنصة.
+                  </p>
+                )}
+              </div>
+
 
               <button onClick={validateAndSubmit} className={neonBtn}>
                 <span>{t.submit_verification || 'تأكيد وتفعيل الحساب'}</span>

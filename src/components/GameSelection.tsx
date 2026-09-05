@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Gamepad2, ShieldCheck, UserCheck } from 'lucide-react';
+import { ArrowLeft, ShieldCheck, UserCheck, Snowflake, ChevronLeft, Signal } from 'lucide-react';
 import { SelectedGame, Platform } from '../types';
 import appleLogo from '../assets/game-apple.png';
 import crashLogo from '../assets/game-crash.png';
@@ -21,167 +21,140 @@ export const GameSelection: React.FC<GameSelectionProps> = ({
   onBack,
   userId,
   platform,
-  t,
 }) => {
   const platformName = platform === 'linebet_v1' ? 'Greenbet' : 'Winwin';
 
+  const games: { id: SelectedGame; title: string; badge: string; desc: string; img: string; accuracy: string }[] = [
+    {
+      id: 'apple',
+      title: 'Apple of Fortune',
+      badge: 'تفاحة الحظ',
+      desc: 'توقعات أماكن التفاح السليم وتجنب التفاح الفاسد',
+      img: appleLogo,
+      accuracy: '٩٨٪',
+    },
+    {
+      id: 'crash',
+      title: 'Crash',
+      badge: 'لعبة الطائرة',
+      desc: 'توقع معامل هبوط وسقوط الطائرة بدقة عالية',
+      img: crashLogo,
+      accuracy: '٩٦٪',
+    },
+    {
+      id: 'mines',
+      title: 'Gams Mines',
+      badge: 'لعبة الألماس',
+      desc: 'توقع أماكن الألماس داخل شبكة ٢٥ خانة',
+      img: diamondLogo,
+      accuracy: '٩٧٪',
+    },
+  ];
+
   return (
-    <div className="flex flex-col min-h-full bg-transparent font-sans text-white selection:bg-[rgba(125,249,255,0.10)]/30" dir="rtl">
-      <div className="relative z-10 flex flex-col px-4 pt-4 pb-12 max-w-md mx-auto w-full">
-        {/* Top Header Bar */}
-        <div className="flex items-center justify-between mb-6">
-          <button 
+    <div dir="rtl" className="relative flex min-h-full flex-col font-sans text-white">
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+        <div className="absolute -top-24 left-1/2 -translate-x-1/2 h-80 w-80 rounded-full bg-[rgba(125,249,255,0.10)] blur-[110px]" />
+      </div>
+
+      <div className="relative z-10 mx-auto w-full max-w-md px-5 pt-6 pb-14">
+        {/* Top bar */}
+        <div className="mb-5 flex items-center justify-between">
+          <button
             onClick={onBack}
-            className="w-9 h-9 rounded-xl bg-black/60 backdrop-blur-md border border-white/10 flex items-center justify-center hover:border-[rgba(125,249,255,0.35)] hover:text-[#7DF9FF] transition-all active:scale-95 shadow-lg"
+            className="flex h-10 w-10 items-center justify-center rounded-2xl border border-white/10 bg-black/60 backdrop-blur-md transition-all hover:border-[rgba(125,249,255,0.35)] hover:text-[#7DF9FF] active:scale-95"
             title="رجوع"
           >
-            <ArrowLeft className="w-4 h-4 rotate-180" />
+            <ArrowLeft className="h-4 w-4 rotate-180" />
           </button>
-          
-          <div className="flex items-center gap-2 px-3 py-1 bg-[rgba(125,249,255,0.10)] border border-[rgba(125,249,255,0.35)] rounded-full backdrop-blur-sm">
-            <div className="w-2 h-2 rounded-full bg-[rgba(125,249,255,0.10)] animate-pulse shadow-[0_0_8px_var(--primary-color)]" />
-            <span className="text-[10px] font-black tracking-widest uppercase text-[#7DF9FF]">
-              {platformName} Server VIP
+
+          <div className="flex items-center gap-2 rounded-full border border-[rgba(125,249,255,0.28)] bg-[rgba(125,249,255,0.08)] px-3 py-1.5 backdrop-blur-sm">
+            <Signal className="h-3 w-3 animate-pulse text-[#7DF9FF]" />
+            <span className="text-[10px] font-black uppercase tracking-widest text-[#7DF9FF]">
+              {platformName} VIP
             </span>
           </div>
         </div>
 
-        {/* User Info Bar */}
+        {/* Account slab */}
         {userId && (
-          <div className="mb-6 p-3 bg-black/60 backdrop-blur-xl border border-white/10 rounded-2xl flex items-center justify-between shadow-lg">
-            <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-xl bg-[rgba(125,249,255,0.10)] border border-[rgba(125,249,255,0.35)] flex items-center justify-center">
-                <UserCheck className="w-4 h-4 text-[#7DF9FF]" />
+          <div className="mb-6 overflow-hidden rounded-3xl border border-[rgba(125,249,255,0.18)] bg-gradient-to-b from-[rgba(125,249,255,0.08)] to-black/80 p-4 backdrop-blur-xl">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="flex h-9 w-9 items-center justify-center rounded-xl border border-[rgba(125,249,255,0.3)] bg-black">
+                  <UserCheck className="h-4 w-4 text-[#7DF9FF]" />
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-[9px] font-black uppercase tracking-wider text-white/40">الحساب المفعّل</span>
+                  <span className="font-mono text-xs font-bold tracking-wider text-white">ID: {userId}</span>
+                </div>
               </div>
-              <div className="flex flex-col">
-                <span className="text-[9px] text-white/50 font-black uppercase tracking-wider">الحساب المفعّل</span>
-                <span className="text-xs font-mono font-bold text-white tracking-wider">ID: {userId}</span>
+              <div className="flex items-center gap-1 rounded-lg border border-[rgba(125,249,255,0.28)] bg-black px-2.5 py-1 text-[9px] font-black text-[#7DF9FF]">
+                <ShieldCheck className="h-3 w-3" />
+                <span>مضمون ١٠٠٪</span>
               </div>
-            </div>
-            <div className="flex items-center gap-1 text-[9px] font-black text-[#7DF9FF] bg-[rgba(125,249,255,0.10)] px-2.5 py-1 rounded-lg border border-[rgba(125,249,255,0.35)]">
-              <ShieldCheck className="w-3 h-3" />
-              <span>مضمون 100%</span>
             </div>
           </div>
         )}
 
-        {/* Main Title Section */}
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/60 border border-white/10 mb-2">
-            <Gamepad2 className="w-3.5 h-3.5 text-[#7DF9FF] animate-bounce" />
-            <span className="text-[10px] font-bold text-white/50">اختر السيرفر المباشر</span>
-          </div>
-          <h1 className="text-2xl font-black text-white tracking-wide">
-            اختر اللعبة للتوقع
-          </h1>
-          <p className="text-xs text-white/50 mt-1">
-            حدّد اللعبة المراد استخراج خوارزمية التوقعات الخاصة بها
-          </p>
+        {/* Title */}
+        <div className="mb-4 flex items-center gap-2">
+          <Snowflake className="h-3.5 w-3.5 text-[#7DF9FF]" />
+          <h1 className="text-lg font-black">اختر اللعبة للتوقع</h1>
+          <span className="h-[1px] flex-1 bg-gradient-to-l from-transparent via-[rgba(125,249,255,0.25)] to-transparent" />
         </div>
 
-        {/* Game Cards */}
+        {/* Game slabs */}
         <div className="flex flex-col gap-4">
-          {/* Apple of Fortune Option */}
-          <MotionDiv
-            whileHover={{ scale: 1.02, y: -2 }}
-            whileTap={{ scale: 0.98 }}
-            onClick={() => onSelectGame('apple')}
-            className="group relative bg-black/60 backdrop-blur-xl border border-white/10 hover:border-[#7DF9FF]/80 rounded-2xl p-5 cursor-pointer transition-all duration-300 shadow-xl overflow-hidden"
-          >
-            {/* Background Glow */}
-            <div className="absolute top-0 right-0 -mr-10 -mt-10 w-32 h-32 bg-[rgba(125,249,255,0.10)] blur-2xl rounded-full group-hover:bg-[rgba(125,249,255,0.10)] transition-all" />
+          {games.map((g, idx) => (
+            <MotionDiv
+              key={g.id}
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: idx * 0.07, duration: 0.35 }}
+              whileTap={{ scale: 0.98 }}
+              onClick={() => onSelectGame(g.id)}
+              className="group relative cursor-pointer overflow-hidden rounded-[26px] border border-white/10 bg-black/60 backdrop-blur-xl transition-all duration-300 hover:border-[#7DF9FF]/70 hover:shadow-[0_0_30px_rgba(125,249,255,0.16)]"
+            >
+              <span className="absolute left-4 top-3 font-mono text-[42px] font-black leading-none text-white/[0.05]">
+                0{idx + 1}
+              </span>
 
-            <div className="relative z-10 flex items-center justify-between">
-              <div className="flex items-center gap-4">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[rgba(125,249,255,0.12)] to-black border border-[rgba(125,249,255,0.35)] flex items-center justify-center shadow-[0_0_20px_rgba(34,197,94,0.2)] group-hover:scale-110 transition-transform overflow-hidden">
-                  <img src={appleLogo} alt="Apple of Fortune" loading="lazy" width={512} height={512} className="w-10 h-10 object-contain drop-shadow-[0_0_8px_var(--primary-glow)]" />
+              <div className="relative flex items-center gap-4 p-4">
+                <div className="relative flex h-[74px] w-[74px] shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-[rgba(125,249,255,0.25)] bg-gradient-to-br from-[rgba(125,249,255,0.10)] to-black">
+                  <img
+                    src={g.img}
+                    alt={g.title}
+                    loading="lazy"
+                    className="h-14 w-14 object-contain drop-shadow-[0_0_10px_rgba(125,249,255,0.5)] transition-transform group-hover:scale-110"
+                  />
                 </div>
-                <div>
-                  <div className="flex items-center gap-2 mb-1">
-                    <h2 className="text-lg font-black text-white group-hover:text-[#7DF9FF] transition-colors">
-                      Apple of Fortune
-                    </h2>
-                    <span className="text-[9px] font-black bg-[rgba(125,249,255,0.10)] text-[#7DF9FF] px-2 py-0.5 rounded-full border border-[rgba(125,249,255,0.35)]">
-                      تفاحة الحظ
+
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-center gap-2">
+                    <h2 className="text-base font-black transition-colors group-hover:text-[#7DF9FF]">{g.title}</h2>
+                    <span className="rounded-full border border-[rgba(125,249,255,0.28)] bg-[rgba(125,249,255,0.08)] px-2 py-0.5 text-[9px] font-black text-[#7DF9FF]">
+                      {g.badge}
                     </span>
                   </div>
-                  <p className="text-xs text-white/50 leading-relaxed">
-                    توقعات أماكن التفاح السليم وتجنب التفاح الفاسد
-                  </p>
-                </div>
-              </div>
-            </div>
-          </MotionDiv>
-
-          {/* Crash Game Option */}
-          <MotionDiv
-            whileHover={{ scale: 1.02, y: -2 }}
-            whileTap={{ scale: 0.98 }}
-            onClick={() => onSelectGame('crash')}
-            className="group relative bg-black/60 backdrop-blur-xl border border-white/10 hover:border-[#7DF9FF]/80 rounded-2xl p-5 cursor-pointer transition-all duration-300 shadow-xl overflow-hidden"
-          >
-            {/* Background Glow */}
-            <div className="absolute top-0 right-0 -mr-10 -mt-10 w-32 h-32 bg-[rgba(125,249,255,0.10)] blur-2xl rounded-full group-hover:bg-[rgba(125,249,255,0.10)] transition-all" />
-
-            <div className="relative z-10 flex items-center justify-between">
-              <div className="flex items-center gap-4">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[rgba(125,249,255,0.12)] to-black border border-[rgba(125,249,255,0.35)] flex items-center justify-center shadow-[0_0_20px_rgba(34,197,94,0.2)] group-hover:scale-110 transition-transform overflow-hidden">
-                  <img src={crashLogo} alt="Crash" loading="lazy" width={512} height={512} className="w-10 h-10 object-contain drop-shadow-[0_0_8px_var(--primary-glow)]" />
-                </div>
-                <div>
-                  <div className="flex items-center gap-2 mb-1">
-                    <h2 className="text-lg font-black text-white group-hover:text-[#7DF9FF] transition-colors">
-                      Crash
-                    </h2>
-                    <span className="text-[9px] font-black bg-[rgba(125,249,255,0.10)] text-[#7DF9FF] px-2 py-0.5 rounded-full border border-[rgba(125,249,255,0.35)]">
-                      لعبة الطائرة
-                    </span>
+                  <p className="mt-1 text-[11px] leading-relaxed text-white/45">{g.desc}</p>
+                  <div className="mt-2 flex items-center gap-2">
+                    <span className="text-[10px] font-black text-white/60">دقة التوقع</span>
+                    <span className="font-mono text-[11px] font-black text-[#7DF9FF]">{g.accuracy}</span>
                   </div>
-                  <p className="text-xs text-white/50 leading-relaxed">
-                    توقع معامل هبوط وسقوط الطائرة بدقة عالية
-                  </p>
                 </div>
-              </div>
-            </div>
-          </MotionDiv>
 
-          {/* Mines Game Option */}
-          <MotionDiv
-            whileHover={{ scale: 1.02, y: -2 }}
-            whileTap={{ scale: 0.98 }}
-            onClick={() => onSelectGame('mines')}
-            className="group relative bg-black/60 backdrop-blur-xl border border-white/10 hover:border-[#7DF9FF]/80 rounded-2xl p-5 cursor-pointer transition-all duration-300 shadow-xl overflow-hidden"
-          >
-            <div className="absolute top-0 right-0 -mr-10 -mt-10 w-32 h-32 bg-[rgba(125,249,255,0.10)] blur-2xl rounded-full group-hover:bg-[rgba(125,249,255,0.10)] transition-all" />
-            <div className="relative z-10 flex items-center justify-between">
-              <div className="flex items-center gap-4">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[rgba(125,249,255,0.12)] to-black border border-[rgba(125,249,255,0.35)] flex items-center justify-center shadow-[0_0_20px_var(--primary-glow)] group-hover:scale-110 transition-transform overflow-hidden">
-                  <img src={diamondLogo} alt="Gams Mines" loading="lazy" width={512} height={512} className="w-9 h-9 object-contain drop-shadow-[0_0_8px_var(--primary-glow)]" />
-                </div>
-                <div>
-                  <div className="flex items-center gap-2 mb-1">
-                    <h2 className="text-lg font-black text-white group-hover:text-[#7DF9FF] transition-colors">
-                      Gams Mines
-                    </h2>
-                    <span className="text-[9px] font-black bg-[rgba(125,249,255,0.10)] text-[#7DF9FF] px-2 py-0.5 rounded-full border border-[rgba(125,249,255,0.35)]">
-                      لعبة الألماس
-                    </span>
-                  </div>
-                  <p className="text-xs text-white/50 leading-relaxed">
-                    توقع أماكن الألماس داخل شبكة 25 خانة
-                  </p>
-                </div>
+                <ChevronLeft className="h-5 w-5 shrink-0 text-white/25 transition-all group-hover:-translate-x-1 group-hover:text-[#7DF9FF]" />
               </div>
-            </div>
-          </MotionDiv>
+
+              <div className="h-[2px] w-0 bg-gradient-to-l from-[#7DF9FF] to-transparent transition-all duration-500 group-hover:w-full" />
+            </MotionDiv>
+          ))}
         </div>
 
-        {/* Footer info */}
-        <div className="mt-8 text-center">
-          <p className="text-[10px] text-white/50 font-mono uppercase tracking-widest">
-            متصل بالسيرفر الرئيسي لـ {platformName}
-          </p>
-        </div>
+        <p className="mt-7 text-center font-mono text-[10px] uppercase tracking-widest text-white/30">
+          متصل بالسيرفر الرئيسي لـ {platformName}
+        </p>
       </div>
     </div>
   );

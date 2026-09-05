@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Apple, X } from 'lucide-react';
+
 import { translations } from '../translations';
 import { Language } from '../types';
 
@@ -30,24 +30,9 @@ interface GridProps {
 
 const COLS = 5;
 
-const GoodAppleIcon: React.FC<{ className?: string }> = ({ className = "w-7 h-7" }) => (
-  <div className={`relative flex items-center justify-center ${className}`}>
-    <Apple 
-      className="w-full h-full fill-current transition-all" 
-      style={{ 
-        color: 'var(--primary-color)',
-        filter: 'drop-shadow(0 0 10px var(--primary-glow))' 
-      }} 
-    />
-  </div>
-);
-
-const BadAppleIcon: React.FC<{ className?: string }> = ({ className = "w-7 h-7" }) => (
-  <div className={`relative flex items-center justify-center ${className}`}>
-    <Apple className="w-full h-full text-red-500/80 fill-red-950/80 drop-shadow-[0_0_8px_rgba(239,68,68,0.7)] opacity-80" />
-    <X className="w-4 h-4 text-red-400 stroke-[3.5] absolute" />
-  </div>
-);
+const CELL_IMG = 'https://logo12.gamer.gd/cvb.png';
+const GOOD_IMG = 'https://logo12.gamer.gd/apple.png';
+const BAD_IMG = 'https://logo12.gamer.gd/poi.png';
 
 export const Grid: React.FC<GridProps> = ({ 
   path, 
@@ -104,48 +89,41 @@ export const Grid: React.FC<GridProps> = ({
             const isBadApple = isHasPrediction && rowGrid ? !rowGrid[colIndex] : false;
 
             return (
-              <div 
+              <div
                 key={`cell-${rowIndex}-${colIndex}`}
-                style={isGoodApple ? {
-                  borderColor: 'rgba(var(--primary-color-rgb), 0.5)'
-                } : {}}
-                className={`w-[50px] h-[50px] rounded-full flex items-center justify-center relative transition-all duration-500 border overflow-hidden shrink-0 ${
-                  isGoodApple 
-                    ? 'bg-transparent' 
-                    : isBadApple 
-                    ? 'bg-transparent border-red-500/50' 
-                    : 'bg-transparent border-white/10'
-                }`}
+                className="relative h-[56px] w-[56px] shrink-0 overflow-hidden rounded-2xl"
               >
-                {/* Cell Content */}
+                <img
+                  src={CELL_IMG}
+                  alt=""
+                  aria-hidden="true"
+                  className="absolute inset-0 h-full w-full object-contain"
+                />
                 {isHasPrediction ? (
                   <MotionDiv
                     initial={{ scale: 0, rotate: -30 }}
                     animate={{ scale: 1, rotate: 0 }}
                     transition={{ type: 'spring', damping: 12, stiffness: 180, delay: colIndex * 0.05 }}
-                    className="w-full h-full flex items-center justify-center relative p-1"
+                    className="absolute inset-0 flex items-center justify-center p-2.5"
                   >
-                    {isGoodApple ? (
-                      /* Good Apple */
-                      <GoodAppleIcon className="w-7 h-7" />
-                    ) : (
-                      /* Bad Apple (Rotten icon) */
-                      <BadAppleIcon className="w-7 h-7" />
-                    )}
+                    <img
+                      src={isGoodApple ? GOOD_IMG : BAD_IMG}
+                      alt={isGoodApple ? 'safe' : 'bad'}
+                      className={`h-full w-full object-contain ${
+                        isGoodApple
+                          ? 'drop-shadow-[0_0_10px_rgba(125,249,255,0.75)]'
+                          : 'opacity-90 drop-shadow-[0_0_8px_rgba(255,90,90,0.55)]'
+                      }`}
+                    />
                   </MotionDiv>
                 ) : (
-                  /* Empty or Analyzing Dot */
-                  <div className="relative flex items-center justify-center w-full h-full">
-                    <motion.div 
-                      animate={isAnalyzing ? { 
-                        scale: [1, 1.8, 1],
-                        opacity: [0.2, 1, 0.2],
-                        backgroundColor: ['rgba(15,23,42,0.08)', 'var(--primary-color)', 'rgba(15,23,42,0.08)']
-                      } : {}}
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <motion.div
+                      animate={isAnalyzing ? { scale: [1, 1.7, 1], opacity: [0.25, 1, 0.25] } : {}}
                       transition={{ duration: 1, repeat: Infinity, delay: colIndex * 0.15 }}
-                      className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-                        isAnalyzing ? 'shadow-[0_0_10px_var(--primary-glow)]' : 'bg-white/15'
-                      }`} 
+                      className={`h-2.5 w-2.5 rounded-full ${
+                        isAnalyzing ? 'shadow-[0_0_10px_var(--primary-glow)]' : 'bg-white/20'
+                      }`}
                       style={isAnalyzing ? { backgroundColor: 'var(--primary-color)' } : {}}
                     />
                   </div>

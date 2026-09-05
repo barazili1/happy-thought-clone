@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Plane, ArrowLeft, Users, User, RotateCcw, Play, History, Sparkles } from 'lucide-react';
+import { ArrowLeft, Users, RotateCcw, Play, History, Snowflake } from 'lucide-react';
 import { Platform } from '../types';
-import WinnersDashboard from './WinnersDashboard';
+import crashLogo from '../assets/logo-crash.png';
 
 const MotionDiv = motion.div as any;
 
@@ -13,15 +13,11 @@ interface CrashGameProps {
   t: any;
 }
 
-const card = 'bg-[#07090790] backdrop-blur-xl border border-white/10 rounded-2xl';
-
 export const CrashGame: React.FC<CrashGameProps> = ({ onBack, userId, platform }) => {
   const [currentValue, setCurrentValue] = useState<string>('0.00x');
   const [isAnalyzing, setIsAnalyzing] = useState<boolean>(false);
   const [onlineCount, setOnlineCount] = useState<number>(1428);
   const [history, setHistory] = useState<string[]>(['2.14x', '1.85x', '3.40x', '1.25x', '2.05x']);
-  const [flying, setFlying] = useState<boolean>(false);
-  const [flightKey, setFlightKey] = useState<number>(0);
 
   const platformName = platform === 'linebet_v1' ? 'Greenbet' : 'Winwin';
 
@@ -35,8 +31,6 @@ export const CrashGame: React.FC<CrashGameProps> = ({ onBack, userId, platform }
   const handleStart = async () => {
     if (isAnalyzing) return;
     setIsAnalyzing(true);
-    setFlying(true);
-    setFlightKey((k) => k + 1);
 
     let targetValue = '';
 
@@ -81,238 +75,183 @@ export const CrashGame: React.FC<CrashGameProps> = ({ onBack, userId, platform }
     }
 
     setIsAnalyzing(false);
-    setFlying(false);
     setHistory((prev) => [targetValue, ...prev.slice(0, 9)]);
   };
 
   const handleRestart = () => {
     setIsAnalyzing(false);
-    setFlying(false);
     setCurrentValue('0.00x');
   };
 
+  const hasValue = currentValue !== '0.00x';
+
   return (
-    <div className="flex flex-col min-h-full bg-transparent font-sans text-white selection:bg-[#7DF9FF]/30" dir="rtl">
-      <div className="fixed inset-0 z-0 pointer-events-none">
-        <div className="absolute inset-0 opacity-[0.09] bg-[linear-gradient(rgba(125,249,255,0.5)_1px,transparent_1px),linear-gradient(90deg,rgba(125,249,255,0.5)_1px,transparent_1px)] bg-[size:36px_36px]" />
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-80 h-80 rounded-full blur-[120px] bg-[rgba(125,249,255,0.12)]" />
+    <div dir="rtl" className="flex min-h-full flex-col font-sans text-white">
+      <div className="pointer-events-none fixed inset-0 z-0">
+        <div className="absolute top-1/3 left-1/2 h-80 w-80 -translate-x-1/2 rounded-full bg-[rgba(125,249,255,0.09)] blur-[130px]" />
       </div>
 
-      <div className="relative z-10 flex flex-col px-4 pt-4 pb-12 max-w-md mx-auto w-full">
-        {/* Top bar */}
-        <div className={`flex items-center justify-between mb-5 p-3 ${card}`}>
+      <div className="relative z-10 mx-auto flex w-full max-w-md flex-col px-6 pt-7 pb-12">
+        {/* Header */}
+        <div className="flex items-center justify-between">
           <button
             onClick={onBack}
-            className="w-9 h-9 rounded-xl bg-black/60 border border-white/10 flex items-center justify-center text-white/80 hover:border-[rgba(125,249,255,0.5)] hover:text-[#7DF9FF] transition-all active:scale-95"
-            title="رجوع"
+            aria-label="رجوع"
+            className="flex h-10 w-10 items-center justify-center rounded-2xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-md transition-all hover:border-[rgba(125,249,255,0.4)] hover:text-[#7DF9FF] active:scale-95"
           >
-            <ArrowLeft className="w-4 h-4 rotate-180" />
+            <ArrowLeft className="h-4 w-4 rotate-180" />
           </button>
 
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-xl bg-[rgba(125,249,255,0.1)] border border-[rgba(125,249,255,0.35)] flex items-center justify-center">
-              <Plane className="w-4 h-4 text-[#7DF9FF] -rotate-45" />
-            </div>
-            <div className="flex flex-col">
-              <h1 className="text-sm font-black text-white tracking-wide">Crash - {platformName}</h1>
-              <span className="text-[9px] text-[#7DF9FF] font-bold">توقعات الطائرة الفورية</span>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-1.5 px-2.5 py-1 bg-[rgba(125,249,255,0.1)] border border-[rgba(125,249,255,0.35)] rounded-full">
-            <div className="w-1.5 h-1.5 rounded-full bg-[#7DF9FF] animate-pulse shadow-[0_0_8px_#7DF9FF]" />
-            <span className="text-[9px] font-black uppercase text-[#7DF9FF]">VIP</span>
-          </div>
-        </div>
-
-        {/* Stats */}
-        <div className="grid grid-cols-2 gap-3 mb-5">
-          <div className={`p-3 flex items-center gap-2.5 ${card}`}>
-            <div className="w-8 h-8 rounded-xl bg-[rgba(125,249,255,0.1)] border border-[rgba(125,249,255,0.35)] flex items-center justify-center shrink-0">
-              <Users className="w-4 h-4 text-[#7DF9FF]" />
-            </div>
-            <div className="flex flex-col min-w-0">
-              <span className="text-[9px] text-white/50 font-black uppercase tracking-wider">
-                متصل الآن
+            <div className="flex items-center gap-1.5 rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1.5">
+              <Users className="h-3 w-3 text-[#7DF9FF]" />
+              <span className="font-mono text-[11px] font-black tabular-nums text-white/70">
+                {onlineCount.toLocaleString()}
               </span>
-              <div className="flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#7DF9FF] animate-ping" />
-                <span className="text-xs font-black font-mono text-white truncate">
-                  {onlineCount.toLocaleString()}
-                </span>
-              </div>
             </div>
-          </div>
-
-          <div className={`p-3 flex items-center gap-2.5 ${card}`}>
-            <div className="w-8 h-8 rounded-xl bg-[rgba(125,249,255,0.1)] border border-[rgba(125,249,255,0.35)] flex items-center justify-center shrink-0">
-              <User className="w-4 h-4 text-[#7DF9FF]" />
-            </div>
-            <div className="flex flex-col min-w-0">
-              <span className="text-[9px] text-white/50 font-black uppercase tracking-wider">
-                معرّف المستخدم
-              </span>
-              <span className="text-xs font-black font-mono text-[#7DF9FF] truncate">
-                {userId || '1234567890'}
-              </span>
+            <div className="flex items-center gap-1.5 rounded-full border border-[rgba(125,249,255,0.25)] bg-[rgba(125,249,255,0.07)] px-3 py-1.5">
+              <Snowflake className="h-3 w-3 animate-pulse text-[#7DF9FF]" />
+              <span className="text-[10px] font-black tracking-widest text-[#7DF9FF]">{platformName}</span>
             </div>
           </div>
         </div>
 
-        {/* History */}
-        <div className="mb-5">
-          <div className="flex items-center gap-1.5 mb-2 px-1">
-            <History className="w-3.5 h-3.5 text-[#7DF9FF]" />
-            <span className="text-xs font-black text-white/60">التوقعات السابقة</span>
-          </div>
-          <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-1 px-1">
-            <AnimatePresence>
-              {history.map((item, idx) => (
-                <MotionDiv
-                  key={`${item}-${idx}`}
-                  initial={{ scale: 0.8, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  exit={{ scale: 0.8, opacity: 0 }}
-                  className={`shrink-0 px-3 py-1.5 rounded-xl text-xs font-mono font-black border transition-all ${
-                    idx === 0
-                      ? 'bg-[rgba(125,249,255,0.12)] border-[#7DF9FF] text-[#7DF9FF] shadow-[0_0_16px_rgba(125,249,255,0.45)] scale-105'
-                      : 'bg-black/50 border-white/10 text-white/60'
-                  }`}
-                >
-                  {item}
-                </MotionDiv>
-              ))}
-            </AnimatePresence>
-          </div>
+        {/* Title */}
+        <div className="mt-7 flex flex-col items-center text-center">
+          <img
+            src={crashLogo}
+            alt="Crash"
+            loading="lazy"
+            width={512}
+            height={512}
+            className="h-14 w-14 object-contain drop-shadow-[0_0_16px_rgba(125,249,255,0.5)]"
+          />
+          <h1 className="mt-2 text-[26px] font-black leading-tight tracking-tight">توقع الطائرة</h1>
+          <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.25em] text-white/30">
+            ID: {userId || '----------'}
+          </p>
         </div>
 
-        {/* Main box */}
-        <div className="relative mb-6">
-          <div className="absolute -inset-3 rounded-[38px] blur-2xl bg-[rgba(125,249,255,0.12)] pointer-events-none" />
-          <div className="relative w-full bg-[#04060480] backdrop-blur-xl border-2 border-[rgba(125,249,255,0.55)] rounded-[30px] p-8 sm:p-10 flex flex-col items-center justify-center overflow-hidden shadow-[0_0_50px_rgba(125,249,255,0.18)] min-h-[230px]">
-            <div className="absolute inset-0 opacity-[0.07] pointer-events-none flex items-center justify-center">
-              <Plane className="w-48 h-48 text-[#7DF9FF] -rotate-45" />
-            </div>
+        {/* 320x320 pulse circle */}
+        <div className="relative mx-auto mt-8 flex items-center justify-center" style={{ width: 320, height: 320 }}>
+          {/* pulse rings */}
+          {[0, 1, 2].map((i) => (
+            <MotionDiv
+              key={i}
+              className="absolute rounded-full border border-[rgba(125,249,255,0.45)]"
+              style={{ width: 320, height: 320 }}
+              animate={{ scale: [0.72, 1], opacity: [0.55, 0] }}
+              transition={{
+                duration: 2.6,
+                repeat: Infinity,
+                delay: i * 0.85,
+                ease: 'easeOut',
+              }}
+            />
+          ))}
 
-            {flying && (
-              <svg
-                key={flightKey}
-                className="absolute inset-0 w-full h-full pointer-events-none z-20"
-                viewBox="0 0 400 220"
-                preserveAspectRatio="none"
-              >
-                <defs>
-                  <linearGradient id="crashTrail" x1="0" y1="1" x2="1" y2="0">
-                    <stop offset="0%" stopColor="#7DF9FF" stopOpacity="0" />
-                    <stop offset="60%" stopColor="#7DF9FF" stopOpacity="0.7" />
-                    <stop offset="100%" stopColor="#7DF9FF" stopOpacity="1" />
-                  </linearGradient>
-                  <filter id="crashGlow" x="-50%" y="-50%" width="200%" height="200%">
-                    <feDropShadow dx="0" dy="0" stdDeviation="6" floodColor="#7DF9FF" floodOpacity="0.9" />
-                  </filter>
-                </defs>
+          {/* rotating halo */}
+          <MotionDiv
+            className="absolute rounded-full"
+            style={{
+              width: 320,
+              height: 320,
+              background:
+                'conic-gradient(from 0deg, rgba(125,249,255,0) 0deg, rgba(125,249,255,0.55) 90deg, rgba(125,249,255,0) 200deg)',
+              mask: 'radial-gradient(circle, transparent 61%, #000 62%)',
+              WebkitMask: 'radial-gradient(circle, transparent 61%, #000 62%)',
+            }}
+            animate={{ rotate: 360 }}
+            transition={{ duration: isAnalyzing ? 1.4 : 7, repeat: Infinity, ease: 'linear' }}
+          />
 
-                <path
-                  id="crashPath"
-                  d="M 12 212 C 90 208, 150 180, 210 120 S 330 30, 390 10"
-                  fill="none"
-                  stroke="url(#crashTrail)"
-                  strokeWidth="4"
-                  strokeLinecap="round"
-                  filter="url(#crashGlow)"
-                  pathLength={1}
-                  strokeDasharray="1"
-                  strokeDashoffset="1"
-                >
-                  <animate
-                    attributeName="stroke-dashoffset"
-                    from="1"
-                    to="0"
-                    dur="0.84s"
-                    calcMode="linear"
-                    repeatCount="1"
-                    fill="freeze"
-                  />
-                </path>
-
-                <circle r="10" fill="#7DF9FF" filter="url(#crashGlow)">
-                  <animateMotion dur="0.84s" repeatCount="1" fill="freeze" rotate="auto" calcMode="linear">
-                    <mpath href="#crashPath" />
-                  </animateMotion>
-                </circle>
-                <circle r="18" fill="#7DF9FF" opacity="0.25">
-                  <animateMotion dur="0.84s" repeatCount="1" fill="freeze" calcMode="linear">
-                    <mpath href="#crashPath" />
-                  </animateMotion>
-                </circle>
-              </svg>
-            )}
-
-            <div className="flex items-center gap-1.5 px-3 py-1 bg-[rgba(125,249,255,0.1)] border border-[rgba(125,249,255,0.35)] rounded-full mb-4">
-              <Sparkles className="w-3 h-3 text-[#7DF9FF]" />
-              <span className="text-[10px] font-black text-[#7DF9FF] uppercase tracking-[0.2em]">
-                {isAnalyzing ? 'جاري تحليل الخوارزمية...' : 'التوقع الحالي'}
-              </span>
-            </div>
+          {/* glass core */}
+          <MotionDiv
+            animate={{
+              boxShadow: [
+                '0 0 30px rgba(125,249,255,0.18), inset 0 0 40px rgba(125,249,255,0.08)',
+                '0 0 70px rgba(125,249,255,0.45), inset 0 0 60px rgba(125,249,255,0.16)',
+                '0 0 30px rgba(125,249,255,0.18), inset 0 0 40px rgba(125,249,255,0.08)',
+              ],
+            }}
+            transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
+            className="relative flex flex-col items-center justify-center rounded-full border border-[rgba(125,249,255,0.35)] bg-gradient-to-b from-[rgba(125,249,255,0.10)] via-black/80 to-black backdrop-blur-xl"
+            style={{ width: 262, height: 262 }}
+          >
+            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-[#7DF9FF]">
+              {isAnalyzing ? 'تحليل' : 'الأودد'}
+            </span>
 
             <AnimatePresence mode="wait">
               <MotionDiv
                 key={currentValue}
-                initial={{ scale: 0.9, opacity: 0.8 }}
+                initial={{ scale: 0.9, opacity: 0.6 }}
                 animate={{ scale: 1, opacity: 1 }}
-                transition={{ duration: 0.1 }}
-                className="text-5xl sm:text-6xl font-mono font-black tracking-tight"
+                transition={{ duration: 0.12 }}
+                className="mt-1 font-mono text-[56px] font-black leading-none tracking-tight"
                 style={{
-                  color: currentValue !== '0.00x' ? '#7DF9FF' : '#ffffff',
-                  textShadow:
-                    currentValue !== '0.00x'
-                      ? '0 0 26px rgba(125,249,255,0.75)'
-                      : '0 0 18px rgba(255,255,255,0.2)',
+                  color: hasValue ? '#7DF9FF' : '#ffffff',
+                  textShadow: hasValue
+                    ? '0 0 30px rgba(125,249,255,0.7)'
+                    : '0 0 18px rgba(255,255,255,0.18)',
                 }}
               >
                 {currentValue}
               </MotionDiv>
             </AnimatePresence>
 
-            <p className="text-[11px] text-white/50 font-bold mt-3 text-center">
+            <p className="mt-2 max-w-[180px] text-center text-[10px] font-medium leading-relaxed text-white/35">
               {isAnalyzing
-                ? 'جاري الربط مع سيرفر Crash واستخراج معامل الصعود...'
-                : currentValue === '0.00x'
-                  ? 'اضغط على START لبدء استخراج التوقع'
-                  : 'توقع مؤكد وسليم 100%'}
+                ? 'جاري الربط مع السيرفر...'
+                : hasValue
+                  ? 'توقع مؤكد ١٠٠٪'
+                  : 'اضغط بدء لاستخراج التوقع'}
             </p>
+          </MotionDiv>
+        </div>
+
+        {/* History */}
+        <div className="mt-8">
+          <div className="mb-2.5 flex items-center gap-1.5 px-1">
+            <History className="h-3.5 w-3.5 text-[#7DF9FF]" />
+            <span className="text-[10px] font-black uppercase tracking-[0.2em] text-white/35">
+              التوقعات السابقة
+            </span>
+          </div>
+          <div className="no-scrollbar flex items-center gap-2 overflow-x-auto py-1">
+            {history.map((item, idx) => (
+              <div
+                key={`${item}-${idx}`}
+                className={`shrink-0 rounded-xl border px-3 py-1.5 font-mono text-[11px] font-black ${
+                  idx === 0
+                    ? 'border-[rgba(125,249,255,0.6)] bg-[rgba(125,249,255,0.10)] text-[#7DF9FF]'
+                    : 'border-white/[0.07] bg-white/[0.02] text-white/40'
+                }`}
+              >
+                {item}
+              </div>
+            ))}
           </div>
         </div>
 
-        {/* Buttons */}
-        <div className="grid grid-cols-2 gap-3.5">
-          <motion.button
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.96 }}
+        {/* Actions */}
+        <div className="mt-7 grid grid-cols-2 gap-3">
+          <button
             onClick={handleStart}
             disabled={isAnalyzing}
-            className={`w-full py-3.5 px-4 bg-[#7DF9FF] text-black font-black text-sm uppercase tracking-wider rounded-2xl shadow-[0_0_28px_rgba(125,249,255,0.45)] flex items-center justify-center gap-2 transition-all cursor-pointer hover:brightness-110 ${
-              isAnalyzing ? 'opacity-60 cursor-not-allowed' : ''
-            }`}
+            className="flex items-center justify-center gap-2 rounded-[20px] bg-gradient-to-l from-[#7DF9FF] to-white py-4 text-[13px] font-black uppercase tracking-wider text-black shadow-[0_16px_40px_-16px_rgba(125,249,255,0.8)] transition-all active:scale-[0.97] disabled:opacity-50"
           >
-            <Play className="w-4 h-4 fill-black" />
-            <span>START</span>
-          </motion.button>
-
-          <motion.button
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.96 }}
+            <Play className="h-4 w-4 fill-black" />
+            <span>بدء</span>
+          </button>
+          <button
             onClick={handleRestart}
             disabled={isAnalyzing}
-            className="w-full py-3.5 px-4 bg-black border border-[rgba(125,249,255,0.5)] text-[#7DF9FF] font-black text-sm uppercase tracking-wider rounded-2xl shadow-[0_0_20px_rgba(125,249,255,0.2)] flex items-center justify-center gap-2 transition-all cursor-pointer hover:bg-[rgba(125,249,255,0.08)]"
+            className="flex items-center justify-center gap-2 rounded-[20px] border border-[rgba(125,249,255,0.3)] bg-white/[0.03] py-4 text-[13px] font-black uppercase tracking-wider text-[#7DF9FF] transition-all active:scale-[0.97] disabled:opacity-50"
           >
-            <RotateCcw className="w-4 h-4 stroke-[2.5]" />
-            <span>RESTART</span>
-          </motion.button>
-        </div>
-
-        <div className="mt-6">
-          <WinnersDashboard />
+            <RotateCcw className="h-4 w-4" />
+            <span>تصفير</span>
+          </button>
         </div>
       </div>
     </div>

@@ -173,8 +173,8 @@
 }
 
 :root {
-  --primary-color: #39ff14;
-  --primary-color-rgb: 57, 255, 20;
+  --primary-color: #7df9ff;
+  --primary-color-rgb: 125, 249, 255;
   --primary-glow: rgba(var(--primary-color-rgb), 0.55);
 }
 

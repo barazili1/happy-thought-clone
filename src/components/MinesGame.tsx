@@ -165,7 +165,7 @@ export const MinesGame: React.FC<MinesGameProps> = ({ onBack, userId, platform }
           <button
             onClick={handleStart}
             disabled={isRunning}
-            className="h-12 rounded-xl bg-[#39FF14] text-black font-black flex items-center justify-center gap-2 transition-all active:scale-95 disabled:opacity-50"
+            className="h-12 rounded-xl bg-[#7DF9FF] text-black font-black flex items-center justify-center gap-2 transition-all active:scale-95 disabled:opacity-50"
           >
             <Play className="w-4 h-4" />
             بدأ

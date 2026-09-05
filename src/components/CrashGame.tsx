@@ -92,10 +92,10 @@ export const CrashGame: React.FC<CrashGameProps> = ({ onBack, userId, platform }
   };
 
   return (
-    <div className="flex flex-col min-h-full bg-transparent font-sans text-white selection:bg-[#39FF14]/30" dir="rtl">
+    <div className="flex flex-col min-h-full bg-transparent font-sans text-white selection:bg-[#7DF9FF]/30" dir="rtl">
       <div className="fixed inset-0 z-0 pointer-events-none">
-        <div className="absolute inset-0 opacity-[0.09] bg-[linear-gradient(rgba(57,255,20,0.5)_1px,transparent_1px),linear-gradient(90deg,rgba(57,255,20,0.5)_1px,transparent_1px)] bg-[size:36px_36px]" />
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-80 h-80 rounded-full blur-[120px] bg-[rgba(57,255,20,0.12)]" />
+        <div className="absolute inset-0 opacity-[0.09] bg-[linear-gradient(rgba(125,249,255,0.5)_1px,transparent_1px),linear-gradient(90deg,rgba(125,249,255,0.5)_1px,transparent_1px)] bg-[size:36px_36px]" />
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-80 h-80 rounded-full blur-[120px] bg-[rgba(125,249,255,0.12)]" />
       </div>
 
       <div className="relative z-10 flex flex-col px-4 pt-4 pb-12 max-w-md mx-auto w-full">
@@ -103,40 +103,40 @@ export const CrashGame: React.FC<CrashGameProps> = ({ onBack, userId, platform }
         <div className={`flex items-center justify-between mb-5 p-3 ${card}`}>
           <button
             onClick={onBack}
-            className="w-9 h-9 rounded-xl bg-black/60 border border-white/10 flex items-center justify-center text-white/80 hover:border-[rgba(57,255,20,0.5)] hover:text-[#39FF14] transition-all active:scale-95"
+            className="w-9 h-9 rounded-xl bg-black/60 border border-white/10 flex items-center justify-center text-white/80 hover:border-[rgba(125,249,255,0.5)] hover:text-[#7DF9FF] transition-all active:scale-95"
             title="رجوع"
           >
             <ArrowLeft className="w-4 h-4 rotate-180" />
           </button>
 
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-xl bg-[rgba(57,255,20,0.1)] border border-[rgba(57,255,20,0.35)] flex items-center justify-center">
-              <Plane className="w-4 h-4 text-[#39FF14] -rotate-45" />
+            <div className="w-8 h-8 rounded-xl bg-[rgba(125,249,255,0.1)] border border-[rgba(125,249,255,0.35)] flex items-center justify-center">
+              <Plane className="w-4 h-4 text-[#7DF9FF] -rotate-45" />
             </div>
             <div className="flex flex-col">
               <h1 className="text-sm font-black text-white tracking-wide">Crash - {platformName}</h1>
-              <span className="text-[9px] text-[#39FF14] font-bold">توقعات الطائرة الفورية</span>
+              <span className="text-[9px] text-[#7DF9FF] font-bold">توقعات الطائرة الفورية</span>
             </div>
           </div>
 
-          <div className="flex items-center gap-1.5 px-2.5 py-1 bg-[rgba(57,255,20,0.1)] border border-[rgba(57,255,20,0.35)] rounded-full">
-            <div className="w-1.5 h-1.5 rounded-full bg-[#39FF14] animate-pulse shadow-[0_0_8px_#39FF14]" />
-            <span className="text-[9px] font-black uppercase text-[#39FF14]">VIP</span>
+          <div className="flex items-center gap-1.5 px-2.5 py-1 bg-[rgba(125,249,255,0.1)] border border-[rgba(125,249,255,0.35)] rounded-full">
+            <div className="w-1.5 h-1.5 rounded-full bg-[#7DF9FF] animate-pulse shadow-[0_0_8px_#7DF9FF]" />
+            <span className="text-[9px] font-black uppercase text-[#7DF9FF]">VIP</span>
           </div>
         </div>
 
         {/* Stats */}
         <div className="grid grid-cols-2 gap-3 mb-5">
           <div className={`p-3 flex items-center gap-2.5 ${card}`}>
-            <div className="w-8 h-8 rounded-xl bg-[rgba(57,255,20,0.1)] border border-[rgba(57,255,20,0.35)] flex items-center justify-center shrink-0">
-              <Users className="w-4 h-4 text-[#39FF14]" />
+            <div className="w-8 h-8 rounded-xl bg-[rgba(125,249,255,0.1)] border border-[rgba(125,249,255,0.35)] flex items-center justify-center shrink-0">
+              <Users className="w-4 h-4 text-[#7DF9FF]" />
             </div>
             <div className="flex flex-col min-w-0">
               <span className="text-[9px] text-white/50 font-black uppercase tracking-wider">
                 متصل الآن
               </span>
               <div className="flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#39FF14] animate-ping" />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#7DF9FF] animate-ping" />
                 <span className="text-xs font-black font-mono text-white truncate">
                   {onlineCount.toLocaleString()}
                 </span>
@@ -145,14 +145,14 @@ export const CrashGame: React.FC<CrashGameProps> = ({ onBack, userId, platform }
           </div>
 
           <div className={`p-3 flex items-center gap-2.5 ${card}`}>
-            <div className="w-8 h-8 rounded-xl bg-[rgba(57,255,20,0.1)] border border-[rgba(57,255,20,0.35)] flex items-center justify-center shrink-0">
-              <User className="w-4 h-4 text-[#39FF14]" />
+            <div className="w-8 h-8 rounded-xl bg-[rgba(125,249,255,0.1)] border border-[rgba(125,249,255,0.35)] flex items-center justify-center shrink-0">
+              <User className="w-4 h-4 text-[#7DF9FF]" />
             </div>
             <div className="flex flex-col min-w-0">
               <span className="text-[9px] text-white/50 font-black uppercase tracking-wider">
                 معرّف المستخدم
               </span>
-              <span className="text-xs font-black font-mono text-[#39FF14] truncate">
+              <span className="text-xs font-black font-mono text-[#7DF9FF] truncate">
                 {userId || '1234567890'}
               </span>
             </div>
@@ -162,7 +162,7 @@ export const CrashGame: React.FC<CrashGameProps> = ({ onBack, userId, platform }
         {/* History */}
         <div className="mb-5">
           <div className="flex items-center gap-1.5 mb-2 px-1">
-            <History className="w-3.5 h-3.5 text-[#39FF14]" />
+            <History className="w-3.5 h-3.5 text-[#7DF9FF]" />
             <span className="text-xs font-black text-white/60">التوقعات السابقة</span>
           </div>
           <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-1 px-1">
@@ -175,7 +175,7 @@ export const CrashGame: React.FC<CrashGameProps> = ({ onBack, userId, platform }
                   exit={{ scale: 0.8, opacity: 0 }}
                   className={`shrink-0 px-3 py-1.5 rounded-xl text-xs font-mono font-black border transition-all ${
                     idx === 0
-                      ? 'bg-[rgba(57,255,20,0.12)] border-[#39FF14] text-[#39FF14] shadow-[0_0_16px_rgba(57,255,20,0.45)] scale-105'
+                      ? 'bg-[rgba(125,249,255,0.12)] border-[#7DF9FF] text-[#7DF9FF] shadow-[0_0_16px_rgba(125,249,255,0.45)] scale-105'
                       : 'bg-black/50 border-white/10 text-white/60'
                   }`}
                 >
@@ -188,10 +188,10 @@ export const CrashGame: React.FC<CrashGameProps> = ({ onBack, userId, platform }
 
         {/* Main box */}
         <div className="relative mb-6">
-          <div className="absolute -inset-3 rounded-[38px] blur-2xl bg-[rgba(57,255,20,0.12)] pointer-events-none" />
-          <div className="relative w-full bg-[#04060480] backdrop-blur-xl border-2 border-[rgba(57,255,20,0.55)] rounded-[30px] p-8 sm:p-10 flex flex-col items-center justify-center overflow-hidden shadow-[0_0_50px_rgba(57,255,20,0.18)] min-h-[230px]">
+          <div className="absolute -inset-3 rounded-[38px] blur-2xl bg-[rgba(125,249,255,0.12)] pointer-events-none" />
+          <div className="relative w-full bg-[#04060480] backdrop-blur-xl border-2 border-[rgba(125,249,255,0.55)] rounded-[30px] p-8 sm:p-10 flex flex-col items-center justify-center overflow-hidden shadow-[0_0_50px_rgba(125,249,255,0.18)] min-h-[230px]">
             <div className="absolute inset-0 opacity-[0.07] pointer-events-none flex items-center justify-center">
-              <Plane className="w-48 h-48 text-[#39FF14] -rotate-45" />
+              <Plane className="w-48 h-48 text-[#7DF9FF] -rotate-45" />
             </div>
 
             {flying && (
@@ -203,12 +203,12 @@ export const CrashGame: React.FC<CrashGameProps> = ({ onBack, userId, platform }
               >
                 <defs>
                   <linearGradient id="crashTrail" x1="0" y1="1" x2="1" y2="0">
-                    <stop offset="0%" stopColor="#39FF14" stopOpacity="0" />
-                    <stop offset="60%" stopColor="#39FF14" stopOpacity="0.7" />
-                    <stop offset="100%" stopColor="#39FF14" stopOpacity="1" />
+                    <stop offset="0%" stopColor="#7DF9FF" stopOpacity="0" />
+                    <stop offset="60%" stopColor="#7DF9FF" stopOpacity="0.7" />
+                    <stop offset="100%" stopColor="#7DF9FF" stopOpacity="1" />
                   </linearGradient>
                   <filter id="crashGlow" x="-50%" y="-50%" width="200%" height="200%">
-                    <feDropShadow dx="0" dy="0" stdDeviation="6" floodColor="#39FF14" floodOpacity="0.9" />
+                    <feDropShadow dx="0" dy="0" stdDeviation="6" floodColor="#7DF9FF" floodOpacity="0.9" />
                   </filter>
                 </defs>
 
@@ -235,12 +235,12 @@ export const CrashGame: React.FC<CrashGameProps> = ({ onBack, userId, platform }
                   />
                 </path>
 
-                <circle r="10" fill="#39FF14" filter="url(#crashGlow)">
+                <circle r="10" fill="#7DF9FF" filter="url(#crashGlow)">
                   <animateMotion dur="0.84s" repeatCount="1" fill="freeze" rotate="auto" calcMode="linear">
                     <mpath href="#crashPath" />
                   </animateMotion>
                 </circle>
-                <circle r="18" fill="#39FF14" opacity="0.25">
+                <circle r="18" fill="#7DF9FF" opacity="0.25">
                   <animateMotion dur="0.84s" repeatCount="1" fill="freeze" calcMode="linear">
                     <mpath href="#crashPath" />
                   </animateMotion>
@@ -248,9 +248,9 @@ export const CrashGame: React.FC<CrashGameProps> = ({ onBack, userId, platform }
               </svg>
             )}
 
-            <div className="flex items-center gap-1.5 px-3 py-1 bg-[rgba(57,255,20,0.1)] border border-[rgba(57,255,20,0.35)] rounded-full mb-4">
-              <Sparkles className="w-3 h-3 text-[#39FF14]" />
-              <span className="text-[10px] font-black text-[#39FF14] uppercase tracking-[0.2em]">
+            <div className="flex items-center gap-1.5 px-3 py-1 bg-[rgba(125,249,255,0.1)] border border-[rgba(125,249,255,0.35)] rounded-full mb-4">
+              <Sparkles className="w-3 h-3 text-[#7DF9FF]" />
+              <span className="text-[10px] font-black text-[#7DF9FF] uppercase tracking-[0.2em]">
                 {isAnalyzing ? 'جاري تحليل الخوارزمية...' : 'التوقع الحالي'}
               </span>
             </div>
@@ -263,10 +263,10 @@ export const CrashGame: React.FC<CrashGameProps> = ({ onBack, userId, platform }
                 transition={{ duration: 0.1 }}
                 className="text-5xl sm:text-6xl font-mono font-black tracking-tight"
                 style={{
-                  color: currentValue !== '0.00x' ? '#39FF14' : '#ffffff',
+                  color: currentValue !== '0.00x' ? '#7DF9FF' : '#ffffff',
                   textShadow:
                     currentValue !== '0.00x'
-                      ? '0 0 26px rgba(57,255,20,0.75)'
+                      ? '0 0 26px rgba(125,249,255,0.75)'
                       : '0 0 18px rgba(255,255,255,0.2)',
                 }}
               >
@@ -291,7 +291,7 @@ export const CrashGame: React.FC<CrashGameProps> = ({ onBack, userId, platform }
             whileTap={{ scale: 0.96 }}
             onClick={handleStart}
             disabled={isAnalyzing}
-            className={`w-full py-3.5 px-4 bg-[#39FF14] text-black font-black text-sm uppercase tracking-wider rounded-2xl shadow-[0_0_28px_rgba(57,255,20,0.45)] flex items-center justify-center gap-2 transition-all cursor-pointer hover:brightness-110 ${
+            className={`w-full py-3.5 px-4 bg-[#7DF9FF] text-black font-black text-sm uppercase tracking-wider rounded-2xl shadow-[0_0_28px_rgba(125,249,255,0.45)] flex items-center justify-center gap-2 transition-all cursor-pointer hover:brightness-110 ${
               isAnalyzing ? 'opacity-60 cursor-not-allowed' : ''
             }`}
           >
@@ -304,7 +304,7 @@ export const CrashGame: React.FC<CrashGameProps> = ({ onBack, userId, platform }
             whileTap={{ scale: 0.96 }}
             onClick={handleRestart}
             disabled={isAnalyzing}
-            className="w-full py-3.5 px-4 bg-black border border-[rgba(57,255,20,0.5)] text-[#39FF14] font-black text-sm uppercase tracking-wider rounded-2xl shadow-[0_0_20px_rgba(57,255,20,0.2)] flex items-center justify-center gap-2 transition-all cursor-pointer hover:bg-[rgba(57,255,20,0.08)]"
+            className="w-full py-3.5 px-4 bg-black border border-[rgba(125,249,255,0.5)] text-[#7DF9FF] font-black text-sm uppercase tracking-wider rounded-2xl shadow-[0_0_20px_rgba(125,249,255,0.2)] flex items-center justify-center gap-2 transition-all cursor-pointer hover:bg-[rgba(125,249,255,0.08)]"
           >
             <RotateCcw className="w-4 h-4 stroke-[2.5]" />
             <span>RESTART</span>

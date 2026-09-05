@@ -171,11 +171,11 @@ export const AppleGame: React.FC<AppleGameProps> = ({ onBack, accessKeyData, lan
                     <motion.div 
                         animate={{ boxShadow: ['0 0 10px rgba(var(--primary-color-rgb), 0.1)', '0 0 20px rgba(var(--primary-color-rgb), 0.3)', '0 0 10px rgba(var(--primary-color-rgb), 0.1)'] }}
                         transition={{ duration: 3, repeat: Infinity }}
-                        className="flex items-center gap-2 px-3.5 py-1 bg-[rgba(57,255,20,0.10)] border border-[rgba(57,255,20,0.35)] rounded-full" 
+                        className="flex items-center gap-2 px-3.5 py-1 bg-[rgba(125,249,255,0.10)] border border-[rgba(125,249,255,0.35)] rounded-full" 
                         style={{ backgroundColor: 'rgba(var(--primary-color-rgb), 0.1)', borderColor: 'rgba(var(--primary-color-rgb), 0.3)' } as any}
                     >
-                        <div className="w-2 h-2 rounded-full bg-[rgba(57,255,20,0.10)]0 animate-pulse shadow-[0_0_10px_var(--primary-color)]" style={{ backgroundColor: 'var(--primary-color)' } as any} />
-                        <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#39FF14]" style={{ color: 'var(--primary-color)' } as any}>
+                        <div className="w-2 h-2 rounded-full bg-[rgba(125,249,255,0.10)]0 animate-pulse shadow-[0_0_10px_var(--primary-color)]" style={{ backgroundColor: 'var(--primary-color)' } as any} />
+                        <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#7DF9FF]" style={{ color: 'var(--primary-color)' } as any}>
                             {language === 'ar' ? 'النظام نشط' : 'System Active'}
                         </span>
                     </motion.div>
@@ -196,7 +196,7 @@ export const AppleGame: React.FC<AppleGameProps> = ({ onBack, accessKeyData, lan
                     <motion.div
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}
-                        className="inline-block px-3 py-1 rounded-lg bg-transparent border border-white/10 text-[9px] font-black text-[#39FF14] uppercase tracking-[0.3em] mb-1"
+                        className="inline-block px-3 py-1 rounded-lg bg-transparent border border-white/10 text-[9px] font-black text-[#7DF9FF] uppercase tracking-[0.3em] mb-1"
                     >
                         {language === 'ar' ? 'محرك التنبؤ العصبي' : 'Neural Prediction Engine'}
                     </motion.div>
@@ -230,7 +230,7 @@ export const AppleGame: React.FC<AppleGameProps> = ({ onBack, accessKeyData, lan
                                     key={item.value}
                                     className={`shrink-0 px-3.5 py-1.5 rounded-xl text-xs font-black border transition-all duration-300 select-none ${
                                         isActive 
-                                            ? 'bg-[rgba(57,255,20,0.10)] border-[#39FF14] text-[#39FF14] shadow-[0_8px_20px_rgba(13,148,136,0.25)] scale-105' 
+                                            ? 'bg-[rgba(125,249,255,0.10)] border-[#7DF9FF] text-[#7DF9FF] shadow-[0_8px_20px_rgba(13,148,136,0.25)] scale-105' 
                                             : 'bg-transparent border-white/10 text-white/50 opacity-60'
                                     }`}
                                     style={isActive ? { borderColor: 'var(--primary-color)', color: 'var(--primary-color)' } as any : {}}
@@ -244,7 +244,7 @@ export const AppleGame: React.FC<AppleGameProps> = ({ onBack, accessKeyData, lan
 
                 {/* Grid Container */}
                 <div className="relative group">
-                    <div className={`relative bg-transparent backdrop-blur-2xl border border-white/10 rounded-[2rem] p-4 sm:p-6 min-h-[300px] flex flex-col justify-center transition-all duration-700 shadow-[0_18px_40px_rgba(15,23,42,0.08)] ${isAnalyzing ? 'scale-[1.01] border-[rgba(57,255,20,0.35)]' : ''}`}>
+                    <div className={`relative bg-transparent backdrop-blur-2xl border border-white/10 rounded-[2rem] p-4 sm:p-6 min-h-[300px] flex flex-col justify-center transition-all duration-700 shadow-[0_18px_40px_rgba(15,23,42,0.08)] ${isAnalyzing ? 'scale-[1.01] border-[rgba(125,249,255,0.35)]' : ''}`}>
                         
                         <Grid 
                             path={currentResult?.path || []} 
@@ -269,7 +269,7 @@ export const AppleGame: React.FC<AppleGameProps> = ({ onBack, accessKeyData, lan
                                             <motion.div 
                                                 animate={{ rotate: 360 }}
                                                 transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                                                className="w-20 h-20 border-2 border-[rgba(57,255,20,0.35)] border-t-green-500 rounded-full mb-4"
+                                                className="w-20 h-20 border-2 border-[rgba(125,249,255,0.35)] border-t-green-500 rounded-full mb-4"
                                                 style={{ borderTopColor: 'var(--primary-color)' } as any}
                                             />
                                             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 mt-[-8px]">
@@ -278,12 +278,12 @@ export const AppleGame: React.FC<AppleGameProps> = ({ onBack, accessKeyData, lan
                                         </div>
                                         
                                         <div className="space-y-2 text-center">
-                                            <span className="text-[10px] font-black text-[#39FF14] uppercase tracking-[0.3em] animate-pulse" style={{ color: 'var(--primary-color)' } as any}>
+                                            <span className="text-[10px] font-black text-[#7DF9FF] uppercase tracking-[0.3em] animate-pulse" style={{ color: 'var(--primary-color)' } as any}>
                                                 {language === 'ar' ? 'مزامنة السيرفر...' : 'Syncing Server...'}
                                             </span>
                                             <div className="h-1 w-full bg-white/10 rounded-full overflow-hidden">
                                                 <motion.div 
-                                                    className="h-full bg-[rgba(57,255,20,0.10)]0 shadow-[0_0_15px_var(--primary-color)]"
+                                                    className="h-full bg-[rgba(125,249,255,0.10)]0 shadow-[0_0_15px_var(--primary-color)]"
                                                     style={{ backgroundColor: 'var(--primary-color)' } as any}
                                                     initial={{ width: 0 }}
                                                     animate={{ width: `${predictionProgress}%` }}
@@ -368,8 +368,8 @@ export const AppleGame: React.FC<AppleGameProps> = ({ onBack, accessKeyData, lan
                         transition={{ duration: 0.25, ease: "easeOut" }}
                         className="w-full max-w-[360px] bg-black border border-white/10 rounded-3xl p-6 sm:p-7 flex flex-col items-center text-center shadow-[0_25px_60px_rgba(0,0,0,0.9)] relative overflow-hidden group"
                     >
-                        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-40 h-1 bg-gradient-to-r from-transparent via-[#39FF14] to-transparent shadow-[0_0_15px_rgba(34,197,94,0.8)]" style={{ backgroundImage: 'linear-gradient(to right, transparent, var(--primary-color), transparent)' } as any} />
-                        <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-48 h-48 bg-[rgba(57,255,20,0.10)] blur-[70px] rounded-full pointer-events-none" style={{ backgroundColor: 'rgba(var(--primary-color-rgb), 0.12)' } as any} />
+                        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-40 h-1 bg-gradient-to-r from-transparent via-[#7DF9FF] to-transparent shadow-[0_0_15px_rgba(34,197,94,0.8)]" style={{ backgroundImage: 'linear-gradient(to right, transparent, var(--primary-color), transparent)' } as any} />
+                        <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-48 h-48 bg-[rgba(125,249,255,0.10)] blur-[70px] rounded-full pointer-events-none" style={{ backgroundColor: 'rgba(var(--primary-color-rgb), 0.12)' } as any} />
                         
                         <button
                             onClick={() => {
@@ -382,9 +382,9 @@ export const AppleGame: React.FC<AppleGameProps> = ({ onBack, accessKeyData, lan
                             <X className="w-4 h-4" />
                         </button>
 
-                        <div className="flex items-center gap-1.5 px-3 py-1 bg-[rgba(57,255,20,0.10)] border border-[rgba(57,255,20,0.35)] rounded-full mb-4 mt-1" style={{ backgroundColor: 'rgba(var(--primary-color-rgb), 0.1)', borderColor: 'rgba(var(--primary-color-rgb), 0.25)' } as any}>
-                            <div className="w-1.5 h-1.5 rounded-full bg-[rgba(57,255,20,0.10)]0 animate-pulse shadow-[0_0_8px_var(--primary-color)]" style={{ backgroundColor: 'var(--primary-color)' } as any} />
-                            <span className="text-[10px] font-black uppercase tracking-widest text-[#39FF14]" style={{ color: 'var(--primary-color)' } as any}>
+                        <div className="flex items-center gap-1.5 px-3 py-1 bg-[rgba(125,249,255,0.10)] border border-[rgba(125,249,255,0.35)] rounded-full mb-4 mt-1" style={{ backgroundColor: 'rgba(var(--primary-color-rgb), 0.1)', borderColor: 'rgba(var(--primary-color-rgb), 0.25)' } as any}>
+                            <div className="w-1.5 h-1.5 rounded-full bg-[rgba(125,249,255,0.10)]0 animate-pulse shadow-[0_0_8px_var(--primary-color)]" style={{ backgroundColor: 'var(--primary-color)' } as any} />
+                            <span className="text-[10px] font-black uppercase tracking-widest text-[#7DF9FF]" style={{ color: 'var(--primary-color)' } as any}>
                                 {language === 'ar' ? 'تنبيه الأرباح الحصري' : 'Exclusive Profit Alert'}
                             </span>
                         </div>
@@ -396,10 +396,10 @@ export const AppleGame: React.FC<AppleGameProps> = ({ onBack, accessKeyData, lan
                                     rotate: [0, 3, -3, 0]
                                 }}
                                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                                className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[rgba(57,255,20,0.12)] to-black border border-[rgba(57,255,20,0.35)] flex items-center justify-center shadow-[0_0_25px_rgba(var(--primary-color-rgb),0.25)] relative z-10" 
+                                className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[rgba(125,249,255,0.12)] to-black border border-[rgba(125,249,255,0.35)] flex items-center justify-center shadow-[0_0_25px_rgba(var(--primary-color-rgb),0.25)] relative z-10" 
                                 style={{ borderColor: 'rgba(var(--primary-color-rgb), 0.4)' } as any}
                             >
-                                <Gift className="w-8 h-8 text-[#39FF14]" style={{ color: 'var(--primary-color)' } as any} />
+                                <Gift className="w-8 h-8 text-[#7DF9FF]" style={{ color: 'var(--primary-color)' } as any} />
                             </motion.div>
                         </div>
 
@@ -421,19 +421,19 @@ export const AppleGame: React.FC<AppleGameProps> = ({ onBack, accessKeyData, lan
                                 playSound('click');
                                 setTimeout(() => setPromoCopied(false), 2000);
                             }}
-                            className="w-full bg-black/60 border border-dashed border-[rgba(57,255,20,0.35)] hover:border-[#39FF14] rounded-xl p-3 mb-5 flex items-center justify-between cursor-pointer group/code transition-all"
+                            className="w-full bg-black/60 border border-dashed border-[rgba(125,249,255,0.35)] hover:border-[#7DF9FF] rounded-xl p-3 mb-5 flex items-center justify-between cursor-pointer group/code transition-all"
                             style={{ borderColor: 'rgba(var(--primary-color-rgb), 0.4)' } as any}
                         >
                             <div className="text-right">
                                 <span className="text-[8px] text-white/50 font-black uppercase tracking-widest block mb-0.5">
                                     {language === 'ar' ? 'الرمز الترويجي المعتمد' : 'Official Promo Code'}
                                 </span>
-                                <span className="text-lg font-black text-[#39FF14] tracking-wider font-mono" style={{ color: 'var(--primary-color)' } as any}>
+                                <span className="text-lg font-black text-[#7DF9FF] tracking-wider font-mono" style={{ color: 'var(--primary-color)' } as any}>
                                     {promoCode}
                                 </span>
                             </div>
                             <div className={`px-2.5 py-1 rounded-lg text-[10px] font-bold flex items-center gap-1 transition-all ${
-                                promoCopied ? 'bg-[rgba(57,255,20,0.10)]0 text-white shadow-[0_0_10px_rgba(34,197,94,0.4)]' : 'bg-white/10 text-white group-hover/code:bg-zinc-200'
+                                promoCopied ? 'bg-[rgba(125,249,255,0.10)]0 text-white shadow-[0_0_10px_rgba(34,197,94,0.4)]' : 'bg-white/10 text-white group-hover/code:bg-zinc-200'
                             }`}>
                                 {promoCopied ? (
                                     <>
@@ -457,7 +457,7 @@ export const AppleGame: React.FC<AppleGameProps> = ({ onBack, accessKeyData, lan
                                     playSound('click');
                                     window.open(platform === 'linebet_v1' ? 'https://refpa79184.com/L?tag=d_5848868m_188307c_&site=5848868&ad=188307' : 'https://refpa49781.com/L?tag=d_5953406m_68383c_&site=5953406&ad=68383', '_blank');
                                 }}
-                                className="w-full h-11 bg-[rgba(57,255,20,0.10)]0 text-white font-black text-xs uppercase tracking-wider rounded-xl transition-all shadow-[0_0_20px_rgba(34,197,94,0.3)] flex items-center justify-center gap-2 group/btn"
+                                className="w-full h-11 bg-[rgba(125,249,255,0.10)]0 text-white font-black text-xs uppercase tracking-wider rounded-xl transition-all shadow-[0_0_20px_rgba(34,197,94,0.3)] flex items-center justify-center gap-2 group/btn"
                                 style={{ backgroundColor: 'var(--primary-color)' } as any}
                             >
                                 <span>{language === 'ar' ? 'التسجيل وتفعيل البروموكود' : 'Register With Promo Code'}</span>

@@ -40,9 +40,9 @@ const App: React.FC = () => {
 
   useEffect(() => {
     const root = document.documentElement;
-    root.style.setProperty('--primary-color', '#39ff14');
-    root.style.setProperty('--primary-color-rgb', '57, 255, 20');
-    root.style.setProperty('--primary-glow', 'rgba(57, 255, 20, 0.55)');
+    root.style.setProperty('--primary-color', '#7df9ff');
+    root.style.setProperty('--primary-color-rgb', '125, 249, 255');
+    root.style.setProperty('--primary-glow', 'rgba(125, 249, 255, 0.55)');
   }, [selectedPlatform]);
 
   useEffect(() => {

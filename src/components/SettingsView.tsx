@@ -28,7 +28,7 @@ import condVerify from '../assets/neon-verify.png';
 import dragonLogo from '../assets/dragon-logo.png';
 
 const MotionDiv = motion.div as any;
-const NEON = '#39FF14';
+const NEON = '#7DF9FF';
 
 interface SettingsViewProps {
   onComplete: (userId: string) => void;
@@ -51,16 +51,16 @@ const SectionCard: React.FC<{
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, amount: 0.2 }}
     transition={{ duration: 0.45 }}
-    className="relative rounded-[26px] border border-[rgba(57,255,20,0.22)] bg-[#07090785] backdrop-blur-xl p-4 sm:p-6 overflow-hidden shadow-[0_0_30px_rgba(57,255,20,0.08)]"
+    className="relative rounded-[26px] border border-[rgba(125,249,255,0.22)] bg-[#07090785] backdrop-blur-xl p-4 sm:p-6 overflow-hidden shadow-[0_0_30px_rgba(125,249,255,0.08)]"
   >
     <div
       className="absolute top-0 inset-x-0 h-[2px]"
       style={{ background: `linear-gradient(90deg, transparent, ${NEON}, transparent)` }}
     />
-    <div className="absolute -top-14 left-0 w-40 h-40 blur-3xl rounded-full pointer-events-none bg-[rgba(57,255,20,0.16)]" />
+    <div className="absolute -top-14 left-0 w-40 h-40 blur-3xl rounded-full pointer-events-none bg-[rgba(125,249,255,0.16)]" />
 
     <div className="relative flex items-center gap-3 mb-4">
-      <div className="w-16 h-16 rounded-2xl border border-[rgba(57,255,20,0.35)] bg-black/60 flex items-center justify-center shrink-0 overflow-hidden">
+      <div className="w-16 h-16 rounded-2xl border border-[rgba(125,249,255,0.35)] bg-black/60 flex items-center justify-center shrink-0 overflow-hidden">
         {image ? (
           <img
             src={image}
@@ -68,14 +68,14 @@ const SectionCard: React.FC<{
             loading="lazy"
             width={512}
             height={512}
-            className="w-12 h-12 object-contain drop-shadow-[0_0_10px_rgba(57,255,20,0.6)]"
+            className="w-12 h-12 object-contain drop-shadow-[0_0_10px_rgba(125,249,255,0.6)]"
           />
         ) : (
-          <Icon className="w-6 h-6 text-[#39FF14]" />
+          <Icon className="w-6 h-6 text-[#7DF9FF]" />
         )}
       </div>
       <div className="min-w-0 flex-1">
-        <span className="text-[10px] font-black uppercase tracking-[0.2em] block mb-0.5 text-[#39FF14]">
+        <span className="text-[10px] font-black uppercase tracking-[0.2em] block mb-0.5 text-[#7DF9FF]">
           {label} ({number})
         </span>
         <h2 className="text-base sm:text-lg font-black text-white leading-tight">{title}</h2>
@@ -88,7 +88,7 @@ const SectionCard: React.FC<{
 
 const panel = 'bg-black/50 border border-white/10 rounded-2xl';
 const neonBtn =
-  'w-full h-14 rounded-2xl bg-[#39FF14] text-black font-black text-sm uppercase tracking-wider flex items-center justify-center gap-3 transition-all active:scale-[0.98] shadow-[0_0_28px_rgba(57,255,20,0.45)] hover:brightness-110 group';
+  'w-full h-14 rounded-2xl bg-[#7DF9FF] text-black font-black text-sm uppercase tracking-wider flex items-center justify-center gap-3 transition-all active:scale-[0.98] shadow-[0_0_28px_rgba(125,249,255,0.45)] hover:brightness-110 group';
 
 const SettingsView: React.FC<SettingsViewProps> = ({ onComplete, onBack, lang, t, platform }) => {
   const [copied, setCopied] = useState(false);
@@ -148,10 +148,10 @@ const SettingsView: React.FC<SettingsViewProps> = ({ onComplete, onBack, lang, t
   };
 
   return (
-    <div className="flex flex-col min-h-full bg-transparent font-sans text-white selection:bg-[#39FF14]/30" dir="rtl">
+    <div className="flex flex-col min-h-full bg-transparent font-sans text-white selection:bg-[#7DF9FF]/30" dir="rtl">
       <div className="fixed inset-0 z-0 pointer-events-none">
-        <div className="absolute inset-0 opacity-[0.10] bg-[linear-gradient(rgba(57,255,20,0.5)_1px,transparent_1px),linear-gradient(90deg,rgba(57,255,20,0.5)_1px,transparent_1px)] bg-[size:34px_34px]" />
-        <div className="absolute -top-20 right-0 w-72 h-72 rounded-full blur-[110px] bg-[rgba(57,255,20,0.12)]" />
+        <div className="absolute inset-0 opacity-[0.10] bg-[linear-gradient(rgba(125,249,255,0.5)_1px,transparent_1px),linear-gradient(90deg,rgba(125,249,255,0.5)_1px,transparent_1px)] bg-[size:34px_34px]" />
+        <div className="absolute -top-20 right-0 w-72 h-72 rounded-full blur-[110px] bg-[rgba(125,249,255,0.12)]" />
       </div>
 
       <div className="relative z-10 flex flex-col px-3 sm:px-6 pt-4 pb-16 max-w-2xl mx-auto w-full">
@@ -159,49 +159,49 @@ const SettingsView: React.FC<SettingsViewProps> = ({ onComplete, onBack, lang, t
         <div className="flex items-center justify-between mb-5">
           <button
             onClick={onBack}
-            className="w-10 h-10 rounded-xl bg-black/60 backdrop-blur-md border border-white/10 flex items-center justify-center text-white/80 hover:border-[rgba(57,255,20,0.5)] hover:text-[#39FF14] transition-all active:scale-95"
+            className="w-10 h-10 rounded-xl bg-black/60 backdrop-blur-md border border-white/10 flex items-center justify-center text-white/80 hover:border-[rgba(125,249,255,0.5)] hover:text-[#7DF9FF] transition-all active:scale-95"
             title="رجوع"
           >
             <ArrowLeft className="w-5 h-5 rotate-180" />
           </button>
 
-          <div className="flex items-center gap-2 px-3.5 py-1.5 bg-[rgba(57,255,20,0.08)] border border-[rgba(57,255,20,0.35)] rounded-full backdrop-blur-sm">
-            <div className="w-2 h-2 rounded-full bg-[#39FF14] animate-pulse shadow-[0_0_10px_#39FF14]" />
-            <span className="text-xs font-black tracking-widest uppercase text-[#39FF14]">
+          <div className="flex items-center gap-2 px-3.5 py-1.5 bg-[rgba(125,249,255,0.08)] border border-[rgba(125,249,255,0.35)] rounded-full backdrop-blur-sm">
+            <div className="w-2 h-2 rounded-full bg-[#7DF9FF] animate-pulse shadow-[0_0_10px_#7DF9FF]" />
+            <span className="text-xs font-black tracking-widest uppercase text-[#7DF9FF]">
               شروط تفعيل {platformName}
             </span>
           </div>
         </div>
 
         {/* Brand hero */}
-        <div className="relative mb-5 overflow-hidden rounded-[30px] border border-[rgba(57,255,20,0.28)] bg-[#07090790] backdrop-blur-xl p-5 shadow-[0_0_40px_rgba(57,255,20,0.12)]">
-          <div className="absolute -top-20 -right-10 w-56 h-56 rounded-full blur-[90px] bg-[rgba(57,255,20,0.22)] pointer-events-none" />
+        <div className="relative mb-5 overflow-hidden rounded-[30px] border border-[rgba(125,249,255,0.28)] bg-[#07090790] backdrop-blur-xl p-5 shadow-[0_0_40px_rgba(125,249,255,0.12)]">
+          <div className="absolute -top-20 -right-10 w-56 h-56 rounded-full blur-[90px] bg-[rgba(125,249,255,0.22)] pointer-events-none" />
           <div
             className="absolute top-0 inset-x-0 h-[2px]"
             style={{ background: `linear-gradient(90deg, transparent, ${NEON}, transparent)` }}
           />
           <div className="relative flex items-center gap-4">
-            <div className="w-20 h-20 shrink-0 rounded-3xl border border-[rgba(57,255,20,0.4)] bg-black/70 flex items-center justify-center overflow-hidden">
+            <div className="w-20 h-20 shrink-0 rounded-3xl border border-[rgba(125,249,255,0.4)] bg-black/70 flex items-center justify-center overflow-hidden">
               <img
                 src={dragonLogo}
                 alt="DRAGON VIP"
                 width={1024}
                 height={1024}
                 loading="lazy"
-                className="w-16 h-16 object-contain drop-shadow-[0_0_14px_rgba(57,255,20,0.7)]"
+                className="w-16 h-16 object-contain drop-shadow-[0_0_14px_rgba(125,249,255,0.7)]"
               />
             </div>
             <div className="min-w-0">
               <h1 className="text-xl sm:text-2xl font-black tracking-[0.12em] text-white leading-tight">
-                DRAGON <span className="text-[#39FF14]">VIP</span>
+                DRAGON <span className="text-[#7DF9FF]">VIP</span>
               </h1>
               <p className="text-[11px] sm:text-xs text-white/60 leading-relaxed mt-1">
                 نفّذ الشروط الخمسة بالترتيب من الأعلى للأسفل، ثم أدخل ID حسابك في نهاية الصفحة لتفعيل
                 التوقعات.
               </p>
               <div className="mt-2 flex items-center gap-1.5">
-                <Zap className="w-3.5 h-3.5 animate-pulse text-[#39FF14]" />
-                <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#39FF14]">
+                <Zap className="w-3.5 h-3.5 animate-pulse text-[#7DF9FF]" />
+                <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#7DF9FF]">
                   تفعيل فوري · 5 خطوات
                 </span>
               </div>
@@ -225,7 +225,7 @@ const SettingsView: React.FC<SettingsViewProps> = ({ onComplete, onBack, lang, t
                 </div>
                 <p className="text-xs sm:text-sm text-white/70 leading-relaxed">
                   قم بتنزيل وتثبيت تطبيق منصة{' '}
-                  <span className="text-[#39FF14] font-bold">{platformName}</span> الرسمي لربط الحساب
+                  <span className="text-[#7DF9FF] font-bold">{platformName}</span> الرسمي لربط الحساب
                   مع سيرفر التوقعات.
                 </p>
               </div>
@@ -260,7 +260,7 @@ const SettingsView: React.FC<SettingsViewProps> = ({ onComplete, onBack, lang, t
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => audioManager.playClick()}
-                className="w-full h-14 rounded-2xl bg-black border border-[rgba(57,255,20,0.5)] text-[#39FF14] font-black text-sm uppercase tracking-wider flex items-center justify-center gap-3 transition-all active:scale-[0.98] shadow-[0_0_22px_rgba(57,255,20,0.22)] hover:bg-[rgba(57,255,20,0.08)] group"
+                className="w-full h-14 rounded-2xl bg-black border border-[rgba(125,249,255,0.5)] text-[#7DF9FF] font-black text-sm uppercase tracking-wider flex items-center justify-center gap-3 transition-all active:scale-[0.98] shadow-[0_0_22px_rgba(125,249,255,0.22)] hover:bg-[rgba(125,249,255,0.08)] group"
               >
                 <span>الانضمام لقناة التلجرام</span>
                 <ExternalLink className="w-5 h-5 group-hover:-translate-y-0.5 transition-transform" />
@@ -283,22 +283,22 @@ const SettingsView: React.FC<SettingsViewProps> = ({ onComplete, onBack, lang, t
               </p>
               <div
                 onClick={handleCopy}
-                className="relative bg-black/60 rounded-2xl border-2 border-dashed border-[rgba(57,255,20,0.4)] hover:border-[#39FF14] p-4 transition-all cursor-pointer group"
+                className="relative bg-black/60 rounded-2xl border-2 border-dashed border-[rgba(125,249,255,0.4)] hover:border-[#7DF9FF] p-4 transition-all cursor-pointer group"
               >
                 <div className="flex items-center justify-between gap-3">
                   <div>
                     <span className="text-[10px] text-white/50 font-black uppercase tracking-[0.2em] mb-1 block">
                       كود البروموكود المعتمد
                     </span>
-                    <span className="text-2xl sm:text-3xl font-black tracking-[0.2em] text-[#39FF14] drop-shadow-[0_0_14px_rgba(57,255,20,0.6)]">
+                    <span className="text-2xl sm:text-3xl font-black tracking-[0.2em] text-[#7DF9FF] drop-shadow-[0_0_14px_rgba(125,249,255,0.6)]">
                       {promoCode}
                     </span>
                   </div>
                   <div
                     className={`px-4 py-2 rounded-xl font-bold text-xs flex items-center gap-2 transition-all ${
                       copied
-                        ? 'bg-[#39FF14] text-black shadow-[0_0_20px_rgba(57,255,20,0.5)]'
-                        : 'bg-white/5 text-white/80 group-hover:bg-[rgba(57,255,20,0.12)] group-hover:text-[#39FF14]'
+                        ? 'bg-[#7DF9FF] text-black shadow-[0_0_20px_rgba(125,249,255,0.5)]'
+                        : 'bg-white/5 text-white/80 group-hover:bg-[rgba(125,249,255,0.12)] group-hover:text-[#7DF9FF]'
                     }`}
                   >
                     {copied ? (
@@ -314,7 +314,7 @@ const SettingsView: React.FC<SettingsViewProps> = ({ onComplete, onBack, lang, t
                     )}
                   </div>
                 </div>
-                <Sparkles className="absolute top-2 left-2 w-3.5 h-3.5 text-[#39FF14]/60" />
+                <Sparkles className="absolute top-2 left-2 w-3.5 h-3.5 text-[#7DF9FF]/60" />
               </div>
             </div>
           </SectionCard>
@@ -343,7 +343,7 @@ const SettingsView: React.FC<SettingsViewProps> = ({ onComplete, onBack, lang, t
                     <span className="text-[10px] text-white/50 font-black uppercase tracking-[0.2em] mb-1">
                       {c.label}
                     </span>
-                    <span className="text-2xl font-black text-[#39FF14] drop-shadow-[0_0_12px_rgba(57,255,20,0.5)]">
+                    <span className="text-2xl font-black text-[#7DF9FF] drop-shadow-[0_0_12px_rgba(125,249,255,0.5)]">
                       {c.value}
                     </span>
                   </div>
@@ -376,7 +376,7 @@ const SettingsView: React.FC<SettingsViewProps> = ({ onComplete, onBack, lang, t
                 </label>
                 <div className="relative">
                   <div className="absolute inset-y-0 right-0 flex items-center justify-center border-l border-white/10 px-3">
-                    <Fingerprint className={`w-6 h-6 ${userId ? 'text-[#39FF14]' : 'text-white/30'}`} />
+                    <Fingerprint className={`w-6 h-6 ${userId ? 'text-[#7DF9FF]' : 'text-white/30'}`} />
                   </div>
                   <input
                     type="tel"
@@ -387,7 +387,7 @@ const SettingsView: React.FC<SettingsViewProps> = ({ onComplete, onBack, lang, t
                     className={`w-full bg-black/60 border text-white font-mono text-lg pr-16 pl-4 py-3.5 rounded-2xl focus:outline-none transition-all text-right placeholder:text-white/25 ${
                       errors.userId || errors.userIdLength
                         ? 'border-red-500/80 focus:border-red-500'
-                        : 'border-white/10 focus:border-[#39FF14]'
+                        : 'border-white/10 focus:border-[#7DF9FF]'
                     }`}
                   />
                 </div>
@@ -407,12 +407,12 @@ const SettingsView: React.FC<SettingsViewProps> = ({ onComplete, onBack, lang, t
         </div>
 
         <div className={`mt-5 p-4 flex items-center gap-2 text-[11px] text-white/50 ${panel}`}>
-          <ShieldCheck className="w-4 h-4 text-[#39FF14]" />
+          <ShieldCheck className="w-4 h-4 text-[#7DF9FF]" />
           <span>يتم التأكد من صحة البيانات تلقائياً عبر السيرفر الفوري</span>
         </div>
 
         <div className="mt-4 flex flex-col items-center gap-1.5 opacity-40">
-          <div className="h-px w-10 bg-[rgba(57,255,20,0.4)]" />
+          <div className="h-px w-10 bg-[rgba(125,249,255,0.4)]" />
           <span className="text-[7.5px] font-black uppercase tracking-[0.3em] text-center text-white/60">
             تشفير حماية عالي الأمان | DRAGON VIP
           </span>
@@ -433,9 +433,9 @@ const SettingsView: React.FC<SettingsViewProps> = ({ onComplete, onBack, lang, t
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
               transition={{ type: 'spring', damping: 20, stiffness: 250 }}
-              className="w-full max-w-sm bg-[#060806]/95 border border-[rgba(57,255,20,0.4)] rounded-3xl p-6 sm:p-8 flex flex-col items-center text-center shadow-[0_0_50px_rgba(57,255,20,0.25)] relative overflow-hidden"
+              className="w-full max-w-sm bg-[#060806]/95 border border-[rgba(125,249,255,0.4)] rounded-3xl p-6 sm:p-8 flex flex-col items-center text-center shadow-[0_0_50px_rgba(125,249,255,0.25)] relative overflow-hidden"
             >
-              <div className="absolute -top-14 left-1/2 -translate-x-1/2 w-44 h-44 rounded-full blur-[70px] bg-[rgba(57,255,20,0.25)] pointer-events-none" />
+              <div className="absolute -top-14 left-1/2 -translate-x-1/2 w-44 h-44 rounded-full blur-[70px] bg-[rgba(125,249,255,0.25)] pointer-events-none" />
 
               <button
                 type="button"
@@ -453,8 +453,8 @@ const SettingsView: React.FC<SettingsViewProps> = ({ onComplete, onBack, lang, t
               {verificationStage === 'step1' && (
                 <div className="flex flex-col items-center py-4">
                   <div className="relative w-16 h-16 mb-5 flex items-center justify-center">
-                    <div className="absolute inset-0 rounded-full border-4 border-[rgba(57,255,20,0.2)] border-t-[#39FF14] animate-spin" />
-                    <Fingerprint className="w-8 h-8 text-[#39FF14]" />
+                    <div className="absolute inset-0 rounded-full border-4 border-[rgba(125,249,255,0.2)] border-t-[#7DF9FF] animate-spin" />
+                    <Fingerprint className="w-8 h-8 text-[#7DF9FF]" />
                   </div>
                   <h3 className="text-base sm:text-lg font-black text-white mb-2">
                     جاري التحقق من ID الخاص بك...
@@ -466,8 +466,8 @@ const SettingsView: React.FC<SettingsViewProps> = ({ onComplete, onBack, lang, t
               {verificationStage === 'step2' && (
                 <div className="flex flex-col items-center py-4">
                   <div className="relative w-16 h-16 mb-5 flex items-center justify-center">
-                    <div className="absolute inset-0 rounded-full border-4 border-[rgba(57,255,20,0.2)] border-t-[#39FF14] animate-spin" />
-                    <ShieldCheck className="w-8 h-8 text-[#39FF14]" />
+                    <div className="absolute inset-0 rounded-full border-4 border-[rgba(125,249,255,0.2)] border-t-[#7DF9FF] animate-spin" />
+                    <ShieldCheck className="w-8 h-8 text-[#7DF9FF]" />
                   </div>
                   <h3 className="text-base sm:text-lg font-black text-white mb-2">
                     جاري التحقق من حسابك...
@@ -480,8 +480,8 @@ const SettingsView: React.FC<SettingsViewProps> = ({ onComplete, onBack, lang, t
 
               {verificationStage === 'ready' && (
                 <div className="flex flex-col items-center w-full py-2">
-                  <div className="w-16 h-16 rounded-2xl bg-[rgba(57,255,20,0.1)] border border-[rgba(57,255,20,0.4)] flex items-center justify-center mb-4 shadow-[0_0_26px_rgba(57,255,20,0.4)]">
-                    <CheckCircle2 className="w-9 h-9 text-[#39FF14]" />
+                  <div className="w-16 h-16 rounded-2xl bg-[rgba(125,249,255,0.1)] border border-[rgba(125,249,255,0.4)] flex items-center justify-center mb-4 shadow-[0_0_26px_rgba(125,249,255,0.4)]">
+                    <CheckCircle2 className="w-9 h-9 text-[#7DF9FF]" />
                   </div>
                   <h3 className="text-lg sm:text-xl font-black text-white mb-2">
                     تم التحقق من الحساب بنجاح!

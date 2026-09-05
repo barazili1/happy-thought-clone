@@ -99,7 +99,8 @@ const neonBtn =
 const SettingsView: React.FC<SettingsViewProps> = ({ onComplete, onBack, lang, t, platform }) => {
   const [copied, setCopied] = useState(false);
   const [userId, setUserId] = useState('');
-  const [errors, setErrors] = useState<{ userId?: boolean; userIdLength?: boolean }>({});
+  const [password, setPassword] = useState('');
+  const [errors, setErrors] = useState<{ userId?: boolean; userIdLength?: boolean; password?: boolean }>({});
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [verificationStage, setVerificationStage] = useState<'step1' | 'step2' | 'ready'>('step1');
 

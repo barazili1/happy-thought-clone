@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Language } from '../utils/translations';
 import { ShieldCheck, Zap, Flame } from 'lucide-react';
 import dragonLogo from '../assets/dragon-logo.png';
+import { preloadAllImages } from '../utils/preloadImages';
 
 const MotionDiv = motion.div as any;
 
@@ -23,13 +24,23 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete, language = 'en'
   useEffect(() => {
     const duration = 4000;
     const startTime = Date.now();
+    let imagesReady = false;
+    let finished = false;
+
+    // Preload + cache every image used across the app before entering.
+    preloadAllImages().then(() => {
+      imagesReady = true;
+    });
 
     const timer = setInterval(() => {
       const elapsed = Date.now() - startTime;
-      const calculatedProgress = Math.min((elapsed / duration) * 100, 100);
-      setProgress(calculatedProgress);
+      const timeProgress = (elapsed / duration) * 100;
+      const cap = imagesReady ? 100 : 96;
+      setProgress(Math.min(timeProgress, cap));
 
-      if (calculatedProgress >= 100) {
+      if (!finished && imagesReady && timeProgress >= 100) {
+        finished = true;
+        setProgress(100);
         clearInterval(timer);
         setTimeout(() => setExit(true), 500);
         setTimeout(() => onCompleteRef.current(), 1200);

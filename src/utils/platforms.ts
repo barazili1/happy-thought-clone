@@ -30,7 +30,7 @@ export const PLATFORMS: Record<Platform, PlatformConfig> = {
     mono: '1x',
     promo: 'A77N',
     downloadUrl: 'https://refpa49781.com/L?tag=d_3726128m_68383c_&site=3726128&ad=68383',
-    img: '',
+    img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfr1_rTChXoLZMboCjePzWMkQSa2HnfAAXJw2_QaAAIw&s',
     tagline: 'أكبر سيولة · تغطية عالمية',
     accuracy: '٩٧٪',
     latency: '16ms',

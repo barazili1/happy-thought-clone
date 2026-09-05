@@ -47,48 +47,53 @@ const SectionCard: React.FC<{
   children: React.ReactNode;
 }> = ({ number, label, title, icon: Icon, image, children }) => (
   <MotionDiv
-    initial={{ opacity: 0, y: 18 }}
+    initial={{ opacity: 0, y: 22 }}
     whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true, amount: 0.2 }}
+    viewport={{ once: true, amount: 0.15 }}
     transition={{ duration: 0.45 }}
-    className="relative rounded-[26px] border border-[rgba(125,249,255,0.22)] bg-[#07090785] backdrop-blur-xl p-4 sm:p-6 overflow-hidden shadow-[0_0_30px_rgba(125,249,255,0.08)]"
+    className="relative flex overflow-hidden rounded-[24px] border border-white/[0.08] bg-black/70 backdrop-blur-xl"
   >
-    <div
-      className="absolute top-0 inset-x-0 h-[2px]"
-      style={{ background: `linear-gradient(90deg, transparent, ${NEON}, transparent)` }}
-    />
-    <div className="absolute -top-14 left-0 w-40 h-40 blur-3xl rounded-full pointer-events-none bg-[rgba(125,249,255,0.16)]" />
+    {/* icy rail */}
+    <div className="relative flex w-11 shrink-0 flex-col items-center justify-between border-l border-[rgba(125,249,255,0.18)] bg-gradient-to-b from-[rgba(125,249,255,0.14)] to-transparent py-4">
+      <span className="font-mono text-[13px] font-black text-[#7DF9FF]">{number}</span>
+      <span className="h-full w-[1px] my-3 bg-gradient-to-b from-[rgba(125,249,255,0.5)] to-transparent" />
+      <Icon className="h-4 w-4 text-[#7DF9FF]/70" />
+    </div>
 
-    <div className="relative flex items-center gap-3 mb-4">
-      <div className="w-16 h-16 rounded-2xl border border-[rgba(125,249,255,0.35)] bg-black/60 flex items-center justify-center shrink-0 overflow-hidden">
-        {image ? (
-          <img
-            src={image}
-            alt={title}
-            loading="lazy"
-            width={512}
-            height={512}
-            className="w-12 h-12 object-contain drop-shadow-[0_0_10px_rgba(125,249,255,0.6)]"
-          />
-        ) : (
-          <Icon className="w-6 h-6 text-[#7DF9FF]" />
+    <div className="min-w-0 flex-1 p-4 sm:p-5">
+      <div className="mb-4 flex items-start gap-3">
+        <div className="min-w-0 flex-1">
+          <span className="mb-1 block text-[9px] font-black uppercase tracking-[0.28em] text-white/35">
+            {label}
+          </span>
+          <h2 className="text-base font-black leading-tight text-white sm:text-lg">{title}</h2>
+          <span className="mt-2 block h-[2px] w-10 rounded-full bg-[#7DF9FF]" />
+        </div>
+        {image && (
+          <div className="relative h-[68px] w-[68px] shrink-0">
+            <div className="absolute inset-0 rounded-full bg-[rgba(125,249,255,0.16)] blur-xl" />
+            <div className="relative flex h-full w-full items-center justify-center rounded-full border border-[rgba(125,249,255,0.3)] bg-black/80">
+              <img
+                src={image}
+                alt={title}
+                loading="lazy"
+                width={512}
+                height={512}
+                className="h-12 w-12 object-contain drop-shadow-[0_0_10px_rgba(125,249,255,0.6)]"
+              />
+            </div>
+          </div>
         )}
       </div>
-      <div className="min-w-0 flex-1">
-        <span className="text-[10px] font-black uppercase tracking-[0.2em] block mb-0.5 text-[#7DF9FF]">
-          {label} ({number})
-        </span>
-        <h2 className="text-base sm:text-lg font-black text-white leading-tight">{title}</h2>
-      </div>
-      <span className="text-3xl font-black font-mono text-white/10">{number}</span>
+      {children}
     </div>
-    {children}
   </MotionDiv>
 );
 
-const panel = 'bg-black/50 border border-white/10 rounded-2xl';
+const panel = 'bg-white/[0.04] border border-white/[0.07] rounded-2xl';
 const neonBtn =
-  'w-full h-14 rounded-2xl bg-[#7DF9FF] text-black font-black text-sm uppercase tracking-wider flex items-center justify-center gap-3 transition-all active:scale-[0.98] shadow-[0_0_28px_rgba(125,249,255,0.45)] hover:brightness-110 group';
+  'w-full h-14 rounded-2xl bg-gradient-to-l from-[#7DF9FF] to-white text-black font-black text-sm uppercase tracking-wider flex items-center justify-center gap-3 transition-all active:scale-[0.98] shadow-[0_10px_30px_rgba(125,249,255,0.30)] hover:brightness-105 group';
+
 
 const SettingsView: React.FC<SettingsViewProps> = ({ onComplete, onBack, lang, t, platform }) => {
   const [copied, setCopied] = useState(false);

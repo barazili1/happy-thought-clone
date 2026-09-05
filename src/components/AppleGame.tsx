@@ -328,7 +328,7 @@ export const AppleGame: React.FC<AppleGameProps> = ({ onBack, accessKeyData, lan
                             whileTap={{ scale: 0.98 }}
                             onClick={handleNewGame} 
                             disabled={isAnalyzing} 
-                            className="h-14 rounded-2xl bg-transparent border border-white/10 text-white font-black text-xs sm:text-sm uppercase tracking-wider transition-all disabled:opacity-50 shadow-[0_8px_20px_rgba(13,148,136,0.15)] flex items-center justify-center gap-2 hover:bg-white/10 backdrop-blur-md"
+                            className="h-14 rounded-2xl bg-transparent border border-white/10 text-white font-black text-xs sm:text-sm uppercase tracking-wider transition-all disabled:opacity-50 shadow-[0_8px_20px_rgba(125,249,255,0.15)] flex items-center justify-center gap-2 hover:bg-white/10 backdrop-blur-md"
                         >
                             <RotateCcw className="w-5 h-5" />
                             <span>{language === 'ar' ? 'تصفير' : 'Reset'}</span>
@@ -368,7 +368,7 @@ export const AppleGame: React.FC<AppleGameProps> = ({ onBack, accessKeyData, lan
                         transition={{ duration: 0.25, ease: "easeOut" }}
                         className="w-full max-w-[360px] bg-black border border-white/10 rounded-3xl p-6 sm:p-7 flex flex-col items-center text-center shadow-[0_25px_60px_rgba(0,0,0,0.9)] relative overflow-hidden group"
                     >
-                        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-40 h-1 bg-gradient-to-r from-transparent via-[#7DF9FF] to-transparent shadow-[0_0_15px_rgba(34,197,94,0.8)]" style={{ backgroundImage: 'linear-gradient(to right, transparent, var(--primary-color), transparent)' } as any} />
+                        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-40 h-1 bg-gradient-to-r from-transparent via-[#7DF9FF] to-transparent shadow-[0_0_15px_rgba(125,249,255,0.8)]" style={{ backgroundImage: 'linear-gradient(to right, transparent, var(--primary-color), transparent)' } as any} />
                         <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-48 h-48 bg-[rgba(125,249,255,0.10)] blur-[70px] rounded-full pointer-events-none" style={{ backgroundColor: 'rgba(var(--primary-color-rgb), 0.12)' } as any} />
                         
                         <button
@@ -433,7 +433,7 @@ export const AppleGame: React.FC<AppleGameProps> = ({ onBack, accessKeyData, lan
                                 </span>
                             </div>
                             <div className={`px-2.5 py-1 rounded-lg text-[10px] font-bold flex items-center gap-1 transition-all ${
-                                promoCopied ? 'bg-[rgba(125,249,255,0.10)] text-white shadow-[0_0_10px_rgba(34,197,94,0.4)]' : 'bg-white/10 text-white group-hover/code:bg-zinc-200'
+                                promoCopied ? 'bg-[rgba(125,249,255,0.10)] text-white shadow-[0_0_10px_rgba(125,249,255,0.4)]' : 'bg-white/10 text-white group-hover/code:bg-white/20'
                             }`}>
                                 {promoCopied ? (
                                     <>

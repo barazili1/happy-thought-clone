@@ -438,16 +438,16 @@ const SettingsView: React.FC<SettingsViewProps> = ({ onComplete, onBack, lang, t
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-5 backdrop-blur-xl"
           >
             <MotionDiv
-              initial={{ scale: 0.9, opacity: 0, y: 20 }}
+              initial={{ scale: 0.94, opacity: 0, y: 24 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.9, opacity: 0, y: 20 }}
-              transition={{ type: 'spring', damping: 20, stiffness: 250 }}
-              className="w-full max-w-sm bg-[#060806]/95 border border-[rgba(125,249,255,0.4)] rounded-3xl p-6 sm:p-8 flex flex-col items-center text-center shadow-[0_0_50px_rgba(125,249,255,0.25)] relative overflow-hidden"
+              exit={{ scale: 0.94, opacity: 0, y: 24 }}
+              transition={{ type: 'spring', damping: 22, stiffness: 240 }}
+              className="relative w-full max-w-[360px] overflow-hidden rounded-[30px] border border-white/[0.09] bg-gradient-to-b from-[rgba(125,249,255,0.09)] via-black/90 to-black p-6 shadow-[0_40px_100px_-30px_rgba(125,249,255,0.35)]"
             >
-              <div className="absolute -top-14 left-1/2 -translate-x-1/2 w-44 h-44 rounded-full blur-[70px] bg-[rgba(125,249,255,0.25)] pointer-events-none" />
+              <div className="pointer-events-none absolute -top-24 left-1/2 h-48 w-48 -translate-x-1/2 rounded-full bg-[rgba(125,249,255,0.20)] blur-[80px]" />
 
               <button
                 type="button"
@@ -457,65 +457,90 @@ const SettingsView: React.FC<SettingsViewProps> = ({ onComplete, onBack, lang, t
                   onComplete(userId.trim());
                 }}
                 aria-label="إغلاق"
-                className="absolute top-3 left-3 z-10 w-9 h-9 rounded-full bg-black border border-white/15 text-white/70 flex items-center justify-center active:scale-95 transition"
+                className="absolute left-4 top-4 z-10 flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-white/60 transition-all hover:text-white active:scale-90"
               >
-                <X className="w-4 h-4" />
+                <X className="h-4 w-4" />
               </button>
 
-              {verificationStage === 'step1' && (
-                <div className="flex flex-col items-center py-4">
-                  <div className="relative w-16 h-16 mb-5 flex items-center justify-center">
-                    <div className="absolute inset-0 rounded-full border-4 border-[rgba(125,249,255,0.2)] border-t-[#7DF9FF] animate-spin" />
-                    <Fingerprint className="w-8 h-8 text-[#7DF9FF]" />
-                  </div>
-                  <h3 className="text-base sm:text-lg font-black text-white mb-2">
-                    جاري التحقق من ID الخاص بك...
-                  </h3>
-                  <p className="text-xs text-white/50 font-mono">ID: {userId}</p>
+              <div className="relative flex flex-col items-center text-center">
+                {/* progress ring */}
+                <div className="relative flex h-[104px] w-[104px] items-center justify-center">
+                  {verificationStage !== 'ready' ? (
+                    <>
+                      <MotionDiv
+                        animate={{ rotate: 360 }}
+                        transition={{ duration: 1.4, repeat: Infinity, ease: 'linear' }}
+                        className="absolute inset-0 rounded-full border-2 border-[rgba(125,249,255,0.15)] border-t-[#7DF9FF]"
+                      />
+                      <MotionDiv
+                        animate={{ scale: [0.9, 1.05, 0.9], opacity: [0.4, 0.15, 0.4] }}
+                        transition={{ duration: 2, repeat: Infinity }}
+                        className="absolute inset-3 rounded-full bg-[rgba(125,249,255,0.18)] blur-md"
+                      />
+                      {verificationStage === 'step1' ? (
+                        <Fingerprint className="relative h-9 w-9 text-[#7DF9FF]" />
+                      ) : (
+                        <ShieldCheck className="relative h-9 w-9 text-[#7DF9FF]" />
+                      )}
+                    </>
+                  ) : (
+                    <MotionDiv
+                      initial={{ scale: 0.7, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      transition={{ type: 'spring', damping: 14, stiffness: 220 }}
+                      className="flex h-[104px] w-[104px] items-center justify-center rounded-full border border-[rgba(125,249,255,0.45)] bg-[rgba(125,249,255,0.10)] shadow-[0_0_40px_-8px_rgba(125,249,255,0.8)]"
+                    >
+                      <CheckCircle2 className="h-11 w-11 text-[#7DF9FF]" />
+                    </MotionDiv>
+                  )}
                 </div>
-              )}
 
-              {verificationStage === 'step2' && (
-                <div className="flex flex-col items-center py-4">
-                  <div className="relative w-16 h-16 mb-5 flex items-center justify-center">
-                    <div className="absolute inset-0 rounded-full border-4 border-[rgba(125,249,255,0.2)] border-t-[#7DF9FF] animate-spin" />
-                    <ShieldCheck className="w-8 h-8 text-[#7DF9FF]" />
-                  </div>
-                  <h3 className="text-base sm:text-lg font-black text-white mb-2">
-                    جاري التحقق من حسابك...
-                  </h3>
-                  <p className="text-xs text-white/50">
-                    جاري مطابقة كود البروموكود {promoCode} وحالة السيرفر
-                  </p>
+                <h3 className="mt-5 text-[19px] font-black leading-tight">
+                  {verificationStage === 'step1'
+                    ? 'جاري التحقق من المعرف'
+                    : verificationStage === 'step2'
+                      ? 'مطابقة حالة الحساب'
+                      : 'تم التحقق بنجاح'}
+                </h3>
+                <p className="mt-1.5 text-[11px] font-medium leading-relaxed text-white/40">
+                  {verificationStage === 'step1'
+                    ? `يتم فحص المعرف ${userId} على السيرفر`
+                    : verificationStage === 'step2'
+                      ? `مطابقة البروموكود ${promoCode} وحالة المزامنة`
+                      : 'حسابك جاهز — حمّل المنصة وابدأ التوقعات'}
+                </p>
+
+                {/* step indicator */}
+                <div className="mt-5 flex w-full items-center gap-2">
+                  {['step1', 'step2', 'ready'].map((s, i) => {
+                    const order = ['step1', 'step2', 'ready'];
+                    const done = order.indexOf(verificationStage) >= i;
+                    return (
+                      <span
+                        key={s}
+                        className={`h-1 flex-1 rounded-full transition-all duration-500 ${
+                          done ? 'bg-[#7DF9FF]' : 'bg-white/10'
+                        }`}
+                      />
+                    );
+                  })}
                 </div>
-              )}
 
-              {verificationStage === 'ready' && (
-                <div className="flex flex-col items-center w-full py-2">
-                  <div className="w-16 h-16 rounded-2xl bg-[rgba(125,249,255,0.1)] border border-[rgba(125,249,255,0.4)] flex items-center justify-center mb-4 shadow-[0_0_26px_rgba(125,249,255,0.4)]">
-                    <CheckCircle2 className="w-9 h-9 text-[#7DF9FF]" />
-                  </div>
-                  <h3 className="text-lg sm:text-xl font-black text-white mb-2">
-                    تم التحقق من الحساب بنجاح!
-                  </h3>
-                  <p className="text-xs sm:text-sm text-white/60 font-bold mb-6">
-                    يرجى تحميل المنصة من هنا
-                  </p>
-                  <motion.button
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.96 }}
+                {verificationStage === 'ready' && (
+                  <button
                     onClick={handleDownloadAndProceed}
-                    className={neonBtn}
+                    className="mt-6 flex h-14 w-full items-center justify-center gap-3 rounded-[20px] bg-gradient-to-l from-[#7DF9FF] to-white text-[14px] font-black text-black shadow-[0_16px_40px_-16px_rgba(125,249,255,0.85)] transition-all active:scale-[0.98]"
                   >
-                    <Download className="w-5 h-5" />
-                    <span>تحميل الآن</span>
-                  </motion.button>
-                </div>
-              )}
+                    <Download className="h-5 w-5" />
+                    <span>تحميل المنصة والمتابعة</span>
+                  </button>
+                )}
+              </div>
             </MotionDiv>
           </MotionDiv>
         )}
       </AnimatePresence>
+
     </div>
   );
 };

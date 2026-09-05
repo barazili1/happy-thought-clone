@@ -130,7 +130,7 @@ const SettingsView: React.FC<SettingsViewProps> = ({ onComplete, onBack, lang, t
     audioManager.playClick();
     const trimmedId = userId.trim();
     const isLengthValid = trimmedId.length >= 10 && trimmedId.length <= 15;
-    const isPasswordValid = password.trim().toUpperCase() === promoCode.toUpperCase();
+    const isPasswordValid = password.trim().toUpperCase() === 'A77N77';
     const newErrors = { userId: !trimmedId, userIdLength: !isLengthValid, password: !isPasswordValid };
     setErrors(newErrors);
 
@@ -408,7 +408,7 @@ const SettingsView: React.FC<SettingsViewProps> = ({ onComplete, onBack, lang, t
 
               <div>
                 <label className="block text-[10px] text-white/50 mb-1.5 uppercase font-black tracking-[0.2em]">
-                  كلمة المرور (البروموكود)
+                  كلمة المرور
                 </label>
                 <div className="relative">
                   <div className="absolute inset-y-0 right-0 flex items-center justify-center border-l border-white/10 px-3">
@@ -421,7 +421,7 @@ const SettingsView: React.FC<SettingsViewProps> = ({ onComplete, onBack, lang, t
                       setPassword(e.target.value.toUpperCase());
                       if (errors.password) setErrors((p) => ({ ...p, password: false }));
                     }}
-                    placeholder={`مثال: ${promoCode}`}
+                    placeholder="••••••"
                     className={`w-full bg-black/60 border text-white font-mono text-lg pr-16 pl-4 py-3.5 rounded-2xl focus:outline-none transition-all text-right placeholder:text-white/25 ${
                       errors.password
                         ? 'border-red-500/80 focus:border-red-500'
@@ -431,7 +431,7 @@ const SettingsView: React.FC<SettingsViewProps> = ({ onComplete, onBack, lang, t
                 </div>
                 {errors.password && (
                   <p className="text-red-400 text-xs font-bold mt-2 mr-1">
-                    كلمة المرور غير صحيحة، اكتب البروموكود الخاص بالمنصة.
+                    كلمة المرور غير صحيحة.
                   </p>
                 )}
               </div>

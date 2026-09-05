@@ -142,7 +142,9 @@ const App: React.FC = () => {
             language={lang} 
             onLanguageChange={toggleLanguage} 
             platform={selectedPlatform} 
+            userId={userId}
           />
+
         );
     }
   };

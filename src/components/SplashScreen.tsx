@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Language } from '../utils/translations';
 import { ShieldCheck, Zap, Flame } from 'lucide-react';
-import dragonLogo from '../assets/dragon-logo.png';
+import eagleLogo from '../assets/eagle-logo.png';
 import { preloadAllImages } from '../utils/preloadImages';
 
 const MotionDiv = motion.div as any;
@@ -111,9 +111,9 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete, language = 'en'
 
           <div className="relative w-52 h-52 rounded-[2.5rem] overflow-hidden border border-[rgba(125,249,255,0.4)] bg-[#050705] shadow-[0_0_60px_rgba(125,249,255,0.28)] flex items-center justify-center">
             <img
-              src={dragonLogo}
+              src={eagleLogo}
               className="w-40 h-40 object-contain drop-shadow-[0_0_22px_rgba(125,249,255,0.65)]"
-              alt="DRAGON VIP"
+              alt="EAGLE VIP"
               width={1024}
               height={1024}
             />
@@ -135,7 +135,7 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete, language = 'en'
             className="space-y-2"
           >
             <h1 className="text-4xl sm:text-5xl font-black tracking-[0.18em] uppercase text-white">
-              DRAGON{' '}
+              EAGLE{' '}
               <span className="text-[#7DF9FF] drop-shadow-[0_0_18px_rgba(125,249,255,0.75)]">VIP</span>
             </h1>
             <div className="flex items-center justify-center gap-3">

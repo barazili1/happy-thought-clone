@@ -1,7 +1,7 @@
 import { PLATFORMS } from './platforms';
 
 // Local bundled assets
-import dragonLogo from '../assets/dragon-logo.png';
+import eagleLogo from '../assets/eagle-logo.png';
 import logoApple from '../assets/logo-apple.png';
 import logoCrash from '../assets/logo-crash.png';
 import condInstall from '../assets/cond-install.png';
@@ -22,7 +22,7 @@ export const REMOTE_IMAGES = [
 ];
 
 export const ALL_IMAGES: string[] = [
-  dragonLogo,
+  eagleLogo,
   logoApple,
   logoCrash,
   condInstall,

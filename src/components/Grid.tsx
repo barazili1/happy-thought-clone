@@ -30,9 +30,9 @@ interface GridProps {
 
 const COLS = 5;
 
-const CELL_IMG = 'https://logo12.gamer.gd/cvb.png';
-const GOOD_IMG = 'https://logo12.gamer.gd/apple.png';
-const BAD_IMG = 'https://logo12.gamer.gd/poi.png';
+import CELL_IMG from '../assets/cell-tile.png';
+import GOOD_IMG from '../assets/apple-good.png';
+import BAD_IMG from '../assets/apple-bad.png';
 
 export const Grid: React.FC<GridProps> = ({ 
   path, 

@@ -159,7 +159,7 @@ export const AppleGame: React.FC<AppleGameProps> = ({ onBack, accessKeyData, lan
                 className="flex items-center justify-between mb-6 sm:mb-8"
             >
                 <motion.button 
-                    whileHover={{ scale: 1.1, backgroundColor: 'rgba(13,148,136,0.08)' }}
+                    whileHover={{ scale: 1.1, backgroundColor: 'rgba(125,249,255,0.08)' }}
                     whileTap={{ scale: 0.9 }}
                     onClick={onBack}
                     className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-transparent border border-white/10 flex items-center justify-center backdrop-blur-md transition-all shadow-lg"
@@ -230,7 +230,7 @@ export const AppleGame: React.FC<AppleGameProps> = ({ onBack, accessKeyData, lan
                                     key={item.value}
                                     className={`shrink-0 px-3.5 py-1.5 rounded-xl text-xs font-black border transition-all duration-300 select-none ${
                                         isActive 
-                                            ? 'bg-[rgba(125,249,255,0.10)] border-[#7DF9FF] text-[#7DF9FF] shadow-[0_8px_20px_rgba(13,148,136,0.25)] scale-105' 
+                                            ? 'bg-[rgba(125,249,255,0.10)] border-[#7DF9FF] text-[#7DF9FF] shadow-[0_8px_20px_rgba(125,249,255,0.25)] scale-105' 
                                             : 'bg-transparent border-white/10 text-white/50 opacity-60'
                                     }`}
                                     style={isActive ? { borderColor: 'var(--primary-color)', color: 'var(--primary-color)' } as any : {}}
@@ -457,7 +457,7 @@ export const AppleGame: React.FC<AppleGameProps> = ({ onBack, accessKeyData, lan
                                     playSound('click');
                                     window.open(platform === 'linebet_v1' ? 'https://refpa79184.com/L?tag=d_5848868m_188307c_&site=5848868&ad=188307' : 'https://refpa49781.com/L?tag=d_5953406m_68383c_&site=5953406&ad=68383', '_blank');
                                 }}
-                                className="w-full h-11 bg-[rgba(125,249,255,0.10)] text-white font-black text-xs uppercase tracking-wider rounded-xl transition-all shadow-[0_0_20px_rgba(34,197,94,0.3)] flex items-center justify-center gap-2 group/btn"
+                                className="w-full h-11 bg-[rgba(125,249,255,0.10)] text-white font-black text-xs uppercase tracking-wider rounded-xl transition-all shadow-[0_0_20px_rgba(125,249,255,0.3)] flex items-center justify-center gap-2 group/btn"
                                 style={{ backgroundColor: 'var(--primary-color)' } as any}
                             >
                                 <span>{language === 'ar' ? 'التسجيل وتفعيل البروموكود' : 'Register With Promo Code'}</span>
@@ -465,7 +465,7 @@ export const AppleGame: React.FC<AppleGameProps> = ({ onBack, accessKeyData, lan
                             </motion.button>
 
                             <motion.button 
-                                whileHover={{ backgroundColor: 'rgba(13,148,136,0.06)' }}
+                                whileHover={{ backgroundColor: 'rgba(125,249,255,0.06)' }}
                                 whileTap={{ scale: 0.98 }}
                                 onClick={() => {
                                     playSound('click');

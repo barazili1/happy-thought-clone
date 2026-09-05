@@ -82,6 +82,7 @@ export const Grid: React.FC<GridProps> = ({
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.3 }}
+          dir="ltr"
           className="flex items-center justify-center gap-2 w-full max-w-[330px] my-2"
         >
           {Array.from({ length: COLS }).map((_, colIndex) => {

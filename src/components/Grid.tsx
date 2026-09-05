@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 const CELL_IMG = 'https://logo12.gamer.gd/cvb.png';
-const GOOD_IMG = 'https://logo12.gamer.gd/apple.png';
-const BAD_IMG = 'https://logo12.gamer.gd/poi.png';
+import GOOD_IMG from '../assets/apple-good.png';
+import BAD_IMG from '../assets/apple-bad.png';
 
 
 import { translations } from '../translations';

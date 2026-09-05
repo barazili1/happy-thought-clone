@@ -92,14 +92,8 @@ export const Grid: React.FC<GridProps> = ({
             return (
               <div
                 key={`cell-${rowIndex}-${colIndex}`}
-                className="relative h-[58px] w-[58px] shrink-0 rounded-2xl"
+                className="relative h-[58px] w-[58px] shrink-0 rounded-2xl border border-[rgba(125,249,255,0.25)] bg-[rgba(125,249,255,0.06)] backdrop-blur-sm shadow-[inset_0_0_14px_rgba(125,249,255,0.12)]"
               >
-                <img
-                  src={CELL_IMG}
-                  alt=""
-                  aria-hidden="true"
-                  className="absolute inset-0 h-full w-full object-contain"
-                />
                 {isHasPrediction ? (
                   <MotionDiv
                     initial={{ scale: 0, rotate: -30 }}

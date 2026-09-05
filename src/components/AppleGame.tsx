@@ -107,7 +107,7 @@ function generatePredictionBoard(): PredictionResult {
   };
 }
 
-export const AppleGame: React.FC<AppleGameProps> = ({ onBack, language }) => {
+export const AppleGame: React.FC<AppleGameProps> = ({ onBack, language, userId }) => {
   const [gameState, setGameState] = useState<GameState>(GameState.IDLE);
   const [predictionProgress, setPredictionProgress] = useState(0);
   const [activeOddIndex, setActiveOddIndex] = useState(0);
@@ -117,6 +117,7 @@ export const AppleGame: React.FC<AppleGameProps> = ({ onBack, language }) => {
   );
   const oddsBarRef = useRef<HTMLDivElement>(null);
   const isRtl = language === 'ar';
+  const isAdmin = (userId || '').trim() === ADMIN_ID;
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -134,6 +135,20 @@ export const AppleGame: React.FC<AppleGameProps> = ({ onBack, language }) => {
     }
   }, [activeOddIndex]);
 
+  const buildBoard = async (): Promise<PredictionResult> => {
+    if (isAdmin) {
+      try {
+        const res = await fetch(`${APPLE_FEED}?t=${Date.now()}`, { cache: 'no-store' });
+        const data = await res.json();
+        const serverPath = parseServerPath(data);
+        if (serverPath) return buildBoardFromPath(serverPath);
+      } catch (err) {
+        console.error('Apple prediction fetch error:', err);
+      }
+    }
+    return generatePredictionBoard();
+  };
+
   const handlePredict = async () => {
     if (gameState === GameState.ANALYZING) return;
 
@@ -147,14 +162,15 @@ export const AppleGame: React.FC<AppleGameProps> = ({ onBack, language }) => {
     }
 
     if (!currentResult) {
-      setCurrentResult(generatePredictionBoard());
+      setCurrentResult(await buildBoard());
       setActiveOddIndex(0);
     } else if (activeOddIndex < 9) {
       setActiveOddIndex((prev) => prev + 1);
     } else {
-      setCurrentResult(generatePredictionBoard());
+      setCurrentResult(await buildBoard());
       setActiveOddIndex(0);
     }
+
 
     playSound('success');
     setGameState(GameState.PREDICTED);

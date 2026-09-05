@@ -113,21 +113,6 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete, language = 'en'
             />
           </div>
 
-          <MotionDiv
-            animate={{ y: [0, -10, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-            className="absolute -top-6 -right-6 w-12 h-12 rounded-2xl bg-black/80 backdrop-blur-xl border border-[rgba(125,249,255,0.4)] flex items-center justify-center shadow-[0_0_20px_rgba(125,249,255,0.3)]"
-          >
-            <ShieldCheck className="w-6 h-6 text-[#7DF9FF]" />
-          </MotionDiv>
-
-          <MotionDiv
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
-            className="absolute -bottom-6 -left-6 w-12 h-12 rounded-2xl bg-black/80 backdrop-blur-xl border border-[rgba(125,249,255,0.4)] flex items-center justify-center shadow-[0_0_20px_rgba(125,249,255,0.3)]"
-          >
-            <Zap className="w-6 h-6 text-[#7DF9FF]" />
-          </MotionDiv>
         </MotionDiv>
 
         {/* Brand */}

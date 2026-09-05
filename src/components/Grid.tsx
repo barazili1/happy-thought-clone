@@ -60,7 +60,7 @@ export const Grid: React.FC<GridProps> = ({
   }, [predictionId, isHasPrediction]);
 
   return (
-    <div className="relative w-full mx-auto select-none flex flex-col items-center bg-transparent">
+    <div dir="ltr" className="relative w-full mx-auto select-none flex flex-col items-center bg-transparent">
       <div className={`w-full max-w-md flex flex-col items-center gap-3 p-2 relative z-10 transition-all duration-500 ${showSuccessFlash ? 'brightness-125 scale-[1.02]' : ''}`}>
         
         {/* Selected Multiplier Header Indicator */}

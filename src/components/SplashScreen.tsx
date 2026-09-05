@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Language } from '../utils/translations';
-import { ShieldCheck, Zap, Sparkles } from 'lucide-react';
-import smartScriptLogo from '../assets/smart-script-logo.jpg';
+import { ShieldCheck, Zap, Flame } from 'lucide-react';
+import dragonLogo from '../assets/dragon-logo.png';
 
 const MotionDiv = motion.div as any;
 
@@ -25,134 +25,138 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete, language = 'en'
     const startTime = Date.now();
 
     const timer = setInterval(() => {
-      const now = Date.now();
-      const elapsed = now - startTime;
+      const elapsed = Date.now() - startTime;
       const calculatedProgress = Math.min((elapsed / duration) * 100, 100);
-      
       setProgress(calculatedProgress);
 
       if (calculatedProgress >= 100) {
         clearInterval(timer);
         setTimeout(() => setExit(true), 500);
-        setTimeout(() => {
-          onCompleteRef.current();
-        }, 1200);
+        setTimeout(() => onCompleteRef.current(), 1200);
       }
     }, 30);
 
     return () => clearInterval(timer);
-  }, []); 
+  }, []);
 
   const isArabic = language === 'ar';
-  const logoUrl = smartScriptLogo;
 
-  const loadingSteps = isArabic ? [
-    "تأمين الاتصال...",
-    "مزامنة البيانات...",
-    "تحسين الأداء...",
-    "النظام جاهز"
-  ] : [
-    "SECURING CONNECTION...",
-    "SYNCING DATA...",
-    "OPTIMIZING PERFORMANCE...",
-    "SYSTEM READY"
-  ];
+  const loadingSteps = isArabic
+    ? ['تأمين الاتصال...', 'مزامنة البيانات...', 'تحسين الأداء...', 'النظام جاهز']
+    : ['SECURING CONNECTION...', 'SYNCING DATA...', 'OPTIMIZING PERFORMANCE...', 'SYSTEM READY'];
 
-  const currentStep = Math.min(Math.floor((progress / 100) * loadingSteps.length), loadingSteps.length - 1);
+  const currentStep = Math.min(
+    Math.floor((progress / 100) * loadingSteps.length),
+    loadingSteps.length - 1
+  );
 
   return (
-    <div className={`fixed inset-0 z-[100] flex flex-col items-center justify-center transition-all duration-1000 ease-in-out 
-      bg-transparent overflow-hidden
-      ${exit ? 'opacity-0 scale-105' : 'opacity-100 scale-100'} 
-      ${isArabic ? 'font-ar' : ''}`}>
-      
-      {/* Background Ambient Glows */}
+    <div
+      className={`fixed inset-0 z-[100] flex flex-col items-center justify-center overflow-hidden bg-black transition-all duration-1000 ease-in-out
+      ${exit ? 'opacity-0 scale-105' : 'opacity-100 scale-100'}`}
+    >
+      {/* Neon ambient glows */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        <div className="absolute top-[-10%] left-[-10%] w-[45%] h-[45%] bg-teal-50 blur-[120px] rounded-full animate-pulse" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[45%] h-[45%] bg-teal-300/25 blur-[120px] rounded-full animate-pulse" style={{ animationDelay: '1s' }} />
-        <div className="absolute top-[30%] left-[40%] w-[25%] h-[25%] bg-teal-200/30 blur-[80px] rounded-full" />
+        <div className="absolute top-[-15%] left-[-15%] w-[55%] h-[55%] rounded-full blur-[130px] bg-[rgba(57,255,20,0.16)] animate-pulse" />
+        <div
+          className="absolute bottom-[-15%] right-[-15%] w-[55%] h-[55%] rounded-full blur-[130px] bg-[rgba(57,255,20,0.12)] animate-pulse"
+          style={{ animationDelay: '1s' }}
+        />
+        <div
+          className="absolute inset-0 opacity-[0.12]"
+          style={{
+            backgroundImage:
+              'linear-gradient(rgba(57,255,20,0.35) 1px, transparent 1px), linear-gradient(90deg, rgba(57,255,20,0.35) 1px, transparent 1px)',
+            backgroundSize: '44px 44px',
+            maskImage: 'radial-gradient(circle at 50% 45%, black, transparent 72%)',
+          }}
+        />
       </div>
 
-      {/* Central Content */}
+      {/* Scan line */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <div className="h-24 w-full bg-gradient-to-b from-transparent via-[rgba(57,255,20,0.10)] to-transparent animate-scan" />
+      </div>
+
       <div className="relative z-10 flex flex-col items-center w-full px-6">
-        <MotionDiv 
+        <MotionDiv
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.5, ease: [0.23, 1, 0.32, 1] }}
+          transition={{ duration: 1.4, ease: [0.23, 1, 0.32, 1] }}
           className="relative mb-12"
         >
-          {/* Logo Aura */}
-          <div className="absolute -inset-12 bg-gradient-to-tr from-teal-300/40 to-emerald-200/40 blur-[60px] rounded-full animate-pulse" />
-          
-          {/* Rotating Border */}
-          <motion.div 
+          <div className="absolute -inset-14 rounded-full blur-[70px] bg-[rgba(57,255,20,0.22)] animate-pulse" />
+
+          <motion.div
             animate={{ rotate: 360 }}
-            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-            className="absolute -inset-4 border border-teal-500/40 rounded-[3rem]"
+            transition={{ duration: 22, repeat: Infinity, ease: 'linear' }}
+            className="absolute -inset-5 rounded-[3.2rem] border border-[rgba(57,255,20,0.45)]"
+          />
+          <motion.div
+            animate={{ rotate: -360 }}
+            transition={{ duration: 34, repeat: Infinity, ease: 'linear' }}
+            className="absolute -inset-9 rounded-[3.6rem] border border-dashed border-[rgba(57,255,20,0.18)]"
           />
 
-          {/* Logo Container */}
-          <div className="relative w-56 h-56 rounded-[2.5rem] overflow-hidden border border-teal-500/40 bg-white shadow-[0_20px_50px_rgba(13,148,136,0.18)]">
-            <img 
-              src={logoUrl} 
-              className="w-full h-full object-cover" 
-              alt="logo" 
+          <div className="relative w-52 h-52 rounded-[2.5rem] overflow-hidden border border-[rgba(57,255,20,0.4)] bg-[#050705] shadow-[0_0_60px_rgba(57,255,20,0.28)] flex items-center justify-center">
+            <img
+              src={dragonLogo}
+              className="w-40 h-40 object-contain drop-shadow-[0_0_22px_rgba(57,255,20,0.65)]"
+              alt="DRAGON VIP"
+              width={1024}
+              height={1024}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/25 via-transparent to-transparent" />
-            
-            {/* Shimmer Effect */}
-            <motion.div 
-              animate={{ x: ['-100%', '200%'] }}
-              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute inset-0 bg-gradient-to-r from-transparent via-teal-200/40 to-transparent skew-x-12"
+            <motion.div
+              animate={{ x: ['-120%', '220%'] }}
+              transition={{ duration: 3.2, repeat: Infinity, ease: 'easeInOut' }}
+              className="absolute inset-0 bg-gradient-to-r from-transparent via-[rgba(57,255,20,0.22)] to-transparent skew-x-12"
             />
           </div>
 
-          {/* Floating Status Icons */}
-          <MotionDiv 
+          <MotionDiv
             animate={{ y: [0, -10, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute -top-6 -right-6 w-12 h-12 rounded-2xl bg-white/95 backdrop-blur-xl border border-teal-500/40 flex items-center justify-center shadow-[0_10px_24px_rgba(13,148,136,0.18)]"
+            transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+            className="absolute -top-6 -right-6 w-12 h-12 rounded-2xl bg-black/80 backdrop-blur-xl border border-[rgba(57,255,20,0.4)] flex items-center justify-center shadow-[0_0_20px_rgba(57,255,20,0.3)]"
           >
-            <ShieldCheck className="w-6 h-6 text-teal-600" />
+            <ShieldCheck className="w-6 h-6 text-[#39FF14]" />
           </MotionDiv>
-          
-          <MotionDiv 
+
+          <MotionDiv
             animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-            className="absolute -bottom-6 -left-6 w-12 h-12 rounded-2xl bg-white/95 backdrop-blur-xl border border-teal-500/40 flex items-center justify-center shadow-[0_10px_24px_rgba(13,148,136,0.18)]"
+            transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
+            className="absolute -bottom-6 -left-6 w-12 h-12 rounded-2xl bg-black/80 backdrop-blur-xl border border-[rgba(57,255,20,0.4)] flex items-center justify-center shadow-[0_0_20px_rgba(57,255,20,0.3)]"
           >
-            <Zap className="w-6 h-6 text-teal-600" />
+            <Zap className="w-6 h-6 text-[#39FF14]" />
           </MotionDiv>
         </MotionDiv>
 
-        {/* Brand Name */}
+        {/* Brand */}
         <div className="text-center space-y-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
-            className="space-y-1"
+            className="space-y-2"
           >
-            <h1 className="text-4xl font-black text-zinc-900 tracking-[0.2em] uppercase">
-              SMART <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-emerald-500 drop-shadow-[0_2px_8px_rgba(13,148,136,0.25)]">SCRIPT</span>
+            <h1 className="text-4xl sm:text-5xl font-black tracking-[0.18em] uppercase text-white">
+              DRAGON{' '}
+              <span className="text-[#39FF14] drop-shadow-[0_0_18px_rgba(57,255,20,0.75)]">VIP</span>
             </h1>
             <div className="flex items-center justify-center gap-3">
-              <div className="h-[1px] w-8 bg-gradient-to-r from-transparent to-teal-500/50" />
-              <Sparkles className="w-3.5 h-3.5 text-teal-600 animate-pulse" />
-              <div className="h-[1px] w-8 bg-gradient-to-l from-transparent to-teal-500/50" />
+              <div className="h-[1px] w-10 bg-gradient-to-r from-transparent to-[rgba(57,255,20,0.6)]" />
+              <Flame className="w-4 h-4 text-[#39FF14] animate-pulse" />
+              <div className="h-[1px] w-10 bg-gradient-to-l from-transparent to-[rgba(57,255,20,0.6)]" />
             </div>
           </motion.div>
 
-          {/* Status Text */}
           <div className="h-6">
             <AnimatePresence mode="wait">
-              <motion.p 
+              <motion.p
                 key={currentStep}
                 initial={{ opacity: 0, y: 5 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -5 }}
-                className="text-[10px] font-bold text-teal-600/90 uppercase tracking-[0.3em]"
+                className="text-[10px] font-bold text-[#39FF14]/90 uppercase tracking-[0.32em]"
               >
                 {loadingSteps[currentStep]}
               </motion.p>
@@ -161,44 +165,39 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete, language = 'en'
         </div>
       </div>
 
-      {/* Progress Section */}
-      <div className="absolute bottom-20 w-full max-w-[280px] space-y-4 z-10">
-        <div className="flex justify-center items-center px-1">
-          <span className="text-[10px] font-black text-zinc-600 uppercase tracking-widest">
-            {isArabic ? "تحميل النظام" : "System Load"}
+      {/* Progress */}
+      <div className="absolute bottom-20 w-full max-w-[290px] space-y-4 z-10">
+        <div className="flex justify-between items-center px-1">
+          <span className="text-[10px] font-black text-white/60 uppercase tracking-[0.25em]">
+            {isArabic ? 'تحميل النظام' : 'System Load'}
+          </span>
+          <span className="text-[10px] font-black font-mono text-[#39FF14]">
+            {Math.round(progress)}%
           </span>
         </div>
-        
-        <div className="relative h-1.5 w-full bg-zinc-100 rounded-full overflow-hidden border border-zinc-300">
-          <motion.div 
-            className="h-full bg-gradient-to-r from-teal-600 via-teal-500 to-emerald-400 shadow-[0_0_12px_rgba(13,148,136,0.45)]"
+
+        <div className="relative h-1.5 w-full rounded-full overflow-hidden bg-white/10 border border-[rgba(57,255,20,0.25)]">
+          <motion.div
+            className="h-full bg-gradient-to-r from-[#1f7a10] via-[#39FF14] to-[#b9ff6a] shadow-[0_0_16px_rgba(57,255,20,0.8)]"
             initial={{ width: 0 }}
             animate={{ width: `${progress}%` }}
             transition={{ duration: 0.1 }}
           />
         </div>
 
-        {/* Bottom Decorative Elements */}
         <div className="flex justify-center gap-2">
           {[...Array(5)].map((_, i) => (
             <motion.div
               key={i}
-              animate={{ 
+              animate={{
                 opacity: progress > (i + 1) * 20 ? 1 : 0.2,
-                scale: progress > (i + 1) * 20 ? 1.2 : 1
+                scale: progress > (i + 1) * 20 ? 1.25 : 1,
               }}
-              className="w-1.5 h-1.5 rounded-full bg-teal-600 shadow-[0_0_6px_rgba(13,148,136,0.45)]"
+              className="w-1.5 h-1.5 rounded-full bg-[#39FF14] shadow-[0_0_8px_rgba(57,255,20,0.9)]"
             />
           ))}
         </div>
       </div>
-
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@900&display=swap');
-        .font-ar {
-          font-family: 'Inter', sans-serif;
-        }
-      `}</style>
     </div>
   );
 };

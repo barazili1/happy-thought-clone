@@ -19,6 +19,7 @@ import {
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Language, Platform } from '../types';
+import { getPlatform } from '../utils/platforms';
 import { audioManager } from '../utils/audioManager';
 import condInstall from '../assets/neon-install.png';
 import condTelegram from '../assets/neon-telegram.png';
@@ -102,17 +103,11 @@ const SettingsView: React.FC<SettingsViewProps> = ({ onComplete, onBack, lang, t
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [verificationStage, setVerificationStage] = useState<'step1' | 'step2' | 'ready'>('step1');
 
-  const platformName = platform === 'linebet_v1' ? 'Greenbet' : 'Winwin';
-  const promoCode = 'A77N';
-  const platformImg =
-    platform === 'linebet_v1'
-      ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoEj5eP5tNE8iMZoLHE9i4q-JYLMiLmHaIMKatrmBePA&s=10'
-      : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDBd0TpCQWUvWfxuU9DfJRgEs604mfmOEr0EHZOY0b9w&s=10';
-
-  const greenbetDownloadUrl =
-    'https://refpa79184.com/L?tag=d_5848868m_188307c_&site=5848868&ad=188307';
-  const xbetDownloadUrl = 'https://refpa49781.com/L?tag=d_5953406m_68383c_&site=5953406&ad=68383';
-  const downloadUrl = platform === 'linebet_v1' ? greenbetDownloadUrl : xbetDownloadUrl;
+  const cfg = getPlatform(platform);
+  const platformName = cfg.name;
+  const promoCode = cfg.promo;
+  const platformImg = cfg.img;
+  const downloadUrl = cfg.downloadUrl;
   const telegramUrl = 'https://t.me/theeagelss1';
 
   const handleCopy = () => {

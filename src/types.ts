@@ -3,7 +3,7 @@ export type ViewState = 'splash' | 'platform_selection' | 'settings' | 'game_sel
 
 export type SelectedGame = 'apple' | 'crash';
 
-export type Platform = 'linebet_v1' | 'linebet_v2';
+export type Platform = 'linebet_v1' | 'linebet_v2' | 'onexbet';
 
 export type Language = 'en' | 'ar';
 

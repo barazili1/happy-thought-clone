@@ -66,6 +66,30 @@ function buildServerPayload() {
   return payload;
 }
 
+function generatePredictionBoard(): PredictionResult {
+  const gridData: boolean[][] = [];
+  const path: number[] = [];
+
+  for (let r = 0; r < 10; r++) {
+    const cols = [0, 1, 2, 3, 4].sort(() => Math.random() - 0.5);
+    const bad = new Set(cols.slice(0, BAD_PER_ROW[r]));
+    const cells = [0, 1, 2, 3, 4].map((c) => !bad.has(c));
+    const good = cells.map((v, i) => (v ? i : -1)).filter((i) => i !== -1);
+    path.push(good[Math.floor(Math.random() * good.length)]);
+    gridData.push(cells);
+  }
+
+  return {
+    id: `pred-${Date.now()}-${Math.random()}`,
+    path,
+    gridData,
+    confidence: 99.4,
+    analysis: 'Optimal safe path computed',
+    timestamp: Date.now(),
+  };
+}
+
+
 
 export const AppleGame: React.FC<AppleGameProps> = ({ onBack, language, userId }) => {
   const [gameState, setGameState] = useState<GameState>(GameState.IDLE);

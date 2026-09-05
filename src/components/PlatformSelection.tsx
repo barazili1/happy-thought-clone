@@ -78,7 +78,7 @@ const PlatformSelection: React.FC<PlatformSelectionProps> = ({ onSelect, t }) =>
     <div dir="rtl" className="relative flex flex-col min-h-full font-sans overflow-x-hidden max-w-full">
       {/* Soft brand backdrop */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-        <div className="absolute -top-24 right-0 w-72 h-72 rounded-full bg-teal-400/20 blur-3xl" />
+        <div className="absolute -top-24 right-0 w-72 h-72 rounded-full bg-[rgba(57,255,20,0.15)] blur-3xl" />
         <div className="absolute top-40 left-0 w-64 h-64 rounded-full bg-[#39FF14]/10 blur-3xl" />
       </div>
 
@@ -86,7 +86,7 @@ const PlatformSelection: React.FC<PlatformSelectionProps> = ({ onSelect, t }) =>
       {/* Hero */}
       <header className="relative z-10 px-6 pt-8 pb-6">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-black border border-teal-200 shadow-[0_6px_18px_rgba(13,148,136,0.12)]">
+          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-black border border-[rgba(57,255,20,0.30)] shadow-[0_6px_18px_rgba(13,148,136,0.12)]">
             <Users className="w-3.5 h-3.5 text-[#39FF14]" />
             <span className="text-[10px] font-black text-white/50">المتصلين</span>
             <span className="text-xs font-mono font-black tabular-nums text-[#39FF14]">
@@ -124,7 +124,7 @@ const PlatformSelection: React.FC<PlatformSelectionProps> = ({ onSelect, t }) =>
                 whileTap={{ scale: 0.98 }}
                 className={`relative w-full text-right rounded-3xl p-4 border-2 transition-all duration-300 ${
                   active
-                    ? 'bg-black border-teal-600 shadow-[0_16px_36px_rgba(13,148,136,0.22)]'
+                    ? 'bg-black border-[#39FF14] shadow-[0_16px_36px_rgba(13,148,136,0.22)]'
                     : 'bg-black/70 border-zinc-200 shadow-[0_6px_18px_rgba(15,23,42,0.06)]'
                 }`}
               >
@@ -142,14 +142,14 @@ const PlatformSelection: React.FC<PlatformSelectionProps> = ({ onSelect, t }) =>
                       <h3 className={`text-xl font-black ${active ? 'text-white' : 'text-white/70'}`}>
                         {p.name}
                       </h3>
-                      <span className="text-[9px] font-mono font-bold px-1.5 py-0.5 rounded-md bg-[rgba(57,255,20,0.10)] text-[#39FF14] border border-teal-200">
+                      <span className="text-[9px] font-mono font-bold px-1.5 py-0.5 rounded-md bg-[rgba(57,255,20,0.10)] text-[#39FF14] border border-[rgba(57,255,20,0.30)]">
                         {p.latency}
                       </span>
                     </div>
                     <p className="mt-1 text-[11px] font-bold text-white/50 truncate">{p.tagline}</p>
 
                     <div className="mt-2.5 flex items-center gap-2">
-                      <span className="inline-flex items-center gap-1 text-[10px] font-black text-[#39FF14] bg-[rgba(57,255,20,0.10)] border border-teal-200 rounded-lg px-2 py-1">
+                      <span className="inline-flex items-center gap-1 text-[10px] font-black text-[#39FF14] bg-[rgba(57,255,20,0.10)] border border-[rgba(57,255,20,0.30)] rounded-lg px-2 py-1">
                         <Activity className="w-3 h-3" /> دقة {p.accuracy}
                       </span>
                       <span className="inline-flex items-center gap-1 text-[10px] font-black text-white/70 bg-white/10 border border-zinc-200 rounded-lg px-2 py-1">
@@ -160,7 +160,7 @@ const PlatformSelection: React.FC<PlatformSelectionProps> = ({ onSelect, t }) =>
 
                   <div
                     className={`w-6 h-6 shrink-0 rounded-full border-2 flex items-center justify-center ${
-                      active ? 'bg-[#39FF14] border-teal-600' : 'bg-black border-white/10'
+                      active ? 'bg-[#39FF14] border-[#39FF14]' : 'bg-black border-white/10'
                     }`}
                   >
                     {active && <Check className="w-3.5 h-3.5 text-white stroke-[4]" />}

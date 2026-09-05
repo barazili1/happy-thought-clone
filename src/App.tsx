@@ -171,7 +171,7 @@ const App: React.FC = () => {
       {view === 'splash' && <SplashScreen onComplete={handleSplashComplete} language={lang} />}
       
       <div 
-        className={`fixed inset-0 bg-transparent text-zinc-900 flex flex-col transition-opacity duration-1000 ${view === 'splash' ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
+        className={`fixed inset-0 bg-transparent text-white flex flex-col transition-opacity duration-1000 ${view === 'splash' ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
       >
         <main className="flex-1 overflow-y-auto custom-scrollbar relative z-10">
             <div 

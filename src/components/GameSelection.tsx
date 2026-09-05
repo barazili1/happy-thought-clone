@@ -93,7 +93,7 @@ export const GameSelection: React.FC<GameSelectionProps> = ({
 
             <div className="relative z-10 flex items-center justify-between">
               <div className="flex items-center gap-4">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-teal-50 to-emerald-100 border border-[rgba(57,255,20,0.35)] flex items-center justify-center shadow-[0_0_20px_rgba(34,197,94,0.2)] group-hover:scale-110 transition-transform overflow-hidden">
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[rgba(57,255,20,0.12)] to-black border border-[rgba(57,255,20,0.35)] flex items-center justify-center shadow-[0_0_20px_rgba(34,197,94,0.2)] group-hover:scale-110 transition-transform overflow-hidden">
                   <img src={appleLogo} alt="Apple of Fortune" loading="lazy" width={512} height={512} className="w-10 h-10 object-contain drop-shadow-[0_0_8px_var(--primary-glow)]" />
                 </div>
                 <div>
@@ -125,7 +125,7 @@ export const GameSelection: React.FC<GameSelectionProps> = ({
 
             <div className="relative z-10 flex items-center justify-between">
               <div className="flex items-center gap-4">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-teal-50 to-emerald-100 border border-[rgba(57,255,20,0.35)] flex items-center justify-center shadow-[0_0_20px_rgba(34,197,94,0.2)] group-hover:scale-110 transition-transform overflow-hidden">
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[rgba(57,255,20,0.12)] to-black border border-[rgba(57,255,20,0.35)] flex items-center justify-center shadow-[0_0_20px_rgba(34,197,94,0.2)] group-hover:scale-110 transition-transform overflow-hidden">
                   <img src={crashLogo} alt="Crash" loading="lazy" width={512} height={512} className="w-10 h-10 object-contain drop-shadow-[0_0_8px_var(--primary-glow)]" />
                 </div>
                 <div>
@@ -155,7 +155,7 @@ export const GameSelection: React.FC<GameSelectionProps> = ({
             <div className="absolute top-0 right-0 -mr-10 -mt-10 w-32 h-32 bg-[rgba(57,255,20,0.10)] blur-2xl rounded-full group-hover:bg-[rgba(57,255,20,0.10)] transition-all" />
             <div className="relative z-10 flex items-center justify-between">
               <div className="flex items-center gap-4">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-teal-50 to-emerald-100 border border-[rgba(57,255,20,0.35)] flex items-center justify-center shadow-[0_0_20px_var(--primary-glow)] group-hover:scale-110 transition-transform overflow-hidden">
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[rgba(57,255,20,0.12)] to-black border border-[rgba(57,255,20,0.35)] flex items-center justify-center shadow-[0_0_20px_var(--primary-glow)] group-hover:scale-110 transition-transform overflow-hidden">
                   <img src={diamondLogo} alt="Gams Mines" loading="lazy" width={512} height={512} className="w-9 h-9 object-contain drop-shadow-[0_0_8px_var(--primary-glow)]" />
                 </div>
                 <div>

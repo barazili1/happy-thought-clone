@@ -5,17 +5,17 @@ import App from "../App";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Smart Script | Advanced Analytics" },
+      { title: "DRAGON VIP | Advanced Analytics" },
       {
         name: "description",
         content:
-          "Advanced analytics terminal for Apple and Crash game predictions with real-time signal grids.",
+          "DRAGON VIP analytics terminal for Apple and Crash game predictions with real-time signal grids.",
       },
-      { property: "og:title", content: "Smart Script | Advanced Analytics" },
+      { property: "og:title", content: "DRAGON VIP | Advanced Analytics" },
       {
         property: "og:description",
         content:
-          "Advanced analytics terminal for Apple and Crash game predictions with real-time signal grids.",
+          "DRAGON VIP analytics terminal for Apple and Crash game predictions with real-time signal grids.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

@@ -360,7 +360,7 @@ export const AppleGame: React.FC<AppleGameProps> = ({ onBack, accessKeyData, lan
         {/* Promo Dialog */}
         <AnimatePresence>
             {showPromoDialog && (
-                <div className="fixed inset-0 z-[300] flex items-center justify-center bg-zinc-900/35 backdrop-blur-md p-4 sm:p-6">
+                <div className="fixed inset-0 z-[300] flex items-center justify-center bg-black/80 backdrop-blur-md p-4 sm:p-6">
                     <MotionDiv 
                         initial={{ scale: 0.9, opacity: 0, y: 30 }}
                         animate={{ scale: 1, opacity: 1, y: 0 }}
@@ -368,7 +368,7 @@ export const AppleGame: React.FC<AppleGameProps> = ({ onBack, accessKeyData, lan
                         transition={{ duration: 0.25, ease: "easeOut" }}
                         className="w-full max-w-[360px] bg-black border border-white/10 rounded-3xl p-6 sm:p-7 flex flex-col items-center text-center shadow-[0_25px_60px_rgba(0,0,0,0.9)] relative overflow-hidden group"
                     >
-                        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-40 h-1 bg-gradient-to-r from-transparent via-teal-500 to-transparent shadow-[0_0_15px_rgba(34,197,94,0.8)]" style={{ backgroundImage: 'linear-gradient(to right, transparent, var(--primary-color), transparent)' } as any} />
+                        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-40 h-1 bg-gradient-to-r from-transparent via-[#39FF14] to-transparent shadow-[0_0_15px_rgba(34,197,94,0.8)]" style={{ backgroundImage: 'linear-gradient(to right, transparent, var(--primary-color), transparent)' } as any} />
                         <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-48 h-48 bg-[rgba(57,255,20,0.10)] blur-[70px] rounded-full pointer-events-none" style={{ backgroundColor: 'rgba(var(--primary-color-rgb), 0.12)' } as any} />
                         
                         <button
@@ -396,7 +396,7 @@ export const AppleGame: React.FC<AppleGameProps> = ({ onBack, accessKeyData, lan
                                     rotate: [0, 3, -3, 0]
                                 }}
                                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                                className="w-16 h-16 rounded-2xl bg-gradient-to-br from-teal-50 to-white border border-[rgba(57,255,20,0.35)] flex items-center justify-center shadow-[0_0_25px_rgba(var(--primary-color-rgb),0.25)] relative z-10" 
+                                className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[rgba(57,255,20,0.12)] to-black border border-[rgba(57,255,20,0.35)] flex items-center justify-center shadow-[0_0_25px_rgba(var(--primary-color-rgb),0.25)] relative z-10" 
                                 style={{ borderColor: 'rgba(var(--primary-color-rgb), 0.4)' } as any}
                             >
                                 <Gift className="w-8 h-8 text-[#39FF14]" style={{ color: 'var(--primary-color)' } as any} />

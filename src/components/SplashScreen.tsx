@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Language } from '../utils/translations';
 import { ShieldCheck, Zap, Flame } from 'lucide-react';
 import dragonLogo from '../assets/dragon-logo.png';
+import { preloadAllImages } from '../utils/preloadImages';
 
 const MotionDiv = motion.div as any;
 

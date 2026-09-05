@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Platform } from '../types';
 import { Check, ChevronLeft, Snowflake, Users, Lock, Signal } from 'lucide-react';
 import { audioManager } from '../utils/audioManager';
-import dragonLogo from '../assets/dragon-logo.png';
+import eagleLogo from '../assets/eagle-logo.png';
 import { PLATFORMS } from '../utils/platforms';
 
 const MotionDiv = motion.div as any;
@@ -63,8 +63,8 @@ const PlatformSelection: React.FC<PlatformSelectionProps> = ({ onSelect }) => {
           <div className="relative">
             <div className="absolute inset-0 rounded-full bg-[rgba(125,249,255,0.20)] blur-2xl" />
             <img
-              src={dragonLogo}
-              alt="DRAGON VIP"
+              src={eagleLogo}
+              alt="EAGLE VIP"
               className="relative h-24 w-24 object-contain drop-shadow-[0_0_24px_rgba(125,249,255,0.5)]"
             />
           </div>

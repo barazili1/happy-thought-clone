@@ -1,7 +1,7 @@
 import { PLATFORMS } from './platforms';
 
 // Local bundled assets
-import dragonLogo from '../assets/dragon-logo.png';
+import eagleLogo from '../assets/eagle-logo.png';
 import logoApple from '../assets/logo-apple.png';
 import logoCrash from '../assets/logo-crash.png';
 import condInstall from '../assets/cond-install.png';
@@ -15,14 +15,14 @@ import neonDeposit from '../assets/neon-deposit.png';
 import neonTelegram from '../assets/neon-telegram.png';
 import neonVerify from '../assets/neon-verify.png';
 
-export const REMOTE_IMAGES = [
-  'https://logo12.gamer.gd/cvb.png',
-  'https://logo12.gamer.gd/apple.png',
-  'https://logo12.gamer.gd/poi.png',
-];
+import cellTile from '../assets/cell-tile.png';
+import appleGood from '../assets/apple-good.png';
+import appleBad from '../assets/apple-bad.png';
+
+export const REMOTE_IMAGES: string[] = [cellTile, appleGood, appleBad];
 
 export const ALL_IMAGES: string[] = [
-  dragonLogo,
+  eagleLogo,
   logoApple,
   logoCrash,
   condInstall,

@@ -26,7 +26,7 @@ import condTelegram from '../assets/neon-telegram.png';
 import condPromo from '../assets/neon-promo.png';
 import condDeposit from '../assets/neon-deposit.png';
 import condVerify from '../assets/neon-verify.png';
-import dragonLogo from '../assets/dragon-logo.png';
+import eagleLogo from '../assets/eagle-logo.png';
 
 const MotionDiv = motion.div as any;
 const NEON = '#7DF9FF';
@@ -180,15 +180,15 @@ const SettingsView: React.FC<SettingsViewProps> = ({ onComplete, onBack, lang, t
 
           <div className="relative flex flex-col items-center text-center">
             <img
-              src={dragonLogo}
-              alt="DRAGON VIP"
+              src={eagleLogo}
+              alt="EAGLE VIP"
               width={1024}
               height={1024}
               loading="lazy"
               className="h-24 w-24 object-contain drop-shadow-[0_0_22px_rgba(125,249,255,0.55)]"
             />
             <h1 className="mt-2 text-2xl font-black leading-tight tracking-[0.14em] text-white">
-              DRAGON <span className="text-[#7DF9FF]">VIP</span>
+              EAGLE <span className="text-[#7DF9FF]">VIP</span>
             </h1>
             <p className="mt-2 max-w-[300px] text-[11px] leading-relaxed text-white/50 sm:text-xs">
               نفّذ الشروط الخمسة بالترتيب من الأعلى للأسفل، ثم أدخل ID حسابك في نهاية الصفحة لتفعيل
@@ -453,7 +453,7 @@ const SettingsView: React.FC<SettingsViewProps> = ({ onComplete, onBack, lang, t
         <div className="mt-4 flex flex-col items-center gap-1.5 opacity-40">
           <div className="h-px w-10 bg-[rgba(125,249,255,0.4)]" />
           <span className="text-[7.5px] font-black uppercase tracking-[0.3em] text-center text-white/60">
-            تشفير حماية عالي الأمان | DRAGON VIP
+            تشفير حماية عالي الأمان | EAGLE VIP
           </span>
         </div>
       </div>

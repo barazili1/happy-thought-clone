@@ -10,6 +10,7 @@ import ParticleBackground from './components/ParticleBackground';
 import { ViewState, Platform, AccessKey, SelectedGame } from './types';
 import { translations, Language } from './utils/translations';
 import { audioManager } from './utils/audioManager';
+import { getPlatform } from './utils/platforms';
 
 const App: React.FC = () => {
   const [view, setView] = useState<ViewState>('splash');
@@ -22,7 +23,7 @@ const App: React.FC = () => {
   const rawT = translations[lang];
   
   const processTranslations = (obj: any): any => {
-    const platformName = selectedPlatform === 'linebet_v1' ? 'Greenbet' : 'Winwin';
+    const platformName = getPlatform(selectedPlatform).name;
     const newT: any = {};
     for (const key in obj) {
       if (typeof obj[key] === 'string') {

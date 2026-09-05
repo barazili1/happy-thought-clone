@@ -2,6 +2,7 @@ import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronLeft, Snowflake } from 'lucide-react';
 import { SelectedGame, Platform } from '../types';
+import { getPlatform } from '../utils/platforms';
 import appleLogo from '../assets/logo-apple.png';
 import crashLogo from '../assets/logo-crash.png';
 
@@ -21,7 +22,7 @@ export const GameSelection: React.FC<GameSelectionProps> = ({
   userId,
   platform,
 }) => {
-  const platformName = platform === 'linebet_v1' ? 'Greenbet' : 'Winwin';
+  const platformName = getPlatform(platform).name;
 
   const games: { id: SelectedGame; title: string; sub: string; img: string; accuracy: string }[] = [
     {

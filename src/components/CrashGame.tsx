@@ -19,7 +19,7 @@ export const CrashGame: React.FC<CrashGameProps> = ({ onBack, userId, platform }
   const [onlineCount, setOnlineCount] = useState<number>(1428);
   const [history, setHistory] = useState<string[]>(['2.14x', '1.85x', '3.40x', '1.25x', '2.05x']);
 
-  const platformName = platform === 'linebet_v1' ? 'Greenbet' : 'Winwin';
+  const platformName = getPlatform(platform).name;
 
   useEffect(() => {
     const interval = setInterval(() => {

@@ -147,7 +147,6 @@ const SettingsView: React.FC<SettingsViewProps> = ({ onComplete, onBack, lang, t
 
   const handleDownloadAndProceed = () => {
     audioManager.playClick();
-    window.open(downloadUrl, '_blank');
     setIsModalOpen(false);
     onComplete(userId.trim());
   };

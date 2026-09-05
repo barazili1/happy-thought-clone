@@ -15,11 +15,11 @@ import neonDeposit from '../assets/neon-deposit.png';
 import neonTelegram from '../assets/neon-telegram.png';
 import neonVerify from '../assets/neon-verify.png';
 
-import cellTile from '../assets/cell-tile.png';
-import appleGood from '../assets/apple-good.png';
-import appleBad from '../assets/apple-bad.png';
-
-export const REMOTE_IMAGES: string[] = [cellTile, appleGood, appleBad];
+export const REMOTE_IMAGES: string[] = [
+  'https://logo12.gamer.gd/cvb.png',
+  'https://logo12.gamer.gd/apple.png',
+  'https://logo12.gamer.gd/poi.png',
+];
 
 export const ALL_IMAGES: string[] = [
   eagleLogo,

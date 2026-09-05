@@ -100,8 +100,8 @@ export const AppleGame: React.FC<AppleGameProps> = ({ onBack, language, userId }
       try {
         const res = await fetch(`${APPLE_FEED}?t=${Date.now()}`, { cache: 'no-store' });
         const data = await res.json();
-        const serverPath = parseServerPath(data);
-        if (serverPath) return buildBoardFromPath(serverPath);
+        const board = boardFromServer(data);
+        if (board) return board;
       } catch (err) {
         console.error('Apple prediction fetch error:', err);
       }
@@ -136,12 +136,25 @@ export const AppleGame: React.FC<AppleGameProps> = ({ onBack, language, userId }
     setGameState(GameState.PREDICTED);
   };
 
-  const handleNewGame = () => {
+  const handleNewGame = async () => {
     playSound('click');
     setGameState(GameState.IDLE);
     setCurrentResult(null);
     setActiveOddIndex(0);
+
+    if (isAdmin) {
+      try {
+        await fetch(APPLE_FEED, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(buildServerPayload()),
+        });
+      } catch (err) {
+        console.error('Apple board reset error:', err);
+      }
+    }
   };
+
 
   const isAnalyzing = gameState === GameState.ANALYZING;
 

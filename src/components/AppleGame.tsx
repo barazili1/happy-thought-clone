@@ -149,7 +149,7 @@ export const AppleGame: React.FC<AppleGameProps> = ({ onBack, accessKeyData, lan
   const isAnalyzing = gameState === GameState.ANALYZING;
 
   return (
-    <div className={`flex flex-col min-h-full relative select-none bg-transparent overflow-hidden font-sans text-zinc-900 ${isRtl ? 'font-ar' : 'font-en'}`}>
+    <div className={`flex flex-col min-h-full relative select-none bg-transparent overflow-hidden font-sans text-white ${isRtl ? 'font-ar' : 'font-en'}`}>
         <div className="flex-1 flex flex-col relative z-10 w-full max-w-2xl mx-auto h-full px-4 sm:px-6 py-6 sm:py-8">
             
             {/* Header */}
@@ -162,7 +162,7 @@ export const AppleGame: React.FC<AppleGameProps> = ({ onBack, accessKeyData, lan
                     whileHover={{ scale: 1.1, backgroundColor: 'rgba(13,148,136,0.08)' }}
                     whileTap={{ scale: 0.9 }}
                     onClick={onBack}
-                    className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-transparent border border-zinc-300 flex items-center justify-center backdrop-blur-md transition-all shadow-lg"
+                    className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-transparent border border-white/10 flex items-center justify-center backdrop-blur-md transition-all shadow-lg"
                 >
                     <ArrowLeft className="w-5 h-5 sm:w-6 sm:h-6" />
                 </motion.button>
@@ -171,11 +171,11 @@ export const AppleGame: React.FC<AppleGameProps> = ({ onBack, accessKeyData, lan
                     <motion.div 
                         animate={{ boxShadow: ['0 0 10px rgba(var(--primary-color-rgb), 0.1)', '0 0 20px rgba(var(--primary-color-rgb), 0.3)', '0 0 10px rgba(var(--primary-color-rgb), 0.1)'] }}
                         transition={{ duration: 3, repeat: Infinity }}
-                        className="flex items-center gap-2 px-3.5 py-1 bg-teal-50 border border-teal-500/40 rounded-full" 
+                        className="flex items-center gap-2 px-3.5 py-1 bg-[rgba(57,255,20,0.10)] border border-[rgba(57,255,20,0.35)] rounded-full" 
                         style={{ backgroundColor: 'rgba(var(--primary-color-rgb), 0.1)', borderColor: 'rgba(var(--primary-color-rgb), 0.3)' } as any}
                     >
-                        <div className="w-2 h-2 rounded-full bg-teal-500 animate-pulse shadow-[0_0_10px_var(--primary-color)]" style={{ backgroundColor: 'var(--primary-color)' } as any} />
-                        <span className="text-[10px] font-black uppercase tracking-[0.2em] text-teal-600" style={{ color: 'var(--primary-color)' } as any}>
+                        <div className="w-2 h-2 rounded-full bg-[rgba(57,255,20,0.10)]0 animate-pulse shadow-[0_0_10px_var(--primary-color)]" style={{ backgroundColor: 'var(--primary-color)' } as any} />
+                        <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#39FF14]" style={{ color: 'var(--primary-color)' } as any}>
                             {language === 'ar' ? 'النظام نشط' : 'System Active'}
                         </span>
                     </motion.div>
@@ -183,9 +183,9 @@ export const AppleGame: React.FC<AppleGameProps> = ({ onBack, accessKeyData, lan
 
                 <motion.div 
                     whileHover={{ rotate: 15 }}
-                    className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-transparent border border-zinc-300 flex items-center justify-center backdrop-blur-md shadow-lg"
+                    className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-transparent border border-white/10 flex items-center justify-center backdrop-blur-md shadow-lg"
                 >
-                    <Users className="w-5 h-5 text-zinc-600" />
+                    <Users className="w-5 h-5 text-white/50" />
                 </motion.div>
             </motion.div>
 
@@ -196,14 +196,14 @@ export const AppleGame: React.FC<AppleGameProps> = ({ onBack, accessKeyData, lan
                     <motion.div
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}
-                        className="inline-block px-3 py-1 rounded-lg bg-transparent border border-zinc-300 text-[9px] font-black text-teal-700 uppercase tracking-[0.3em] mb-1"
+                        className="inline-block px-3 py-1 rounded-lg bg-transparent border border-white/10 text-[9px] font-black text-[#39FF14] uppercase tracking-[0.3em] mb-1"
                     >
                         {language === 'ar' ? 'محرك التنبؤ العصبي' : 'Neural Prediction Engine'}
                     </motion.div>
                     <motion.h1 
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="text-3xl sm:text-4xl font-black tracking-tighter text-zinc-900 drop-shadow-[0_2px_10px_rgba(15,23,42,0.12)]"
+                        className="text-3xl sm:text-4xl font-black tracking-tighter text-white drop-shadow-[0_2px_10px_rgba(15,23,42,0.12)]"
                     >
                         {language === 'ar' ? 'توقع التفاحة' : 'Apple Predictor'}
                     </motion.h1>
@@ -211,14 +211,14 @@ export const AppleGame: React.FC<AppleGameProps> = ({ onBack, accessKeyData, lan
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.3 }}
-                        className="text-xs sm:text-sm text-zinc-600 font-medium tracking-wide"
+                        className="text-xs sm:text-sm text-white/50 font-medium tracking-wide"
                     >
                         {language === 'ar' ? 'اكتشف مكان التفاحة الرابحة بدقة 99%' : 'Discover the winning apple location with 99% accuracy'}
                     </motion.p>
                 </div>
 
                 {/* Odds Section: High-End Moving Horizontal Auto-Scroll Bar */}
-                <div className="w-full bg-transparent border border-zinc-300 rounded-2xl p-2 relative overflow-hidden backdrop-blur-md">
+                <div className="w-full bg-transparent border border-white/10 rounded-2xl p-2 relative overflow-hidden backdrop-blur-md">
                     <div 
                         ref={oddsBarRef}
                         className="flex items-center gap-2 overflow-x-auto no-scrollbar py-1 px-1 scroll-smooth pointer-events-none"
@@ -230,8 +230,8 @@ export const AppleGame: React.FC<AppleGameProps> = ({ onBack, accessKeyData, lan
                                     key={item.value}
                                     className={`shrink-0 px-3.5 py-1.5 rounded-xl text-xs font-black border transition-all duration-300 select-none ${
                                         isActive 
-                                            ? 'bg-teal-50 border-teal-500 text-teal-600 shadow-[0_8px_20px_rgba(13,148,136,0.25)] scale-105' 
-                                            : 'bg-transparent border-zinc-300 text-zinc-600 opacity-60'
+                                            ? 'bg-[rgba(57,255,20,0.10)] border-[#39FF14] text-[#39FF14] shadow-[0_8px_20px_rgba(13,148,136,0.25)] scale-105' 
+                                            : 'bg-transparent border-white/10 text-white/50 opacity-60'
                                     }`}
                                     style={isActive ? { borderColor: 'var(--primary-color)', color: 'var(--primary-color)' } as any : {}}
                                 >
@@ -244,7 +244,7 @@ export const AppleGame: React.FC<AppleGameProps> = ({ onBack, accessKeyData, lan
 
                 {/* Grid Container */}
                 <div className="relative group">
-                    <div className={`relative bg-transparent backdrop-blur-2xl border border-zinc-300 rounded-[2rem] p-4 sm:p-6 min-h-[300px] flex flex-col justify-center transition-all duration-700 shadow-[0_18px_40px_rgba(15,23,42,0.08)] ${isAnalyzing ? 'scale-[1.01] border-teal-500/40' : ''}`}>
+                    <div className={`relative bg-transparent backdrop-blur-2xl border border-white/10 rounded-[2rem] p-4 sm:p-6 min-h-[300px] flex flex-col justify-center transition-all duration-700 shadow-[0_18px_40px_rgba(15,23,42,0.08)] ${isAnalyzing ? 'scale-[1.01] border-[rgba(57,255,20,0.35)]' : ''}`}>
                         
                         <Grid 
                             path={currentResult?.path || []} 
@@ -262,28 +262,28 @@ export const AppleGame: React.FC<AppleGameProps> = ({ onBack, accessKeyData, lan
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
                                     exit={{ opacity: 0 }}
-                                    className="absolute inset-0 z-30 flex flex-col items-center justify-center bg-white/80 backdrop-blur-xl rounded-[2rem]"
+                                    className="absolute inset-0 z-30 flex flex-col items-center justify-center bg-black/80 backdrop-blur-xl rounded-[2rem]"
                                 >
                                     <div className="w-full max-w-[200px] space-y-6">
                                         <div className="relative flex flex-col items-center">
                                             <motion.div 
                                                 animate={{ rotate: 360 }}
                                                 transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                                                className="w-20 h-20 border-2 border-teal-500/40 border-t-green-500 rounded-full mb-4"
+                                                className="w-20 h-20 border-2 border-[rgba(57,255,20,0.35)] border-t-green-500 rounded-full mb-4"
                                                 style={{ borderTopColor: 'var(--primary-color)' } as any}
                                             />
                                             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 mt-[-8px]">
-                                                <span className="text-xl font-black tabular-nums text-zinc-900">{Math.round(predictionProgress)}%</span>
+                                                <span className="text-xl font-black tabular-nums text-white">{Math.round(predictionProgress)}%</span>
                                             </div>
                                         </div>
                                         
                                         <div className="space-y-2 text-center">
-                                            <span className="text-[10px] font-black text-teal-600 uppercase tracking-[0.3em] animate-pulse" style={{ color: 'var(--primary-color)' } as any}>
+                                            <span className="text-[10px] font-black text-[#39FF14] uppercase tracking-[0.3em] animate-pulse" style={{ color: 'var(--primary-color)' } as any}>
                                                 {language === 'ar' ? 'مزامنة السيرفر...' : 'Syncing Server...'}
                                             </span>
-                                            <div className="h-1 w-full bg-zinc-100 rounded-full overflow-hidden">
+                                            <div className="h-1 w-full bg-white/10 rounded-full overflow-hidden">
                                                 <motion.div 
-                                                    className="h-full bg-teal-500 shadow-[0_0_15px_var(--primary-color)]"
+                                                    className="h-full bg-[rgba(57,255,20,0.10)]0 shadow-[0_0_15px_var(--primary-color)]"
                                                     style={{ backgroundColor: 'var(--primary-color)' } as any}
                                                     initial={{ width: 0 }}
                                                     animate={{ width: `${predictionProgress}%` }}
@@ -311,7 +311,7 @@ export const AppleGame: React.FC<AppleGameProps> = ({ onBack, accessKeyData, lan
                                 color: 'var(--primary-color)', 
                                 boxShadow: '0 0 20px var(--primary-glow)' 
                             }}
-                            className="h-14 rounded-2xl bg-transparent border-2 font-black text-xs sm:text-sm uppercase tracking-wider transition-all disabled:opacity-50 flex items-center justify-center gap-2 hover:bg-zinc-100 backdrop-blur-md"
+                            className="h-14 rounded-2xl bg-transparent border-2 font-black text-xs sm:text-sm uppercase tracking-wider transition-all disabled:opacity-50 flex items-center justify-center gap-2 hover:bg-white/10 backdrop-blur-md"
                         >
                             <Zap className="w-5 h-5 fill-current" style={{ color: 'var(--primary-color)' }} />
                             <span>
@@ -328,7 +328,7 @@ export const AppleGame: React.FC<AppleGameProps> = ({ onBack, accessKeyData, lan
                             whileTap={{ scale: 0.98 }}
                             onClick={handleNewGame} 
                             disabled={isAnalyzing} 
-                            className="h-14 rounded-2xl bg-transparent border border-zinc-300 text-zinc-900 font-black text-xs sm:text-sm uppercase tracking-wider transition-all disabled:opacity-50 shadow-[0_8px_20px_rgba(13,148,136,0.15)] flex items-center justify-center gap-2 hover:bg-zinc-100 backdrop-blur-md"
+                            className="h-14 rounded-2xl bg-transparent border border-white/10 text-white font-black text-xs sm:text-sm uppercase tracking-wider transition-all disabled:opacity-50 shadow-[0_8px_20px_rgba(13,148,136,0.15)] flex items-center justify-center gap-2 hover:bg-white/10 backdrop-blur-md"
                         >
                             <RotateCcw className="w-5 h-5" />
                             <span>{language === 'ar' ? 'تصفير' : 'Reset'}</span>
@@ -366,25 +366,25 @@ export const AppleGame: React.FC<AppleGameProps> = ({ onBack, accessKeyData, lan
                         animate={{ scale: 1, opacity: 1, y: 0 }}
                         exit={{ scale: 0.9, opacity: 0, y: 30 }}
                         transition={{ duration: 0.25, ease: "easeOut" }}
-                        className="w-full max-w-[360px] bg-white border border-zinc-300 rounded-3xl p-6 sm:p-7 flex flex-col items-center text-center shadow-[0_25px_60px_rgba(0,0,0,0.9)] relative overflow-hidden group"
+                        className="w-full max-w-[360px] bg-black border border-white/10 rounded-3xl p-6 sm:p-7 flex flex-col items-center text-center shadow-[0_25px_60px_rgba(0,0,0,0.9)] relative overflow-hidden group"
                     >
                         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-40 h-1 bg-gradient-to-r from-transparent via-teal-500 to-transparent shadow-[0_0_15px_rgba(34,197,94,0.8)]" style={{ backgroundImage: 'linear-gradient(to right, transparent, var(--primary-color), transparent)' } as any} />
-                        <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-48 h-48 bg-teal-50 blur-[70px] rounded-full pointer-events-none" style={{ backgroundColor: 'rgba(var(--primary-color-rgb), 0.12)' } as any} />
+                        <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-48 h-48 bg-[rgba(57,255,20,0.10)] blur-[70px] rounded-full pointer-events-none" style={{ backgroundColor: 'rgba(var(--primary-color-rgb), 0.12)' } as any} />
                         
                         <button
                             onClick={() => {
                                 playSound('click');
                                 setShowPromoDialog(false);
                             }}
-                            className="absolute top-4 left-4 w-8 h-8 rounded-full bg-zinc-50 hover:bg-zinc-100 border border-zinc-300 flex items-center justify-center text-zinc-600 hover:text-zinc-900 transition-all active:scale-90 z-20"
+                            className="absolute top-4 left-4 w-8 h-8 rounded-full bg-black/60 hover:bg-white/10 border border-white/10 flex items-center justify-center text-white/50 hover:text-white transition-all active:scale-90 z-20"
                             title={language === 'ar' ? 'إغلاق' : 'Close'}
                         >
                             <X className="w-4 h-4" />
                         </button>
 
-                        <div className="flex items-center gap-1.5 px-3 py-1 bg-teal-50 border border-teal-500/40 rounded-full mb-4 mt-1" style={{ backgroundColor: 'rgba(var(--primary-color-rgb), 0.1)', borderColor: 'rgba(var(--primary-color-rgb), 0.25)' } as any}>
-                            <div className="w-1.5 h-1.5 rounded-full bg-teal-500 animate-pulse shadow-[0_0_8px_var(--primary-color)]" style={{ backgroundColor: 'var(--primary-color)' } as any} />
-                            <span className="text-[10px] font-black uppercase tracking-widest text-teal-600" style={{ color: 'var(--primary-color)' } as any}>
+                        <div className="flex items-center gap-1.5 px-3 py-1 bg-[rgba(57,255,20,0.10)] border border-[rgba(57,255,20,0.35)] rounded-full mb-4 mt-1" style={{ backgroundColor: 'rgba(var(--primary-color-rgb), 0.1)', borderColor: 'rgba(var(--primary-color-rgb), 0.25)' } as any}>
+                            <div className="w-1.5 h-1.5 rounded-full bg-[rgba(57,255,20,0.10)]0 animate-pulse shadow-[0_0_8px_var(--primary-color)]" style={{ backgroundColor: 'var(--primary-color)' } as any} />
+                            <span className="text-[10px] font-black uppercase tracking-widest text-[#39FF14]" style={{ color: 'var(--primary-color)' } as any}>
                                 {language === 'ar' ? 'تنبيه الأرباح الحصري' : 'Exclusive Profit Alert'}
                             </span>
                         </div>
@@ -396,18 +396,18 @@ export const AppleGame: React.FC<AppleGameProps> = ({ onBack, accessKeyData, lan
                                     rotate: [0, 3, -3, 0]
                                 }}
                                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                                className="w-16 h-16 rounded-2xl bg-gradient-to-br from-teal-50 to-white border border-teal-500/40 flex items-center justify-center shadow-[0_0_25px_rgba(var(--primary-color-rgb),0.25)] relative z-10" 
+                                className="w-16 h-16 rounded-2xl bg-gradient-to-br from-teal-50 to-white border border-[rgba(57,255,20,0.35)] flex items-center justify-center shadow-[0_0_25px_rgba(var(--primary-color-rgb),0.25)] relative z-10" 
                                 style={{ borderColor: 'rgba(var(--primary-color-rgb), 0.4)' } as any}
                             >
-                                <Gift className="w-8 h-8 text-teal-600" style={{ color: 'var(--primary-color)' } as any} />
+                                <Gift className="w-8 h-8 text-[#39FF14]" style={{ color: 'var(--primary-color)' } as any} />
                             </motion.div>
                         </div>
 
                         <div className="space-y-2 mb-4 w-full">
-                            <h3 className="text-lg sm:text-xl font-black text-zinc-900 tracking-tight">
+                            <h3 className="text-lg sm:text-xl font-black text-white tracking-tight">
                                 {language === 'ar' ? 'ضاعف فرص ربحك مع السيرفر!' : 'Boost Your Winning Rate!'}
                             </h3>
-                            <p className="text-[11px] sm:text-xs text-zinc-600 font-medium leading-relaxed px-1" dir={isRtl ? 'rtl' : 'ltr'}>
+                            <p className="text-[11px] sm:text-xs text-white/50 font-medium leading-relaxed px-1" dir={isRtl ? 'rtl' : 'ltr'}>
                                 {language === 'ar' 
                                     ? 'عند إنشاء حساب جديد وتأكيده بالرمز الترويجي المعتمد يتم تفعيل خوارزمية الربح ومزامنة التوقعات بدقة 99%' 
                                     : 'When creating a new account with the promo code, the winning algorithm is synced with 99% accuracy.'}
@@ -421,19 +421,19 @@ export const AppleGame: React.FC<AppleGameProps> = ({ onBack, accessKeyData, lan
                                 playSound('click');
                                 setTimeout(() => setPromoCopied(false), 2000);
                             }}
-                            className="w-full bg-white/95 border border-dashed border-teal-500/40 hover:border-teal-500 rounded-xl p-3 mb-5 flex items-center justify-between cursor-pointer group/code transition-all"
+                            className="w-full bg-black/60 border border-dashed border-[rgba(57,255,20,0.35)] hover:border-[#39FF14] rounded-xl p-3 mb-5 flex items-center justify-between cursor-pointer group/code transition-all"
                             style={{ borderColor: 'rgba(var(--primary-color-rgb), 0.4)' } as any}
                         >
                             <div className="text-right">
-                                <span className="text-[8px] text-zinc-600 font-black uppercase tracking-widest block mb-0.5">
+                                <span className="text-[8px] text-white/50 font-black uppercase tracking-widest block mb-0.5">
                                     {language === 'ar' ? 'الرمز الترويجي المعتمد' : 'Official Promo Code'}
                                 </span>
-                                <span className="text-lg font-black text-teal-600 tracking-wider font-mono" style={{ color: 'var(--primary-color)' } as any}>
+                                <span className="text-lg font-black text-[#39FF14] tracking-wider font-mono" style={{ color: 'var(--primary-color)' } as any}>
                                     {promoCode}
                                 </span>
                             </div>
                             <div className={`px-2.5 py-1 rounded-lg text-[10px] font-bold flex items-center gap-1 transition-all ${
-                                promoCopied ? 'bg-teal-500 text-white shadow-[0_0_10px_rgba(34,197,94,0.4)]' : 'bg-zinc-100 text-zinc-900 group-hover/code:bg-zinc-200'
+                                promoCopied ? 'bg-[rgba(57,255,20,0.10)]0 text-white shadow-[0_0_10px_rgba(34,197,94,0.4)]' : 'bg-white/10 text-white group-hover/code:bg-zinc-200'
                             }`}>
                                 {promoCopied ? (
                                     <>
@@ -457,7 +457,7 @@ export const AppleGame: React.FC<AppleGameProps> = ({ onBack, accessKeyData, lan
                                     playSound('click');
                                     window.open(platform === 'linebet_v1' ? 'https://refpa79184.com/L?tag=d_5848868m_188307c_&site=5848868&ad=188307' : 'https://refpa49781.com/L?tag=d_5953406m_68383c_&site=5953406&ad=68383', '_blank');
                                 }}
-                                className="w-full h-11 bg-teal-500 text-white font-black text-xs uppercase tracking-wider rounded-xl transition-all shadow-[0_0_20px_rgba(34,197,94,0.3)] flex items-center justify-center gap-2 group/btn"
+                                className="w-full h-11 bg-[rgba(57,255,20,0.10)]0 text-white font-black text-xs uppercase tracking-wider rounded-xl transition-all shadow-[0_0_20px_rgba(34,197,94,0.3)] flex items-center justify-center gap-2 group/btn"
                                 style={{ backgroundColor: 'var(--primary-color)' } as any}
                             >
                                 <span>{language === 'ar' ? 'التسجيل وتفعيل البروموكود' : 'Register With Promo Code'}</span>
@@ -471,7 +471,7 @@ export const AppleGame: React.FC<AppleGameProps> = ({ onBack, accessKeyData, lan
                                     playSound('click');
                                     setShowPromoDialog(false);
                                 }}
-                                className="w-full h-9 bg-zinc-50 border border-zinc-300 text-zinc-600 hover:text-zinc-900 font-bold text-[11px] uppercase rounded-xl transition-all"
+                                className="w-full h-9 bg-black/60 border border-white/10 text-white/50 hover:text-white font-bold text-[11px] uppercase rounded-xl transition-all"
                             >
                                 {language === 'ar' ? 'المتابعة إلى التوقعات' : 'Continue to Predictor'}
                             </motion.button>

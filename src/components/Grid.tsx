@@ -79,8 +79,8 @@ export const Grid: React.FC<GridProps> = ({
       <div className={`w-full max-w-md flex flex-col items-center gap-3 p-2 relative z-10 transition-all duration-500 ${showSuccessFlash ? 'brightness-125 scale-[1.02]' : ''}`}>
         
         {/* Selected Multiplier Header Indicator */}
-        <div className="flex items-center justify-between w-full max-w-[300px] px-3 py-1.5 bg-transparent border border-zinc-300 rounded-xl backdrop-blur-md">
-          <span className="text-xs text-zinc-600 font-bold">
+        <div className="flex items-center justify-between w-full max-w-[300px] px-3 py-1.5 bg-transparent border border-white/10 rounded-xl backdrop-blur-md">
+          <span className="text-xs text-white/50 font-bold">
             {language === 'ar' ? 'المستوى المحدّد:' : 'Current Multiplier:'}
           </span>
           <span 
@@ -114,7 +114,7 @@ export const Grid: React.FC<GridProps> = ({
                     ? 'bg-transparent' 
                     : isBadApple 
                     ? 'bg-transparent border-red-500/50' 
-                    : 'bg-transparent border-zinc-300'
+                    : 'bg-transparent border-white/10'
                 }`}
               >
                 {/* Cell Content */}

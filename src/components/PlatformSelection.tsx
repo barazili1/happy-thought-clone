@@ -93,7 +93,7 @@ const PlatformSelection: React.FC<PlatformSelectionProps> = ({ onSelect, t }) =>
               {onlineUsers.toLocaleString()}
             </span>
           </div>
-          <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#39FF14] text-white shadow-[0_6px_18px_rgba(13,148,136,0.35)]">
+          <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#39FF14] text-black shadow-[0_6px_18px_rgba(13,148,136,0.35)]">
             <span className="w-1.5 h-1.5 rounded-full bg-black animate-pulse" />
             <span className="text-[10px] font-black tracking-wider">مباشر</span>
           </div>
@@ -163,7 +163,7 @@ const PlatformSelection: React.FC<PlatformSelectionProps> = ({ onSelect, t }) =>
                       active ? 'bg-[#39FF14] border-[#39FF14]' : 'bg-black border-white/10'
                     }`}
                   >
-                    {active && <Check className="w-3.5 h-3.5 text-white stroke-[4]" />}
+                    {active && <Check className="w-3.5 h-3.5 text-black stroke-[4]" />}
                   </div>
                 </div>
               </motion.button>
@@ -190,7 +190,7 @@ const PlatformSelection: React.FC<PlatformSelectionProps> = ({ onSelect, t }) =>
           <button
             onClick={handleProceed}
             disabled={isConnecting}
-            className="mt-4 w-full h-14 rounded-2xl bg-[#39FF14] text-white font-black text-base flex items-center justify-center gap-3 shadow-[0_12px_28px_rgba(13,148,136,0.35)] active:scale-[0.98] transition-all disabled:opacity-60"
+            className="mt-4 w-full h-14 rounded-2xl bg-[#39FF14] text-black font-black text-base flex items-center justify-center gap-3 shadow-[0_12px_28px_rgba(13,148,136,0.35)] active:scale-[0.98] transition-all disabled:opacity-60"
           >
             <span>{isConnecting ? 'جاري الاتصال...' : 'متابعة'}</span>
             {!isConnecting && <ChevronLeft className="w-5 h-5" />}

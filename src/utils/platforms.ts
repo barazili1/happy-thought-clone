@@ -27,7 +27,7 @@ export const PLATFORMS: Record<Platform, PlatformConfig> = {
     name: '1xBet',
     promo: 'A77N',
     downloadUrl: 'https://refpa49781.com/L?tag=d_3726128m_68383c_&site=3726128&ad=68383',
-    img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSD4Yd9OqZQ2rZ8dQ1qzT7dJZ7ZzJ5rQmQ&s=10',
+    img: '',
     tagline: 'أكبر سيولة · تغطية عالمية',
     accuracy: '٩٧٪',
     latency: '16ms',

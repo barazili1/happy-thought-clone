@@ -15,19 +15,20 @@ import {
   CheckCircle2,
   Send,
   ExternalLink,
-  X
+  X,
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Language, Platform } from '../types';
 import { audioManager } from '../utils/audioManager';
-import condInstall from '../assets/cond-install.png';
-import condTelegram from '../assets/cond-telegram.png';
-import condPromo from '../assets/cond-promo.png';
-import condDeposit from '../assets/cond-deposit.png';
-import condVerify from '../assets/cond-verify.png';
-import smartScriptLogo from '../assets/smart-script-logo.jpg';
+import condInstall from '../assets/neon-install.png';
+import condTelegram from '../assets/neon-telegram.png';
+import condPromo from '../assets/neon-promo.png';
+import condDeposit from '../assets/neon-deposit.png';
+import condVerify from '../assets/neon-verify.png';
+import dragonLogo from '../assets/dragon-logo.png';
 
 const MotionDiv = motion.div as any;
+const NEON = '#39FF14';
 
 interface SettingsViewProps {
   onComplete: (userId: string) => void;
@@ -42,24 +43,24 @@ const SectionCard: React.FC<{
   label: string;
   title: string;
   icon: React.ElementType;
-  accent?: string;
   image?: string;
   children: React.ReactNode;
-}> = ({ number, label, title, icon: Icon, accent = 'var(--primary-color)', image, children }) => (
-  <div className="relative bg-white/95 backdrop-blur-xl border border-zinc-300 rounded-3xl p-4 sm:p-6 shadow-[0_14px_32px_rgba(15,23,42,0.07)] overflow-hidden">
+}> = ({ number, label, title, icon: Icon, image, children }) => (
+  <MotionDiv
+    initial={{ opacity: 0, y: 18 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true, amount: 0.2 }}
+    transition={{ duration: 0.45 }}
+    className="relative rounded-[26px] border border-[rgba(57,255,20,0.22)] bg-[#07090785] backdrop-blur-xl p-4 sm:p-6 overflow-hidden shadow-[0_0_30px_rgba(57,255,20,0.08)]"
+  >
     <div
-      className="absolute top-0 right-0 left-0 h-[2px]"
-      style={{ background: `linear-gradient(90deg, transparent, ${accent}, transparent)` }}
+      className="absolute top-0 inset-x-0 h-[2px]"
+      style={{ background: `linear-gradient(90deg, transparent, ${NEON}, transparent)` }}
     />
-    <div
-      className="absolute -top-10 left-0 w-32 h-32 blur-3xl rounded-full pointer-events-none opacity-40"
-      style={{ backgroundColor: `${accent}33` }}
-    />
+    <div className="absolute -top-14 left-0 w-40 h-40 blur-3xl rounded-full pointer-events-none bg-[rgba(57,255,20,0.16)]" />
+
     <div className="relative flex items-center gap-3 mb-4">
-      <div
-        className="w-16 h-16 rounded-2xl border flex items-center justify-center shrink-0 overflow-hidden"
-        style={{ borderColor: `${accent}55`, backgroundColor: `${accent}14` }}
-      >
+      <div className="w-16 h-16 rounded-2xl border border-[rgba(57,255,20,0.35)] bg-black/60 flex items-center justify-center shrink-0 overflow-hidden">
         {image ? (
           <img
             src={image}
@@ -67,43 +68,47 @@ const SectionCard: React.FC<{
             loading="lazy"
             width={512}
             height={512}
-            className="w-12 h-12 object-contain"
-            style={{ filter: `drop-shadow(0 0 8px ${accent}88)` }}
+            className="w-12 h-12 object-contain drop-shadow-[0_0_10px_rgba(57,255,20,0.6)]"
           />
         ) : (
-          <Icon className="w-6 h-6" style={{ color: accent }} />
+          <Icon className="w-6 h-6 text-[#39FF14]" />
         )}
       </div>
       <div className="min-w-0 flex-1">
-        <span className="text-[10px] font-black uppercase tracking-widest block mb-0.5" style={{ color: accent }}>
+        <span className="text-[10px] font-black uppercase tracking-[0.2em] block mb-0.5 text-[#39FF14]">
           {label} ({number})
         </span>
-        <h2 className="text-base sm:text-lg font-black text-zinc-900 leading-tight">{title}</h2>
+        <h2 className="text-base sm:text-lg font-black text-white leading-tight">{title}</h2>
       </div>
-      <span className="text-3xl font-black font-mono text-zinc-900/10">{number}</span>
+      <span className="text-3xl font-black font-mono text-white/10">{number}</span>
     </div>
     {children}
-  </div>
+  </MotionDiv>
 );
+
+const panel = 'bg-black/50 border border-white/10 rounded-2xl';
+const neonBtn =
+  'w-full h-14 rounded-2xl bg-[#39FF14] text-black font-black text-sm uppercase tracking-wider flex items-center justify-center gap-3 transition-all active:scale-[0.98] shadow-[0_0_28px_rgba(57,255,20,0.45)] hover:brightness-110 group';
 
 const SettingsView: React.FC<SettingsViewProps> = ({ onComplete, onBack, lang, t, platform }) => {
   const [copied, setCopied] = useState(false);
   const [userId, setUserId] = useState('');
   const [errors, setErrors] = useState<{ userId?: boolean; userIdLength?: boolean }>({});
-
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [verificationStage, setVerificationStage] = useState<'step1' | 'step2' | 'ready'>('step1');
 
   const platformName = platform === 'linebet_v1' ? 'Greenbet' : 'Winwin';
   const promoCode = platform === 'linebet_v1' ? 'B10' : 'B11';
-  const platformImg = platform === 'linebet_v1'
-    ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoEj5eP5tNE8iMZoLHE9i4q-JYLMiLmHaIMKatrmBePA&s=10'
-    : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDBd0TpCQWUvWfxuU9DfJRgEs604mfmOEr0EHZOY0b9w&s=10';
+  const platformImg =
+    platform === 'linebet_v1'
+      ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoEj5eP5tNE8iMZoLHE9i4q-JYLMiLmHaIMKatrmBePA&s=10'
+      : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDBd0TpCQWUvWfxuU9DfJRgEs604mfmOEr0EHZOY0b9w&s=10';
 
-  const greenbetDownloadUrl = "https://refpa79184.com/L?tag=d_5848868m_188307c_&site=5848868&ad=188307";
-  const xbetDownloadUrl = "https://refpa49781.com/L?tag=d_5953406m_68383c_&site=5953406&ad=68383";
+  const greenbetDownloadUrl =
+    'https://refpa79184.com/L?tag=d_5848868m_188307c_&site=5848868&ad=188307';
+  const xbetDownloadUrl = 'https://refpa49781.com/L?tag=d_5953406m_68383c_&site=5953406&ad=68383';
   const downloadUrl = platform === 'linebet_v1' ? greenbetDownloadUrl : xbetDownloadUrl;
-  const telegramUrl = "https://t.me/+1MOiIrUHK1AzZWJk";
+  const telegramUrl = 'https://t.me/+1MOiIrUHK1AzZWJk';
 
   const handleCopy = () => {
     audioManager.playCopy();
@@ -143,63 +148,60 @@ const SettingsView: React.FC<SettingsViewProps> = ({ onComplete, onBack, lang, t
   };
 
   return (
-    <div className="flex flex-col min-h-full bg-transparent font-sans text-zinc-900 selection:bg-teal-200" dir="rtl">
-      <div className="fixed inset-0 z-0 opacity-10 pointer-events-none">
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(var(--primary-color-rgb),0.15)_1px,transparent_1px),linear-gradient(90deg,rgba(var(--primary-color-rgb),0.15)_1px,transparent_1px)] bg-[size:30px_30px]" />
-        <div className="absolute inset-0 bg-gradient-to-b from-teal-500/10 via-transparent to-transparent" />
+    <div className="flex flex-col min-h-full bg-transparent font-sans text-white selection:bg-[#39FF14]/30" dir="rtl">
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <div className="absolute inset-0 opacity-[0.10] bg-[linear-gradient(rgba(57,255,20,0.5)_1px,transparent_1px),linear-gradient(90deg,rgba(57,255,20,0.5)_1px,transparent_1px)] bg-[size:34px_34px]" />
+        <div className="absolute -top-20 right-0 w-72 h-72 rounded-full blur-[110px] bg-[rgba(57,255,20,0.12)]" />
       </div>
 
       <div className="relative z-10 flex flex-col px-3 sm:px-6 pt-4 pb-16 max-w-2xl mx-auto w-full">
-        {/* Top Navigation Bar */}
+        {/* Top bar */}
         <div className="flex items-center justify-between mb-5">
           <button
             onClick={onBack}
-            className="w-10 h-10 rounded-xl bg-white/95 backdrop-blur-md border border-zinc-300 flex items-center justify-center hover:border-teal-500/40 hover:text-teal-600 transition-all active:scale-95 shadow-md"
+            className="w-10 h-10 rounded-xl bg-black/60 backdrop-blur-md border border-white/10 flex items-center justify-center text-white/80 hover:border-[rgba(57,255,20,0.5)] hover:text-[#39FF14] transition-all active:scale-95"
             title="رجوع"
           >
             <ArrowLeft className="w-5 h-5 rotate-180" />
           </button>
 
-          <div className="flex items-center gap-2 px-3.5 py-1.5 bg-teal-50 border border-teal-500/40 rounded-full backdrop-blur-sm">
-            <div className="w-2 h-2 rounded-full bg-teal-500 animate-pulse shadow-[0_0_8px_var(--primary-glow)]" />
-            <span className="text-xs font-black tracking-widest uppercase text-teal-600">
+          <div className="flex items-center gap-2 px-3.5 py-1.5 bg-[rgba(57,255,20,0.08)] border border-[rgba(57,255,20,0.35)] rounded-full backdrop-blur-sm">
+            <div className="w-2 h-2 rounded-full bg-[#39FF14] animate-pulse shadow-[0_0_10px_#39FF14]" />
+            <span className="text-xs font-black tracking-widest uppercase text-[#39FF14]">
               شروط تفعيل {platformName}
             </span>
           </div>
         </div>
 
-        {/* Brand Hero */}
-        <div className="relative mb-5 overflow-hidden rounded-[28px] border border-zinc-300 bg-white/95 backdrop-blur-xl p-5 shadow-[0_18px_40px_rgba(15,23,42,0.08)]">
+        {/* Brand hero */}
+        <div className="relative mb-5 overflow-hidden rounded-[30px] border border-[rgba(57,255,20,0.28)] bg-[#07090790] backdrop-blur-xl p-5 shadow-[0_0_40px_rgba(57,255,20,0.12)]">
+          <div className="absolute -top-20 -right-10 w-56 h-56 rounded-full blur-[90px] bg-[rgba(57,255,20,0.22)] pointer-events-none" />
           <div
-            className="absolute -top-16 -right-10 w-52 h-52 rounded-full blur-3xl opacity-40 pointer-events-none"
-            style={{ backgroundColor: 'var(--primary-color)' }}
-          />
-          <div
-            className="absolute top-0 left-0 right-0 h-[2px]"
-            style={{ background: 'linear-gradient(90deg, transparent, var(--primary-color), transparent)' }}
+            className="absolute top-0 inset-x-0 h-[2px]"
+            style={{ background: `linear-gradient(90deg, transparent, ${NEON}, transparent)` }}
           />
           <div className="relative flex items-center gap-4">
-            <div
-              className="w-20 h-20 shrink-0 rounded-3xl border bg-white/95 flex items-center justify-center overflow-hidden"
-              style={{ borderColor: 'rgba(var(--primary-color-rgb),0.45)' }}
-            >
+            <div className="w-20 h-20 shrink-0 rounded-3xl border border-[rgba(57,255,20,0.4)] bg-black/70 flex items-center justify-center overflow-hidden">
               <img
-                src={smartScriptLogo}
-                alt="Smart Script"
-                width={512}
-                height={512}
-                className="w-full h-full object-cover"
-                style={{ filter: 'drop-shadow(0 0 12px var(--primary-glow))' }}
+                src={dragonLogo}
+                alt="DRAGON VIP"
+                width={1024}
+                height={1024}
+                loading="lazy"
+                className="w-16 h-16 object-contain drop-shadow-[0_0_14px_rgba(57,255,20,0.7)]"
               />
             </div>
             <div className="min-w-0">
-              <h1 className="text-xl sm:text-2xl font-black tracking-tight text-zinc-900 leading-tight">SMART SCRIPT</h1>
-              <p className="text-[11px] sm:text-xs text-zinc-600 leading-relaxed mt-1">
-                نفّذ الشروط الخمسة بالترتيب من الأعلى للأسفل، ثم أدخل ID حسابك في نهاية الصفحة لتفعيل التوقعات.
+              <h1 className="text-xl sm:text-2xl font-black tracking-[0.12em] text-white leading-tight">
+                DRAGON <span className="text-[#39FF14]">VIP</span>
+              </h1>
+              <p className="text-[11px] sm:text-xs text-white/60 leading-relaxed mt-1">
+                نفّذ الشروط الخمسة بالترتيب من الأعلى للأسفل، ثم أدخل ID حسابك في نهاية الصفحة لتفعيل
+                التوقعات.
               </p>
               <div className="mt-2 flex items-center gap-1.5">
-                <Zap className="w-3.5 h-3.5 animate-pulse" style={{ color: 'var(--primary-color)' }} />
-                <span className="text-[10px] font-black uppercase tracking-widest" style={{ color: 'var(--primary-color)' }}>
+                <Zap className="w-3.5 h-3.5 animate-pulse text-[#39FF14]" />
+                <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#39FF14]">
                   تفعيل فوري · 5 خطوات
                 </span>
               </div>
@@ -207,17 +209,24 @@ const SettingsView: React.FC<SettingsViewProps> = ({ onComplete, onBack, lang, t
           </div>
         </div>
 
-        {/* ALL CONDITIONS STACKED */}
         <div className="flex flex-col gap-4">
           {/* 01 */}
-          <SectionCard number="01" label="الشرط الأول" title={t.install_app || "تثبيت التطبيق الرسمي"} icon={Download} image={condInstall}>
+          <SectionCard
+            number="01"
+            label="الشرط الأول"
+            title={t.install_app || 'تثبيت التطبيق الرسمي'}
+            icon={Download}
+            image={condInstall}
+          >
             <div className="flex flex-col gap-4">
-              <div className="flex items-center gap-3 bg-white/95 border border-zinc-300 p-3 rounded-2xl">
-                <div className="w-10 h-10 rounded-xl bg-white border border-zinc-300 p-1.5 flex items-center justify-center shrink-0">
+              <div className={`flex items-center gap-3 p-3 ${panel}`}>
+                <div className="w-10 h-10 rounded-xl bg-black border border-white/10 p-1.5 flex items-center justify-center shrink-0">
                   <img src={platformImg} alt={platformName} className="w-7 h-7 object-contain" />
                 </div>
-                <p className="text-xs sm:text-sm text-zinc-700 leading-relaxed">
-                  قم بتنزيل وتثبيت تطبيق منصة <span className="text-teal-600 font-bold">{platformName}</span> الرسمي لربط الحساب مع سيرفر التوقعات.
+                <p className="text-xs sm:text-sm text-white/70 leading-relaxed">
+                  قم بتنزيل وتثبيت تطبيق منصة{' '}
+                  <span className="text-[#39FF14] font-bold">{platformName}</span> الرسمي لربط الحساب
+                  مع سيرفر التوقعات.
                 </p>
               </div>
               <a
@@ -225,26 +234,33 @@ const SettingsView: React.FC<SettingsViewProps> = ({ onComplete, onBack, lang, t
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => audioManager.playClick()}
-                className="w-full h-14 rounded-2xl bg-teal-600 hover:bg-teal-700 text-white font-black text-sm uppercase tracking-wider flex items-center justify-center gap-3 transition-all active:scale-[0.98] shadow-xl group"
+                className={neonBtn}
               >
-                <span>{t.install_btn || "تثبيت التطبيق الآن"}</span>
+                <span>{t.install_btn || 'تثبيت التطبيق الآن'}</span>
                 <Download className="w-5 h-5 group-hover:translate-y-0.5 transition-transform" />
               </a>
             </div>
           </SectionCard>
 
           {/* 02 */}
-          <SectionCard number="02" label="الشرط الثاني" title="الاشتراك في قناة التلجرام" icon={Send} accent="#0088cc" image={condTelegram}>
+          <SectionCard
+            number="02"
+            label="الشرط الثاني"
+            title="الاشتراك في قناة التلجرام"
+            icon={Send}
+            image={condTelegram}
+          >
             <div className="flex flex-col gap-4">
-              <p className="text-xs sm:text-sm text-zinc-700 leading-relaxed bg-white/95 border border-zinc-300 p-4 rounded-2xl">
-                انضم إلى القناة الرسمية على التلجرام لمتابعة التحديثات الحصرية واستلام الإشارات الفورية.
+              <p className={`text-xs sm:text-sm text-white/70 leading-relaxed p-4 ${panel}`}>
+                انضم إلى القناة الرسمية على التلجرام لمتابعة التحديثات الحصرية واستلام الإشارات
+                الفورية.
               </p>
               <a
                 href={telegramUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => audioManager.playClick()}
-                className="w-full h-14 rounded-2xl bg-[#0088cc] hover:bg-[#0077b5] text-zinc-900 font-black text-sm uppercase tracking-wider flex items-center justify-center gap-3 transition-all active:scale-[0.98] shadow-[0_0_25px_rgba(0,136,204,0.35)] group"
+                className="w-full h-14 rounded-2xl bg-black border border-[rgba(57,255,20,0.5)] text-[#39FF14] font-black text-sm uppercase tracking-wider flex items-center justify-center gap-3 transition-all active:scale-[0.98] shadow-[0_0_22px_rgba(57,255,20,0.22)] hover:bg-[rgba(57,255,20,0.08)] group"
               >
                 <span>الانضمام لقناة التلجرام</span>
                 <ExternalLink className="w-5 h-5 group-hover:-translate-y-0.5 transition-transform" />
@@ -253,48 +269,87 @@ const SettingsView: React.FC<SettingsViewProps> = ({ onComplete, onBack, lang, t
           </SectionCard>
 
           {/* 03 */}
-          <SectionCard number="03" label="الشرط الثالث" title={t.registration || "التسجيل بالبروموكود"} icon={Lock} image={condPromo}>
+          <SectionCard
+            number="03"
+            label="الشرط الثالث"
+            title={t.registration || 'التسجيل بالبروموكود'}
+            icon={Lock}
+            image={condPromo}
+          >
             <div className="flex flex-col gap-4">
-              <p className="text-xs sm:text-sm text-zinc-700 leading-relaxed bg-white/95 border border-zinc-300 p-4 rounded-2xl">
-                عند إنشاء حسابك الجديد على المنصة، أدخل الرمز الترويجي التالي لتفعيل خصم السيرفر وضمان مزامنة التوقعات:
+              <p className={`text-xs sm:text-sm text-white/70 leading-relaxed p-4 ${panel}`}>
+                عند إنشاء حسابك الجديد على المنصة، أدخل الرمز الترويجي التالي لتفعيل خصم السيرفر
+                وضمان مزامنة التوقعات:
               </p>
               <div
                 onClick={handleCopy}
-                className="relative bg-white/95 rounded-2xl border-2 border-dashed border-teal-500/40 hover:border-teal-500 p-4 transition-all cursor-pointer group"
+                className="relative bg-black/60 rounded-2xl border-2 border-dashed border-[rgba(57,255,20,0.4)] hover:border-[#39FF14] p-4 transition-all cursor-pointer group"
               >
                 <div className="flex items-center justify-between gap-3">
                   <div>
-                    <span className="text-[10px] text-zinc-600 font-black uppercase tracking-widest mb-1 block">كود البروموكود المعتمد</span>
-                    <span className="text-2xl sm:text-3xl font-black tracking-[0.2em] text-teal-600">{promoCode}</span>
+                    <span className="text-[10px] text-white/50 font-black uppercase tracking-[0.2em] mb-1 block">
+                      كود البروموكود المعتمد
+                    </span>
+                    <span className="text-2xl sm:text-3xl font-black tracking-[0.2em] text-[#39FF14] drop-shadow-[0_0_14px_rgba(57,255,20,0.6)]">
+                      {promoCode}
+                    </span>
                   </div>
-                  <div className={`px-4 py-2 rounded-xl font-bold text-xs flex items-center gap-2 transition-all ${
-                    copied ? 'bg-teal-600 text-white shadow-[0_8px_20px_rgba(13,148,136,0.3)]' : 'bg-zinc-100 text-zinc-900 group-hover:bg-teal-50'
-                  }`}>
-                    {copied ? (<><Check className="w-4 h-4" /><span>تم النسخ!</span></>) : (<><Copy className="w-4 h-4" /><span>نسخ الكود</span></>)}
+                  <div
+                    className={`px-4 py-2 rounded-xl font-bold text-xs flex items-center gap-2 transition-all ${
+                      copied
+                        ? 'bg-[#39FF14] text-black shadow-[0_0_20px_rgba(57,255,20,0.5)]'
+                        : 'bg-white/5 text-white/80 group-hover:bg-[rgba(57,255,20,0.12)] group-hover:text-[#39FF14]'
+                    }`}
+                  >
+                    {copied ? (
+                      <>
+                        <Check className="w-4 h-4" />
+                        <span>تم النسخ!</span>
+                      </>
+                    ) : (
+                      <>
+                        <Copy className="w-4 h-4" />
+                        <span>نسخ الكود</span>
+                      </>
+                    )}
                   </div>
                 </div>
-                <Sparkles className="absolute top-2 left-2 w-3.5 h-3.5 text-teal-600/50" />
+                <Sparkles className="absolute top-2 left-2 w-3.5 h-3.5 text-[#39FF14]/60" />
               </div>
             </div>
           </SectionCard>
 
           {/* 04 */}
-          <SectionCard number="04" label="الشرط الرابع" title={t.activation_deposit || "إيداع التفعيل الأول"} icon={CreditCard} image={condDeposit}>
+          <SectionCard
+            number="04"
+            label="الشرط الرابع"
+            title={t.activation_deposit || 'إيداع التفعيل الأول'}
+            icon={CreditCard}
+            image={condDeposit}
+          >
             <div className="flex flex-col gap-4">
-              <p className="text-xs sm:text-sm text-zinc-700 leading-relaxed bg-white/95 border border-zinc-300 p-4 rounded-2xl">
+              <p className={`text-xs sm:text-sm text-white/70 leading-relaxed p-4 ${panel}`}>
                 يتطلب تفعيل الخوارزمية إجراء أول عملية إيداع بالحساب للحد الأدنى المطلوب:
               </p>
               <div className="grid grid-cols-2 gap-3" dir="ltr">
-                <div className="bg-white/95 border border-zinc-300 p-4 rounded-2xl flex flex-col items-center justify-center text-center">
-                  <span className="text-[10px] text-zinc-600 font-black uppercase tracking-widest mb-1">USD ($)</span>
-                  <span className="text-2xl font-black text-teal-600">$5.00</span>
-                </div>
-                <div className="bg-white/95 border border-zinc-300 p-4 rounded-2xl flex flex-col items-center justify-center text-center">
-                  <span className="text-[10px] text-zinc-600 font-black uppercase tracking-widest mb-1">EGP (L.E)</span>
-                  <span className="text-2xl font-black text-teal-600">250 L.E</span>
-                </div>
+                {[
+                  { label: 'USD ($)', value: '$5.00' },
+                  { label: 'EGP (L.E)', value: '250 L.E' },
+                ].map((c) => (
+                  <div
+                    key={c.label}
+                    className={`p-4 flex flex-col items-center justify-center text-center ${panel}`}
+                  >
+                    <span className="text-[10px] text-white/50 font-black uppercase tracking-[0.2em] mb-1">
+                      {c.label}
+                    </span>
+                    <span className="text-2xl font-black text-[#39FF14] drop-shadow-[0_0_12px_rgba(57,255,20,0.5)]">
+                      {c.value}
+                    </span>
+                  </div>
+                ))}
               </div>
-              <div className="flex items-center gap-2 text-[10px] text-zinc-600">
+              <div className="flex items-center gap-2 text-[10px] text-white/50">
                 <Globe className="w-3.5 h-3.5" />
                 <span>يتم تأكيد الإيداع تلقائياً عبر السيرفر خلال ثوانٍ.</span>
               </div>
@@ -302,19 +357,26 @@ const SettingsView: React.FC<SettingsViewProps> = ({ onComplete, onBack, lang, t
           </SectionCard>
 
           {/* 05 */}
-          <SectionCard number="05" label="الشرط الخامس والأخير" title={t.verify_account || "تأكيد ومعرفة ID الحساب"} icon={Fingerprint} image={condVerify}>
+          <SectionCard
+            number="05"
+            label="الشرط الخامس والأخير"
+            title={t.verify_account || 'تأكيد ومعرفة ID الحساب'}
+            icon={Fingerprint}
+            image={condVerify}
+          >
             <div className="flex flex-col gap-4">
-              <p className="text-xs sm:text-sm text-zinc-700 leading-relaxed bg-white/95 border border-zinc-300 p-4 rounded-2xl">
-                أدخل رقم معرف حسابك (ID) المكون من 10 إلى 15 رقم للتحقق من المزامنة وبدء التوقعات فوراً:
+              <p className={`text-xs sm:text-sm text-white/70 leading-relaxed p-4 ${panel}`}>
+                أدخل رقم معرف حسابك (ID) المكون من 10 إلى 15 رقم للتحقق من المزامنة وبدء التوقعات
+                فوراً:
               </p>
 
               <div>
-                <label className="block text-[10px] text-zinc-600 mb-1.5 uppercase font-black tracking-widest">
-                  {t.userid_label || "معرف حسابك (User ID)"}
+                <label className="block text-[10px] text-white/50 mb-1.5 uppercase font-black tracking-[0.2em]">
+                  {t.userid_label || 'معرف حسابك (User ID)'}
                 </label>
                 <div className="relative">
-                  <div className="absolute inset-y-0 right-0 w-13 flex items-center justify-center border-l border-zinc-300 px-3">
-                    <Fingerprint className={`w-6 h-6 ${userId ? 'text-teal-600' : 'text-zinc-600'}`} />
+                  <div className="absolute inset-y-0 right-0 flex items-center justify-center border-l border-white/10 px-3">
+                    <Fingerprint className={`w-6 h-6 ${userId ? 'text-[#39FF14]' : 'text-white/30'}`} />
                   </div>
                   <input
                     type="tel"
@@ -322,10 +384,10 @@ const SettingsView: React.FC<SettingsViewProps> = ({ onComplete, onBack, lang, t
                     onChange={handleUserIdChange}
                     placeholder="مثال: 1234567890"
                     maxLength={15}
-                    className={`w-full bg-white/95 border text-zinc-900 font-mono text-lg pr-16 pl-4 py-3.5 rounded-2xl focus:outline-none transition-all text-right ${
+                    className={`w-full bg-black/60 border text-white font-mono text-lg pr-16 pl-4 py-3.5 rounded-2xl focus:outline-none transition-all text-right placeholder:text-white/25 ${
                       errors.userId || errors.userIdLength
                         ? 'border-red-500/80 focus:border-red-500'
-                        : 'border-zinc-300 focus:border-teal-500'
+                        : 'border-white/10 focus:border-[#39FF14]'
                     }`}
                   />
                 </div>
@@ -336,95 +398,104 @@ const SettingsView: React.FC<SettingsViewProps> = ({ onComplete, onBack, lang, t
                 )}
               </div>
 
-              <button
-                onClick={validateAndSubmit}
-                className="w-full h-14 rounded-2xl bg-teal-600 hover:bg-teal-700 text-white font-black text-sm tracking-wider transition-all flex items-center justify-center gap-2 shadow-[0_10px_24px_rgba(13,148,136,0.25)] active:scale-[0.98] uppercase"
-              >
-                <span>{t.submit_verification || "تأكيد وتفعيل الحساب"}</span>
+              <button onClick={validateAndSubmit} className={neonBtn}>
+                <span>{t.submit_verification || 'تأكيد وتفعيل الحساب'}</span>
                 <ArrowRight className="w-4 h-4 rotate-180" />
               </button>
             </div>
           </SectionCard>
         </div>
 
-        {/* Footer Info */}
-        <div className="mt-5 p-4 bg-white/95 border border-zinc-300 rounded-2xl flex items-center gap-2 text-[11px] text-zinc-600">
-          <ShieldCheck className="w-4 h-4 text-teal-600" />
+        <div className={`mt-5 p-4 flex items-center gap-2 text-[11px] text-white/50 ${panel}`}>
+          <ShieldCheck className="w-4 h-4 text-[#39FF14]" />
           <span>يتم التأكد من صحة البيانات تلقائياً عبر السيرفر الفوري</span>
         </div>
 
-        <div className="mt-4 flex flex-col items-center gap-1.5 opacity-30">
-          <div className="h-px w-10 bg-zinc-300" />
-          <span className="text-[7.5px] font-black uppercase tracking-[0.3em] text-center">
-            تشفير حماية عالي الأمان | SMART SCRIPT
+        <div className="mt-4 flex flex-col items-center gap-1.5 opacity-40">
+          <div className="h-px w-10 bg-[rgba(57,255,20,0.4)]" />
+          <span className="text-[7.5px] font-black uppercase tracking-[0.3em] text-center text-white/60">
+            تشفير حماية عالي الأمان | DRAGON VIP
           </span>
         </div>
       </div>
 
-      {/* Verification Dialog Modal */}
+      {/* Verification modal */}
       <AnimatePresence>
         {isModalOpen && (
           <MotionDiv
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-zinc-900/30 backdrop-blur-md flex items-center justify-center p-4"
+            className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4"
           >
             <MotionDiv
               initial={{ scale: 0.9, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
-              transition={{ type: "spring", damping: 20, stiffness: 250 }}
-              className="w-full max-w-sm bg-white/90 border border-teal-500/40 rounded-3xl p-6 sm:p-8 flex flex-col items-center text-center shadow-[0_0_40px_rgba(34,197,94,0.3)] relative overflow-hidden"
+              transition={{ type: 'spring', damping: 20, stiffness: 250 }}
+              className="w-full max-w-sm bg-[#060806]/95 border border-[rgba(57,255,20,0.4)] rounded-3xl p-6 sm:p-8 flex flex-col items-center text-center shadow-[0_0_50px_rgba(57,255,20,0.25)] relative overflow-hidden"
             >
-              <div className="absolute -top-12 left-1/2 -translate-x-1/2 w-40 h-40 bg-teal-50 blur-3xl rounded-full pointer-events-none" />
+              <div className="absolute -top-14 left-1/2 -translate-x-1/2 w-44 h-44 rounded-full blur-[70px] bg-[rgba(57,255,20,0.25)] pointer-events-none" />
 
               <button
                 type="button"
-                onClick={() => { audioManager.playClick(); setIsModalOpen(false); onComplete(userId.trim()); }}
+                onClick={() => {
+                  audioManager.playClick();
+                  setIsModalOpen(false);
+                  onComplete(userId.trim());
+                }}
                 aria-label="إغلاق"
-                className="absolute top-3 left-3 z-10 w-9 h-9 rounded-full bg-white border border-zinc-300 text-zinc-700 flex items-center justify-center shadow-[0_4px_12px_rgba(15,23,42,0.10)] active:scale-95 transition"
+                className="absolute top-3 left-3 z-10 w-9 h-9 rounded-full bg-black border border-white/15 text-white/70 flex items-center justify-center active:scale-95 transition"
               >
-                <X className="w-4.5 h-4.5" />
+                <X className="w-4 h-4" />
               </button>
-
 
               {verificationStage === 'step1' && (
                 <div className="flex flex-col items-center py-4">
                   <div className="relative w-16 h-16 mb-5 flex items-center justify-center">
-                    <div className="absolute inset-0 rounded-full border-4 border-teal-500/40 border-t-green-500 animate-spin" />
-                    <Fingerprint className="w-8 h-8 text-teal-600" />
+                    <div className="absolute inset-0 rounded-full border-4 border-[rgba(57,255,20,0.2)] border-t-[#39FF14] animate-spin" />
+                    <Fingerprint className="w-8 h-8 text-[#39FF14]" />
                   </div>
-                  <h3 className="text-base sm:text-lg font-black text-zinc-900 mb-2">جاري التحقق من ID الخاص بك...</h3>
-                  <p className="text-xs text-zinc-600 font-mono">ID: {userId}</p>
+                  <h3 className="text-base sm:text-lg font-black text-white mb-2">
+                    جاري التحقق من ID الخاص بك...
+                  </h3>
+                  <p className="text-xs text-white/50 font-mono">ID: {userId}</p>
                 </div>
               )}
 
               {verificationStage === 'step2' && (
                 <div className="flex flex-col items-center py-4">
                   <div className="relative w-16 h-16 mb-5 flex items-center justify-center">
-                    <div className="absolute inset-0 rounded-full border-4 border-teal-500/40 border-t-green-500 animate-spin" />
-                    <ShieldCheck className="w-8 h-8 text-teal-600" />
+                    <div className="absolute inset-0 rounded-full border-4 border-[rgba(57,255,20,0.2)] border-t-[#39FF14] animate-spin" />
+                    <ShieldCheck className="w-8 h-8 text-[#39FF14]" />
                   </div>
-                  <h3 className="text-base sm:text-lg font-black text-zinc-900 mb-2">جاري التحقق من حسابك...</h3>
-                  <p className="text-xs text-zinc-600">جاري مطابقة كود البروموكود {promoCode} وحالة السيرفر</p>
+                  <h3 className="text-base sm:text-lg font-black text-white mb-2">
+                    جاري التحقق من حسابك...
+                  </h3>
+                  <p className="text-xs text-white/50">
+                    جاري مطابقة كود البروموكود {promoCode} وحالة السيرفر
+                  </p>
                 </div>
               )}
 
               {verificationStage === 'ready' && (
                 <div className="flex flex-col items-center w-full py-2">
-                  <div className="w-16 h-16 rounded-2xl bg-teal-50 border border-teal-500/40 flex items-center justify-center mb-4 shadow-[0_0_20px_rgba(34,197,94,0.4)]">
-                    <CheckCircle2 className="w-9 h-9 text-teal-600" />
+                  <div className="w-16 h-16 rounded-2xl bg-[rgba(57,255,20,0.1)] border border-[rgba(57,255,20,0.4)] flex items-center justify-center mb-4 shadow-[0_0_26px_rgba(57,255,20,0.4)]">
+                    <CheckCircle2 className="w-9 h-9 text-[#39FF14]" />
                   </div>
-                  <h3 className="text-lg sm:text-xl font-black text-zinc-900 mb-2">تم التحقق من الحساب بنجاح!</h3>
-                  <p className="text-xs sm:text-sm text-zinc-600 font-bold mb-6">يرجى تحميل المنصة من هنا</p>
+                  <h3 className="text-lg sm:text-xl font-black text-white mb-2">
+                    تم التحقق من الحساب بنجاح!
+                  </h3>
+                  <p className="text-xs sm:text-sm text-white/60 font-bold mb-6">
+                    يرجى تحميل المنصة من هنا
+                  </p>
                   <motion.button
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.96 }}
                     onClick={handleDownloadAndProceed}
-                    className="w-full py-4 px-6 bg-teal-600 hover:bg-teal-700 text-white font-black text-sm uppercase tracking-wider rounded-2xl shadow-[0_10px_24px_rgba(13,148,136,0.25)] flex items-center justify-center gap-2.5 transition-all cursor-pointer"
+                    className={neonBtn}
                   >
-                    <Download className="w-5 h-5 text-white" />
+                    <Download className="w-5 h-5" />
                     <span>تحميل الآن</span>
                   </motion.button>
                 </div>

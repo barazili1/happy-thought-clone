@@ -163,7 +163,7 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete, language = 'en'
 
         <div className="relative h-1.5 w-full rounded-full overflow-hidden bg-white/10 border border-[rgba(125,249,255,0.25)]">
           <motion.div
-            className="h-full bg-gradient-to-r from-[#1f7a10] via-[#7DF9FF] to-[#b9ff6a] shadow-[0_0_16px_rgba(125,249,255,0.8)]"
+            className="h-full bg-gradient-to-r from-[rgba(125,249,255,0.35)] via-[#7DF9FF] to-white shadow-[0_0_16px_rgba(125,249,255,0.8)]"
             initial={{ width: 0 }}
             animate={{ width: `${progress}%` }}
             transition={{ duration: 0.1 }}

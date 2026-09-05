@@ -103,7 +103,7 @@ const SettingsView: React.FC<SettingsViewProps> = ({ onComplete, onBack, lang, t
   const [verificationStage, setVerificationStage] = useState<'step1' | 'step2' | 'ready'>('step1');
 
   const platformName = platform === 'linebet_v1' ? 'Greenbet' : 'Winwin';
-  const promoCode = platform === 'linebet_v1' ? 'B10' : 'B11';
+  const promoCode = 'A77N';
   const platformImg =
     platform === 'linebet_v1'
       ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoEj5eP5tNE8iMZoLHE9i4q-JYLMiLmHaIMKatrmBePA&s=10'
@@ -113,7 +113,7 @@ const SettingsView: React.FC<SettingsViewProps> = ({ onComplete, onBack, lang, t
     'https://refpa79184.com/L?tag=d_5848868m_188307c_&site=5848868&ad=188307';
   const xbetDownloadUrl = 'https://refpa49781.com/L?tag=d_5953406m_68383c_&site=5953406&ad=68383';
   const downloadUrl = platform === 'linebet_v1' ? greenbetDownloadUrl : xbetDownloadUrl;
-  const telegramUrl = 'https://t.me/+1MOiIrUHK1AzZWJk';
+  const telegramUrl = 'https://t.me/theeagelss1';
 
   const handleCopy = () => {
     audioManager.playCopy();
@@ -147,7 +147,6 @@ const SettingsView: React.FC<SettingsViewProps> = ({ onComplete, onBack, lang, t
 
   const handleDownloadAndProceed = () => {
     audioManager.playClick();
-    window.open(downloadUrl, '_blank');
     setIsModalOpen(false);
     onComplete(userId.trim());
   };
@@ -438,108 +437,131 @@ const SettingsView: React.FC<SettingsViewProps> = ({ onComplete, onBack, lang, t
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-5 backdrop-blur-xl"
+            className="fixed inset-0 z-50 flex items-end justify-center bg-black/90 p-4 backdrop-blur-2xl sm:items-center"
           >
             <MotionDiv
-              initial={{ scale: 0.94, opacity: 0, y: 24 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.94, opacity: 0, y: 24 }}
-              transition={{ type: 'spring', damping: 22, stiffness: 240 }}
-              className="relative w-full max-w-[360px] overflow-hidden rounded-[30px] border border-white/[0.09] bg-gradient-to-b from-[rgba(125,249,255,0.09)] via-black/90 to-black p-6 shadow-[0_40px_100px_-30px_rgba(125,249,255,0.35)]"
+              initial={{ y: 60, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: 60, opacity: 0 }}
+              transition={{ type: 'spring', damping: 26, stiffness: 260 }}
+              className="relative w-full max-w-[400px] overflow-hidden rounded-[26px] border border-[rgba(125,249,255,0.22)] bg-[#02060a]"
             >
-              <div className="pointer-events-none absolute -top-24 left-1/2 h-48 w-48 -translate-x-1/2 rounded-full bg-[rgba(125,249,255,0.20)] blur-[80px]" />
+              {/* top status strip */}
+              <div className="flex items-center justify-between border-b border-white/[0.07] bg-[rgba(125,249,255,0.05)] px-5 py-3.5">
+                <div className="flex items-center gap-2">
+                  <span className="h-2 w-2 rounded-full bg-[#7DF9FF] shadow-[0_0_10px_#7DF9FF]" />
+                  <span className="text-[10px] font-black uppercase tracking-[0.28em] text-[#7DF9FF]">
+                    dragon terminal
+                  </span>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => {
+                    audioManager.playClick();
+                    setIsModalOpen(false);
+                  }}
+                  aria-label="إغلاق"
+                  className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 text-white/50 transition-all hover:text-white active:scale-90"
+                >
+                  <X className="h-4 w-4" />
+                </button>
+              </div>
 
-              <button
-                type="button"
-                onClick={() => {
-                  audioManager.playClick();
-                  setIsModalOpen(false);
-                  onComplete(userId.trim());
-                }}
-                aria-label="إغلاق"
-                className="absolute left-4 top-4 z-10 flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-white/60 transition-all hover:text-white active:scale-90"
-              >
-                <X className="h-4 w-4" />
-              </button>
-
-              <div className="relative flex flex-col items-center text-center">
-                {/* progress ring */}
-                <div className="relative flex h-[104px] w-[104px] items-center justify-center">
-                  {verificationStage !== 'ready' ? (
-                    <>
-                      <MotionDiv
-                        animate={{ rotate: 360 }}
-                        transition={{ duration: 1.4, repeat: Infinity, ease: 'linear' }}
-                        className="absolute inset-0 rounded-full border-2 border-[rgba(125,249,255,0.15)] border-t-[#7DF9FF]"
-                      />
-                      <MotionDiv
-                        animate={{ scale: [0.9, 1.05, 0.9], opacity: [0.4, 0.15, 0.4] }}
-                        transition={{ duration: 2, repeat: Infinity }}
-                        className="absolute inset-3 rounded-full bg-[rgba(125,249,255,0.18)] blur-md"
-                      />
-                      {verificationStage === 'step1' ? (
-                        <Fingerprint className="relative h-9 w-9 text-[#7DF9FF]" />
-                      ) : (
-                        <ShieldCheck className="relative h-9 w-9 text-[#7DF9FF]" />
-                      )}
-                    </>
-                  ) : (
-                    <MotionDiv
-                      initial={{ scale: 0.7, opacity: 0 }}
-                      animate={{ scale: 1, opacity: 1 }}
-                      transition={{ type: 'spring', damping: 14, stiffness: 220 }}
-                      className="flex h-[104px] w-[104px] items-center justify-center rounded-full border border-[rgba(125,249,255,0.45)] bg-[rgba(125,249,255,0.10)] shadow-[0_0_40px_-8px_rgba(125,249,255,0.8)]"
-                    >
-                      <CheckCircle2 className="h-11 w-11 text-[#7DF9FF]" />
-                    </MotionDiv>
-                  )}
+              <div className="px-5 py-6">
+                {/* id card */}
+                <div className="flex items-center gap-3 rounded-2xl border border-white/[0.08] bg-white/[0.03] p-3.5">
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-[rgba(125,249,255,0.3)] bg-[rgba(125,249,255,0.08)]">
+                    <Fingerprint className="h-5 w-5 text-[#7DF9FF]" />
+                  </div>
+                  <div className="min-w-0">
+                    <span className="block text-[9px] font-black uppercase tracking-[0.24em] text-white/35">
+                      معرف الحساب
+                    </span>
+                    <span className="block font-mono text-lg font-black tracking-wider text-white">
+                      {userId}
+                    </span>
+                  </div>
+                  <div className="mr-auto rounded-lg border border-[rgba(125,249,255,0.25)] bg-black px-2.5 py-1 font-mono text-[10px] font-black text-[#7DF9FF]">
+                    {promoCode}
+                  </div>
                 </div>
 
-                <h3 className="mt-5 text-[19px] font-black leading-tight">
-                  {verificationStage === 'step1'
-                    ? 'جاري التحقق من المعرف'
-                    : verificationStage === 'step2'
-                      ? 'مطابقة حالة الحساب'
-                      : 'تم التحقق بنجاح'}
-                </h3>
-                <p className="mt-1.5 text-[11px] font-medium leading-relaxed text-white/40">
-                  {verificationStage === 'step1'
-                    ? `يتم فحص المعرف ${userId} على السيرفر`
-                    : verificationStage === 'step2'
-                      ? `مطابقة البروموكود ${promoCode} وحالة المزامنة`
-                      : 'حسابك جاهز — حمّل المنصة وابدأ التوقعات'}
-                </p>
-
-                {/* step indicator */}
-                <div className="mt-5 flex w-full items-center gap-2">
-                  {['step1', 'step2', 'ready'].map((s, i) => {
+                {/* checklist */}
+                <div className="mt-5 flex flex-col gap-2.5">
+                  {[
+                    { key: 'step1', text: 'فحص المعرف على السيرفر' },
+                    { key: 'step2', text: 'مطابقة البروموكود والمزامنة' },
+                    { key: 'ready', text: 'ربط حسابك بخوارزمية التوقع' },
+                  ].map((row, i) => {
                     const order = ['step1', 'step2', 'ready'];
-                    const done = order.indexOf(verificationStage) >= i;
+                    const idx = order.indexOf(verificationStage);
+                    const done = idx > i || verificationStage === 'ready';
+                    const active = idx === i && verificationStage !== 'ready';
                     return (
-                      <span
-                        key={s}
-                        className={`h-1 flex-1 rounded-full transition-all duration-500 ${
-                          done ? 'bg-[#7DF9FF]' : 'bg-white/10'
+                      <div
+                        key={row.key}
+                        className={`flex items-center gap-3 rounded-xl border px-3.5 py-3 transition-all duration-500 ${
+                          done
+                            ? 'border-[rgba(125,249,255,0.35)] bg-[rgba(125,249,255,0.07)]'
+                            : active
+                              ? 'border-white/15 bg-white/[0.04]'
+                              : 'border-white/[0.06] bg-transparent'
                         }`}
-                      />
+                      >
+                        <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-white/10 bg-black">
+                          {done ? (
+                            <Check className="h-3.5 w-3.5 text-[#7DF9FF]" />
+                          ) : active ? (
+                            <MotionDiv
+                              animate={{ rotate: 360 }}
+                              transition={{ duration: 1.1, repeat: Infinity, ease: 'linear' }}
+                              className="h-3.5 w-3.5 rounded-full border border-[rgba(125,249,255,0.2)] border-t-[#7DF9FF]"
+                            />
+                          ) : (
+                            <span className="h-1.5 w-1.5 rounded-full bg-white/20" />
+                          )}
+                        </span>
+                        <span
+                          className={`text-[12px] font-bold ${
+                            done ? 'text-white' : active ? 'text-white/70' : 'text-white/30'
+                          }`}
+                        >
+                          {row.text}
+                        </span>
+                      </div>
                     );
                   })}
                 </div>
 
-                {verificationStage === 'ready' && (
-                  <button
-                    onClick={handleDownloadAndProceed}
-                    className="mt-6 flex h-14 w-full items-center justify-center gap-3 rounded-[20px] bg-gradient-to-l from-[#7DF9FF] to-white text-[14px] font-black text-black shadow-[0_16px_40px_-16px_rgba(125,249,255,0.85)] transition-all active:scale-[0.98]"
+                {verificationStage === 'ready' ? (
+                  <MotionDiv
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="mt-6"
                   >
-                    <Download className="h-5 w-5" />
-                    <span>تحميل المنصة والمتابعة</span>
-                  </button>
+                    <div className="mb-4 flex items-center justify-center gap-2 text-[11px] font-black text-[#7DF9FF]">
+                      <CheckCircle2 className="h-4 w-4" />
+                      <span>تم تفعيل الحساب بنجاح</span>
+                    </div>
+                    <button
+                      onClick={handleDownloadAndProceed}
+                      className="flex h-14 w-full items-center justify-center gap-3 rounded-[18px] bg-gradient-to-l from-[#7DF9FF] to-white text-[14px] font-black text-black shadow-[0_16px_40px_-16px_rgba(125,249,255,0.85)] transition-all active:scale-[0.98]"
+                    >
+                      <Zap className="h-5 w-5 fill-black" />
+                      <span>الدخول إلى التوقعات</span>
+                    </button>
+                  </MotionDiv>
+                ) : (
+                  <p className="mt-6 text-center text-[10px] font-black uppercase tracking-[0.24em] text-white/30">
+                    جاري التحقق... لا تغلق النافذة
+                  </p>
                 )}
               </div>
             </MotionDiv>
           </MotionDiv>
         )}
       </AnimatePresence>
+
 
     </div>
   );

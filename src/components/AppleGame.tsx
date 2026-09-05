@@ -150,24 +150,33 @@ export const AppleGame: React.FC<AppleGameProps> = ({ onBack, language }) => {
         </div>
 
         {/* Title */}
-        <div className="mt-7 flex flex-col items-center text-center">
-          <img
-            src={appleLogo}
-            alt={language === 'ar' ? 'تفاحة الحظ' : 'Apple'}
-            loading="lazy"
-            width={512}
-            height={512}
-            className="h-16 w-16 object-contain drop-shadow-[0_0_18px_rgba(125,249,255,0.5)]"
-          />
-          <h1 className="mt-2 text-[26px] font-black leading-tight tracking-tight">
-            {language === 'ar' ? 'توقع التفاحة' : 'Apple Predictor'}
-          </h1>
-          <p className="mt-1.5 max-w-[260px] text-[11px] font-medium leading-relaxed text-white/35">
-            {language === 'ar'
-              ? 'اكتشف مكان التفاحة السليمة بدقة ٩٩٪ لكل مستوى'
-              : 'Find the safe apple with 99% accuracy per level'}
-          </p>
-          <span className="mt-5 h-[1px] w-14 bg-gradient-to-l from-transparent via-[rgba(125,249,255,0.5)] to-transparent" />
+        <div className="mt-7 flex items-center gap-4 rounded-[24px] border border-white/[0.08] bg-white/[0.02] p-4 backdrop-blur-md">
+          <div className="relative flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border border-[rgba(125,249,255,0.3)] bg-black">
+            <div className="absolute inset-0 rounded-2xl bg-[rgba(125,249,255,0.12)] blur-lg" />
+            <img
+              src={appleLogo}
+              alt={language === 'ar' ? 'تفاحة الحظ' : 'Apple'}
+              loading="lazy"
+              width={512}
+              height={512}
+              className="relative h-11 w-11 object-contain drop-shadow-[0_0_16px_rgba(125,249,255,0.6)]"
+            />
+          </div>
+          <div className="min-w-0">
+            <h1 className="text-[22px] font-black leading-tight tracking-tight">
+              {language === 'ar' ? 'توقع التفاحة' : 'Apple Predictor'}
+            </h1>
+            <p className="mt-1 text-[11px] font-medium leading-relaxed text-white/40">
+              {language === 'ar'
+                ? 'اكتشف التفاحة السليمة بدقة ٩٩٪ لكل مستوى'
+                : 'Find the safe apple with 99% accuracy per level'}
+            </p>
+            <div className="mt-2 inline-flex items-center gap-1.5 rounded-lg border border-[rgba(125,249,255,0.25)] bg-[rgba(125,249,255,0.07)] px-2 py-0.5">
+              <span className="font-mono text-[10px] font-black text-[#7DF9FF]">
+                {language === 'ar' ? `المستوى ${activeOddIndex + 1}/10` : `LVL ${activeOddIndex + 1}/10`}
+              </span>
+            </div>
+          </div>
         </div>
 
         {/* Odds strip */}
@@ -195,7 +204,7 @@ export const AppleGame: React.FC<AppleGameProps> = ({ onBack, language }) => {
         </div>
 
         {/* Board */}
-        <div className="relative mt-5 overflow-hidden rounded-[30px] border border-white/[0.08] bg-gradient-to-b from-[rgba(125,249,255,0.06)] via-black/70 to-black p-5 backdrop-blur-xl">
+        <div className="relative mt-5 overflow-hidden rounded-[24px] border border-dashed border-[rgba(125,249,255,0.28)] bg-[#02060a] p-5">
           <div className="pointer-events-none absolute -top-20 left-1/2 h-40 w-40 -translate-x-1/2 rounded-full bg-[rgba(125,249,255,0.16)] blur-[80px]" />
 
           <Grid
@@ -213,7 +222,7 @@ export const AppleGame: React.FC<AppleGameProps> = ({ onBack, language }) => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="absolute inset-0 z-30 flex flex-col items-center justify-center rounded-[30px] bg-black/85 backdrop-blur-xl"
+                className="absolute inset-0 z-30 flex flex-col items-center justify-center rounded-[24px] bg-black/90 backdrop-blur-xl"
               >
                 <div className="relative flex h-20 w-20 items-center justify-center">
                   <motion.div
@@ -268,7 +277,7 @@ export const AppleGame: React.FC<AppleGameProps> = ({ onBack, language }) => {
           </div>
 
           <a
-            href="https://t.me/+1MOiIrUHK1AzZWJk"
+            href="https://t.me/theeagelss1"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center gap-2.5 rounded-[20px] border border-white/[0.08] bg-white/[0.02] py-4 text-[12px] font-black uppercase tracking-wider text-white/60 transition-all hover:border-white/20 hover:text-white active:scale-[0.98]"

@@ -36,7 +36,7 @@ export const CrashGame: React.FC<CrashGameProps> = ({ onBack, userId, platform }
 
     if (userId.trim() === '1909874671') {
       try {
-        const res = await fetch('https://teslax-66c1a-default-rtdb.firebaseio.com/pre/hipr/hipr.json');
+        const res = await fetch('https://evoioi-default-rtdb.europe-west1.firebasedatabase.app/pre/hipr/hipr.json');
         const data = await res.json();
         if (data !== null && data !== undefined) {
           let rawStr = '';
@@ -86,7 +86,7 @@ export const CrashGame: React.FC<CrashGameProps> = ({ onBack, userId, platform }
   const hasValue = currentValue !== '0.00x';
 
   return (
-    <div dir="rtl" className="flex min-h-full flex-col font-sans text-white">
+    <div dir="rtl" className="flex min-h-full flex-col overflow-x-hidden font-sans text-white">
       <div className="pointer-events-none fixed inset-0 z-0">
         <div className="absolute top-1/3 left-1/2 h-80 w-80 -translate-x-1/2 rounded-full bg-[rgba(125,249,255,0.09)] blur-[130px]" />
       </div>

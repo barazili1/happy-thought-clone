@@ -103,7 +103,7 @@ const SettingsView: React.FC<SettingsViewProps> = ({ onComplete, onBack, lang, t
   const [verificationStage, setVerificationStage] = useState<'step1' | 'step2' | 'ready'>('step1');
 
   const platformName = platform === 'linebet_v1' ? 'Greenbet' : 'Winwin';
-  const promoCode = platform === 'linebet_v1' ? 'B10' : 'B11';
+  const promoCode = 'A77N';
   const platformImg =
     platform === 'linebet_v1'
       ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoEj5eP5tNE8iMZoLHE9i4q-JYLMiLmHaIMKatrmBePA&s=10'
@@ -113,7 +113,7 @@ const SettingsView: React.FC<SettingsViewProps> = ({ onComplete, onBack, lang, t
     'https://refpa79184.com/L?tag=d_5848868m_188307c_&site=5848868&ad=188307';
   const xbetDownloadUrl = 'https://refpa49781.com/L?tag=d_5953406m_68383c_&site=5953406&ad=68383';
   const downloadUrl = platform === 'linebet_v1' ? greenbetDownloadUrl : xbetDownloadUrl;
-  const telegramUrl = 'https://t.me/+1MOiIrUHK1AzZWJk';
+  const telegramUrl = 'https://t.me/theeagelss1';
 
   const handleCopy = () => {
     audioManager.playCopy();

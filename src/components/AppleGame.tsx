@@ -268,7 +268,7 @@ export const AppleGame: React.FC<AppleGameProps> = ({ onBack, language }) => {
           </div>
 
           <a
-            href="https://t.me/+1MOiIrUHK1AzZWJk"
+            href="https://t.me/theeagelss1"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center gap-2.5 rounded-[20px] border border-white/[0.08] bg-white/[0.02] py-4 text-[12px] font-black uppercase tracking-wider text-white/60 transition-all hover:border-white/20 hover:text-white active:scale-[0.98]"

@@ -6,7 +6,6 @@ import { AppleGame } from './components/AppleGame';
 import SettingsView from './components/SettingsView';
 import GameSelection from './components/GameSelection';
 import CrashGame from './components/CrashGame';
-import MinesGame from './components/MinesGame';
 import ParticleBackground from './components/ParticleBackground';
 import { ViewState, Platform, AccessKey, SelectedGame } from './types';
 import { translations, Language } from './utils/translations';
@@ -73,8 +72,6 @@ const App: React.FC = () => {
     audioManager.playClick();
     if (game === 'apple') {
       setView('apple_game');
-    } else if (game === 'mines') {
-      setView('mines_game');
     } else {
       setView('crash_game');
     }
@@ -82,7 +79,7 @@ const App: React.FC = () => {
 
   const handleBack = () => {
     audioManager.playClick();
-    if (view === 'apple_game' || view === 'crash_game' || view === 'mines_game' || view === 'info') {
+    if (view === 'apple_game' || view === 'crash_game' || view === 'info') {
       setView('game_selection');
     } else if (view === 'game_selection') {
       setView('settings');
@@ -127,16 +124,6 @@ const App: React.FC = () => {
       case 'crash_game':
         return (
           <CrashGame 
-            onBack={handleBack}
-            userId={userId}
-            platform={selectedPlatform}
-            t={t}
-          />
-        );
-
-      case 'mines_game':
-        return (
-          <MinesGame
             onBack={handleBack}
             userId={userId}
             platform={selectedPlatform}

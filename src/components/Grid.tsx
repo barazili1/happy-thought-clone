@@ -144,7 +144,7 @@ export const Grid: React.FC<GridProps> = ({
                       } : {}}
                       transition={{ duration: 1, repeat: Infinity, delay: colIndex * 0.15 }}
                       className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-                        isAnalyzing ? 'shadow-[0_0_10px_var(--primary-glow)]' : 'bg-zinc-300'
+                        isAnalyzing ? 'shadow-[0_0_10px_var(--primary-glow)]' : 'bg-white/15'
                       }`} 
                       style={isAnalyzing ? { backgroundColor: 'var(--primary-color)' } : {}}
                     />

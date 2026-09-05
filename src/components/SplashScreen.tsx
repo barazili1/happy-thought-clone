@@ -57,16 +57,16 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete, language = 'en'
     >
       {/* Neon ambient glows */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        <div className="absolute top-[-15%] left-[-15%] w-[55%] h-[55%] rounded-full blur-[130px] bg-[rgba(57,255,20,0.16)] animate-pulse" />
+        <div className="absolute top-[-15%] left-[-15%] w-[55%] h-[55%] rounded-full blur-[130px] bg-[rgba(125,249,255,0.16)] animate-pulse" />
         <div
-          className="absolute bottom-[-15%] right-[-15%] w-[55%] h-[55%] rounded-full blur-[130px] bg-[rgba(57,255,20,0.12)] animate-pulse"
+          className="absolute bottom-[-15%] right-[-15%] w-[55%] h-[55%] rounded-full blur-[130px] bg-[rgba(125,249,255,0.12)] animate-pulse"
           style={{ animationDelay: '1s' }}
         />
         <div
           className="absolute inset-0 opacity-[0.12]"
           style={{
             backgroundImage:
-              'linear-gradient(rgba(57,255,20,0.35) 1px, transparent 1px), linear-gradient(90deg, rgba(57,255,20,0.35) 1px, transparent 1px)',
+              'linear-gradient(rgba(125,249,255,0.35) 1px, transparent 1px), linear-gradient(90deg, rgba(125,249,255,0.35) 1px, transparent 1px)',
             backgroundSize: '44px 44px',
             maskImage: 'radial-gradient(circle at 50% 45%, black, transparent 72%)',
           }}
@@ -75,7 +75,7 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete, language = 'en'
 
       {/* Scan line */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        <div className="h-24 w-full bg-gradient-to-b from-transparent via-[rgba(57,255,20,0.10)] to-transparent animate-scan" />
+        <div className="h-24 w-full bg-gradient-to-b from-transparent via-[rgba(125,249,255,0.10)] to-transparent animate-scan" />
       </div>
 
       <div className="relative z-10 flex flex-col items-center w-full px-6">
@@ -85,23 +85,23 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete, language = 'en'
           transition={{ duration: 1.4, ease: [0.23, 1, 0.32, 1] }}
           className="relative mb-12"
         >
-          <div className="absolute -inset-14 rounded-full blur-[70px] bg-[rgba(57,255,20,0.22)] animate-pulse" />
+          <div className="absolute -inset-14 rounded-full blur-[70px] bg-[rgba(125,249,255,0.22)] animate-pulse" />
 
           <motion.div
             animate={{ rotate: 360 }}
             transition={{ duration: 22, repeat: Infinity, ease: 'linear' }}
-            className="absolute -inset-5 rounded-[3.2rem] border border-[rgba(57,255,20,0.45)]"
+            className="absolute -inset-5 rounded-[3.2rem] border border-[rgba(125,249,255,0.45)]"
           />
           <motion.div
             animate={{ rotate: -360 }}
             transition={{ duration: 34, repeat: Infinity, ease: 'linear' }}
-            className="absolute -inset-9 rounded-[3.6rem] border border-dashed border-[rgba(57,255,20,0.18)]"
+            className="absolute -inset-9 rounded-[3.6rem] border border-dashed border-[rgba(125,249,255,0.18)]"
           />
 
-          <div className="relative w-52 h-52 rounded-[2.5rem] overflow-hidden border border-[rgba(57,255,20,0.4)] bg-[#050705] shadow-[0_0_60px_rgba(57,255,20,0.28)] flex items-center justify-center">
+          <div className="relative w-52 h-52 rounded-[2.5rem] overflow-hidden border border-[rgba(125,249,255,0.4)] bg-[#050705] shadow-[0_0_60px_rgba(125,249,255,0.28)] flex items-center justify-center">
             <img
               src={dragonLogo}
-              className="w-40 h-40 object-contain drop-shadow-[0_0_22px_rgba(57,255,20,0.65)]"
+              className="w-40 h-40 object-contain drop-shadow-[0_0_22px_rgba(125,249,255,0.65)]"
               alt="DRAGON VIP"
               width={1024}
               height={1024}
@@ -109,25 +109,10 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete, language = 'en'
             <motion.div
               animate={{ x: ['-120%', '220%'] }}
               transition={{ duration: 3.2, repeat: Infinity, ease: 'easeInOut' }}
-              className="absolute inset-0 bg-gradient-to-r from-transparent via-[rgba(57,255,20,0.22)] to-transparent skew-x-12"
+              className="absolute inset-0 bg-gradient-to-r from-transparent via-[rgba(125,249,255,0.22)] to-transparent skew-x-12"
             />
           </div>
 
-          <MotionDiv
-            animate={{ y: [0, -10, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-            className="absolute -top-6 -right-6 w-12 h-12 rounded-2xl bg-black/80 backdrop-blur-xl border border-[rgba(57,255,20,0.4)] flex items-center justify-center shadow-[0_0_20px_rgba(57,255,20,0.3)]"
-          >
-            <ShieldCheck className="w-6 h-6 text-[#39FF14]" />
-          </MotionDiv>
-
-          <MotionDiv
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
-            className="absolute -bottom-6 -left-6 w-12 h-12 rounded-2xl bg-black/80 backdrop-blur-xl border border-[rgba(57,255,20,0.4)] flex items-center justify-center shadow-[0_0_20px_rgba(57,255,20,0.3)]"
-          >
-            <Zap className="w-6 h-6 text-[#39FF14]" />
-          </MotionDiv>
         </MotionDiv>
 
         {/* Brand */}
@@ -140,12 +125,12 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete, language = 'en'
           >
             <h1 className="text-4xl sm:text-5xl font-black tracking-[0.18em] uppercase text-white">
               DRAGON{' '}
-              <span className="text-[#39FF14] drop-shadow-[0_0_18px_rgba(57,255,20,0.75)]">VIP</span>
+              <span className="text-[#7DF9FF] drop-shadow-[0_0_18px_rgba(125,249,255,0.75)]">VIP</span>
             </h1>
             <div className="flex items-center justify-center gap-3">
-              <div className="h-[1px] w-10 bg-gradient-to-r from-transparent to-[rgba(57,255,20,0.6)]" />
-              <Flame className="w-4 h-4 text-[#39FF14] animate-pulse" />
-              <div className="h-[1px] w-10 bg-gradient-to-l from-transparent to-[rgba(57,255,20,0.6)]" />
+              <div className="h-[1px] w-10 bg-gradient-to-r from-transparent to-[rgba(125,249,255,0.6)]" />
+              <Flame className="w-4 h-4 text-[#7DF9FF] animate-pulse" />
+              <div className="h-[1px] w-10 bg-gradient-to-l from-transparent to-[rgba(125,249,255,0.6)]" />
             </div>
           </motion.div>
 
@@ -156,7 +141,7 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete, language = 'en'
                 initial={{ opacity: 0, y: 5 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -5 }}
-                className="text-[10px] font-bold text-[#39FF14]/90 uppercase tracking-[0.32em]"
+                className="text-[10px] font-bold text-[#7DF9FF]/90 uppercase tracking-[0.32em]"
               >
                 {loadingSteps[currentStep]}
               </motion.p>
@@ -171,14 +156,14 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete, language = 'en'
           <span className="text-[10px] font-black text-white/60 uppercase tracking-[0.25em]">
             {isArabic ? 'تحميل النظام' : 'System Load'}
           </span>
-          <span className="text-[10px] font-black font-mono text-[#39FF14]">
+          <span className="text-[10px] font-black font-mono text-[#7DF9FF]">
             {Math.round(progress)}%
           </span>
         </div>
 
-        <div className="relative h-1.5 w-full rounded-full overflow-hidden bg-white/10 border border-[rgba(57,255,20,0.25)]">
+        <div className="relative h-1.5 w-full rounded-full overflow-hidden bg-white/10 border border-[rgba(125,249,255,0.25)]">
           <motion.div
-            className="h-full bg-gradient-to-r from-[#1f7a10] via-[#39FF14] to-[#b9ff6a] shadow-[0_0_16px_rgba(57,255,20,0.8)]"
+            className="h-full bg-gradient-to-r from-[#1f7a10] via-[#7DF9FF] to-[#b9ff6a] shadow-[0_0_16px_rgba(125,249,255,0.8)]"
             initial={{ width: 0 }}
             animate={{ width: `${progress}%` }}
             transition={{ duration: 0.1 }}
@@ -193,7 +178,7 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete, language = 'en'
                 opacity: progress > (i + 1) * 20 ? 1 : 0.2,
                 scale: progress > (i + 1) * 20 ? 1.25 : 1,
               }}
-              className="w-1.5 h-1.5 rounded-full bg-[#39FF14] shadow-[0_0_8px_rgba(57,255,20,0.9)]"
+              className="w-1.5 h-1.5 rounded-full bg-[#7DF9FF] shadow-[0_0_8px_rgba(125,249,255,0.9)]"
             />
           ))}
         </div>

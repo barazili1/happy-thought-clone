@@ -51,7 +51,7 @@ const WinnersDashboard: React.FC<{ title?: string }> = ({ title = 'فوز الل
         <span className="text-right">Win</span>
       </div>
 
-      <div className="divide-y divide-zinc-200">
+      <div className="divide-y divide-white/10">
         {rows.map((row, idx) => (
           <div
             key={row.id}
